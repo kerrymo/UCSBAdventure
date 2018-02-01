@@ -3,58 +3,137 @@
 
 USING_NS_CC;
 
+// create scene
 Scene* HelloWorld::createScene()
 {
-    return HelloWorld::create();
+    auto scene = Scene::create();
+    auto layer = HelloWorld::create();
+    scene->addChild(layer);
+    
+    return scene;
 }
 
-// Print useful error message instead of segfaulting when files are not there.
-static void problemLoading(const char* filename)
-{
-    printf("Error while loading: %s\n", filename);
-    printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in HelloWorldScene.cpp\n");
-}
-
-// on "init" you need to initialize your instance
+// initialize
 bool HelloWorld::init()
 {
-    //////////////////////////////
-    // 1. super init first
-    if ( !Scene::init() )
-    {
-        return false;
-    }
-
-    auto visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
-    mySprite = Sprite::create("CloseNormal.png");
+    if (!Layer::init()) return false;
     
-    mySprite->setPosition(Point((visibleSize.width / 2) + origin.x, (visibleSize.height / 2) + origin.y));
+    // play background music
+    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    audio->preloadBackgroundMusic("song.mp3");
+    audio->playBackgroundMusic("song.mp3", true);
     
-    this->addChild(mySprite);
+    // create sprite
+    auto sprite = Sprite::create("CloseNormal.png");
+    sprite->setAnchorPoint(Vec2(0.0,0.0));
+    sprite->setPosition(100, 100);
+    this->addChild(sprite, 0);
     
-    auto action = MoveBy::create(3, Point(50, 150));
+    // movement system
+    int speed = 25;
+    bool* movingUp = new bool;
+    bool* movingDown = new bool;
+    bool* movingLeft = new bool;
+    bool* movingRight = new bool;
     
-    mySprite->runAction(action);
+    auto eventListener = EventListenerKeyboard::create();
+    
+    // when a key is pressed
+    eventListener->onKeyPressed = [sprite, speed, movingUp, movingDown, movingLeft, movingRight](EventKeyboard::KeyCode keyCode, Event* event) {
+        
+        // create actions
+        auto moveUp = RepeatForever::create(MoveBy::create(0.1, Point(0, speed)));
+        auto moveDown = RepeatForever::create(MoveBy::create(0.1, Point(0, (-1) * speed)));
+        auto moveLeft = RepeatForever::create(MoveBy::create(0.1, Point((-1) * speed, 0)));
+        auto moveRight = RepeatForever::create(MoveBy::create(0.1, Point(speed, 0)));
+        auto moveUpLeft = RepeatForever::create(MoveBy::create(0.1, Point((-1) * speed, speed)));
+        auto moveUpRight = RepeatForever::create(MoveBy::create(0.1, Point(speed, speed)));
+        auto moveDownLeft = RepeatForever::create(MoveBy::create(0.1, Point((-1) * speed, (-1) * speed)));
+        auto moveDownRight = RepeatForever::create(MoveBy::create(0.1, Point(speed, (-1) * speed)));
+        
+        // input respond
+        switch (keyCode) {
+            case EventKeyboard::KeyCode::KEY_UP_ARROW:
+                sprite->stopAllActions();
+                if(*movingLeft) sprite->runAction(moveUpLeft);
+                else if(*movingRight) sprite->runAction(moveUpRight);
+                else sprite->runAction(moveUp);
+                *movingUp = true;
+                break;
+                
+            case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+                sprite->stopAllActions();
+                if(*movingLeft) sprite->runAction(moveDownLeft);
+                else if(*movingRight) sprite->runAction(moveDownRight);
+                else sprite->runAction(moveDown);
+                *movingDown = true;
+                break;
+                
+            case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+                sprite->stopAllActions();
+                if(*movingUp) sprite->runAction(moveUpLeft);
+                else if(*movingDown) sprite->runAction(moveDownLeft);
+                else sprite->runAction(moveLeft);
+                *movingLeft = true;
+                break;
+                
+            case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+                sprite->stopAllActions();
+                if(*movingUp) sprite->runAction(moveUpRight);
+                else if(*movingDown) sprite->runAction(moveDownRight);
+                else sprite->runAction(moveRight);
+                *movingRight = true;
+                break;
+        }
+    };
+    
+    // when a key is released
+    eventListener->onKeyReleased = [sprite, speed, movingUp, movingDown, movingLeft, movingRight](EventKeyboard::KeyCode keyCode, Event* event) {
+        
+        // create actions
+        auto moveUp = RepeatForever::create(MoveBy::create(0.1, Point(0, speed)));
+        auto moveDown = RepeatForever::create(MoveBy::create(0.1, Point(0, (-1) * speed)));
+        auto moveLeft = RepeatForever::create(MoveBy::create(0.1, Point((-1) * speed, 0)));
+        auto moveRight = RepeatForever::create(MoveBy::create(0.1, Point(speed, 0)));
+        
+        // input respond
+        switch (keyCode) {
+            case EventKeyboard::KeyCode::KEY_UP_ARROW:
+                *movingUp = false;
+                if(*movingDown) break;
+                sprite->stopAllActions();
+                if(*movingLeft) sprite->runAction(moveLeft);
+                else if(*movingRight) sprite->runAction(moveRight);
+                break;
+            
+            case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+                *movingDown = false;
+                if(*movingUp) break;
+                sprite->stopAllActions();
+                if(*movingLeft) sprite->runAction(moveLeft);
+                else if(*movingRight) sprite->runAction(moveRight);
+                break;
+                
+            case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+                *movingLeft = false;
+                if(*movingRight) break;
+                sprite->stopAllActions();
+                if(*movingUp) sprite->runAction(moveUp);
+                else if(*movingDown) sprite->runAction(moveDown);
+                break;
+                
+            case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+                *movingRight = false;
+                if(*movingLeft) break;
+                sprite->stopAllActions();
+                if(*movingUp) sprite->runAction(moveUp);
+                else if(*movingDown) sprite->runAction(moveDown);
+                break;
+        }
+    };
+    
+    _eventDispatcher->addEventListenerWithFixedPriority(eventListener, 2);
     
     return true;
 }
 
-
-void HelloWorld::menuCloseCallback(Ref* pSender)
-{
-    //Close the cocos2d-x game scene and quit the application
-    Director::getInstance()->end();
-
-    #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-#endif
-
-    /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use Director::getInstance()->end() and exit(0) as given above,instead trigger a custom event created in RootViewController.mm as below*/
-
-    //EventCustom customEndEvent("game_scene_close_event");
-    //_eventDispatcher->dispatchEvent(&customEndEvent);
-
-
-}
