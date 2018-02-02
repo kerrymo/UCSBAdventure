@@ -1,14 +1,16 @@
 #include "HelloWorldScene.h"
 
-// create scene
+// create scene, called in AppDelegate.cpp
 Scene* HelloWorld::createScene()
 {
+    // call create()
     return HelloWorld::create();
 }
 
 // initialize
 bool HelloWorld::init()
 {
+    // call parent init
     if (!Scene::init()) return false;
     
     // play background music
@@ -23,112 +25,76 @@ bool HelloWorld::init()
     this->addChild(sprite, 0);
     
     // movement system
-    speed = 25;
-    
+    speed = 500;
+    position = sprite->getPosition();
     keyboardListener = EventListenerKeyboard::create();
+    keyboardListener->onKeyPressed = CC_CALLBACK_2(HelloWorld::onKeyPressed, this);
+    keyboardListener->onKeyReleased = CC_CALLBACK_2(HelloWorld::onKeyReleased, this);
+    _eventDispatcher->addEventListenerWithFixedPriority(keyboardListener, 1);
     
-    // when a key is pressed
-    keyboardListener->onKeyPressed = [=](EventKeyboard::KeyCode keyCode, Event* event) {
-        
-        // create actions
-        moveUp = RepeatForever::create(MoveBy::create(0.1, Point(0, speed)));
-        moveDown = RepeatForever::create(MoveBy::create(0.1, Point(0, (-1) * speed)));
-        moveLeft = RepeatForever::create(MoveBy::create(0.1, Point((-1) * speed, 0)));
-        moveRight = RepeatForever::create(MoveBy::create(0.1, Point(speed, 0)));
-        moveUpLeft = RepeatForever::create(MoveBy::create(0.1, Point((-1) * speed, speed)));
-        moveUpRight = RepeatForever::create(MoveBy::create(0.1, Point(speed, speed)));
-        moveDownLeft = RepeatForever::create(MoveBy::create(0.1, Point((-1) * speed, (-1) * speed)));
-        moveDownRight = RepeatForever::create(MoveBy::create(0.1, Point(speed, (-1) * speed)));
-        
-        // input respond
-        switch (keyCode) {
-            case EventKeyboard::KeyCode::KEY_UP_ARROW:
-                sprite->stopAllActions();
-                if(movingLeft) sprite->runAction(moveUpLeft);
-                else if(movingRight) sprite->runAction(moveUpRight);
-                else sprite->runAction(moveUp);
-                movingUp = true;
-                break;
-                
-            case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-                sprite->stopAllActions();
-                if(movingLeft) sprite->runAction(moveDownLeft);
-                else if(movingRight) sprite->runAction(moveDownRight);
-                else sprite->runAction(moveDown);
-                movingDown = true;
-                break;
-                
-            case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-                sprite->stopAllActions();
-                if(movingUp) sprite->runAction(moveUpLeft);
-                else if(movingDown) sprite->runAction(moveDownLeft);
-                else sprite->runAction(moveLeft);
-                movingLeft = true;
-                break;
-                
-            case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-                sprite->stopAllActions();
-                if(movingUp) sprite->runAction(moveUpRight);
-                else if(movingDown) sprite->runAction(moveDownRight);
-                else sprite->runAction(moveRight);
-                movingRight = true;
-                break;
-                
-            default:
-                break;
-        }
-    };
-    
-    // when a key is released
-    keyboardListener->onKeyReleased = [=](EventKeyboard::KeyCode keyCode, Event* event) {
-        
-        // create actions
-        moveUp = RepeatForever::create(MoveBy::create(0.1, Point(0, speed)));
-        moveDown = RepeatForever::create(MoveBy::create(0.1, Point(0, (-1) * speed)));
-        moveLeft = RepeatForever::create(MoveBy::create(0.1, Point((-1) * speed, 0)));
-        moveRight = RepeatForever::create(MoveBy::create(0.1, Point(speed, 0)));
-        
-        // input respond
-        switch (keyCode) {
-            case EventKeyboard::KeyCode::KEY_UP_ARROW:
-                movingUp = false;
-                if(movingDown) break;
-                sprite->stopAllActions();
-                if(movingLeft) sprite->runAction(moveLeft);
-                else if(movingRight) sprite->runAction(moveRight);
-                break;
-            
-            case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-                movingDown = false;
-                if(movingUp) break;
-                sprite->stopAllActions();
-                if(movingLeft) sprite->runAction(moveLeft);
-                else if(movingRight) sprite->runAction(moveRight);
-                break;
-                
-            case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-                movingLeft = false;
-                if(movingRight) break;
-                sprite->stopAllActions();
-                if(movingUp) sprite->runAction(moveUp);
-                else if(movingDown) sprite->runAction(moveDown);
-                break;
-                
-            case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-                movingRight = false;
-                if(movingLeft) break;
-                sprite->stopAllActions();
-                if(movingUp) sprite->runAction(moveUp);
-                else if(movingDown) sprite->runAction(moveDown);
-                break;
-                
-            default:
-                break;
-        }
-    };
-    
-    _eventDispatcher->addEventListenerWithFixedPriority(keyboardListener, 2);
+    // schedule update
+    this->scheduleUpdate();
     
     return true;
 }
 
+// called every frame
+void HelloWorld::update(float delta)
+{
+    if(movingUp) position.y += speed * delta;
+    if(movingDown) position.y -= speed * delta;
+    if(movingLeft) position.x -= speed * delta;
+    if(movingRight) position.x += speed * delta;
+    sprite->setPosition(position);
+}
+
+
+// when a key is pressed
+void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, cocos2d::Event *event)
+{
+    switch (keyCode) {
+        case EventKeyboard::KeyCode::KEY_UP_ARROW:
+            movingUp = true;
+            break;
+            
+        case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+            movingDown = true;
+            break;
+            
+        case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+            movingLeft = true;
+            break;
+            
+        case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+            movingRight = true;
+            break;
+            
+        default:
+            break;
+    }
+}
+
+// when a key is released
+void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event)
+{
+    switch (keyCode) {
+        case EventKeyboard::KeyCode::KEY_UP_ARROW:
+            movingUp = false;
+            break;
+            
+        case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+            movingDown = false;
+            break;
+            
+        case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+            movingLeft = false;
+            break;
+            
+        case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+            movingRight = false;
+            break;
+            
+        default:
+            break;
+    }
+}
