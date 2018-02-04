@@ -5,11 +5,12 @@
 
 USING_NS_CC;
 
-class HelloWorld : public cocos2d::Scene
+class HelloWorld : public Scene
 {
 public:
-    static cocos2d::Scene* createScene();
+    static Scene* createScene();
     virtual bool init() override;
+    void unpause(float);
     void onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event);
     void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event);
     void update(float) override;
@@ -19,7 +20,7 @@ public:
     
 private:
     int speed;
-    bool movingUp, movingDown, movingLeft, movingRight;
+    bool movingUp, movingDown, movingLeft, movingRight, paused;
     Sprite *sprite;
     CocosDenshion::SimpleAudioEngine *audio;
     Vec2 position;

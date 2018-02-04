@@ -1,4 +1,6 @@
+#include <stdlib.h>
 #include "HelloWorldScene.h"
+#include "Battle.h"
 
 // create scene, called in AppDelegate.cpp
 Scene* HelloWorld::createScene()
@@ -16,11 +18,12 @@ bool HelloWorld::init()
     // play background music
     audio = CocosDenshion::SimpleAudioEngine::getInstance();
     audio->preloadBackgroundMusic("song.mp3");
+    audio->stopBackgroundMusic();
     audio->playBackgroundMusic("song.mp3", true);
     
     // create sprite
     sprite = Sprite::create("CloseNormal.png");
-    sprite->setAnchorPoint(Vec2(0.0,0.0));
+    sprite->setAnchorPoint(Vec2(0.5, 0.5));
     sprite->setPosition(100, 100);
     this->addChild(sprite, 0);
     
@@ -30,7 +33,10 @@ bool HelloWorld::init()
     keyboardListener = EventListenerKeyboard::create();
     keyboardListener->onKeyPressed = CC_CALLBACK_2(HelloWorld::onKeyPressed, this);
     keyboardListener->onKeyReleased = CC_CALLBACK_2(HelloWorld::onKeyReleased, this);
-    _eventDispatcher->addEventListenerWithFixedPriority(keyboardListener, 1);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, this);
+    
+    // initialize random number generator
+    srand(time(NULL));
     
     // schedule update
     this->scheduleUpdate();
@@ -38,20 +44,15 @@ bool HelloWorld::init()
     return true;
 }
 
-// called every frame
-void HelloWorld::update(float delta)
+void HelloWorld::unpause(float delta)
 {
-    if(movingUp) position.y += speed * delta;
-    if(movingDown) position.y -= speed * delta;
-    if(movingLeft) position.x -= speed * delta;
-    if(movingRight) position.x += speed * delta;
-    sprite->setPosition(position);
+    paused = false;
 }
-
 
 // when a key is pressed
 void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, cocos2d::Event *event)
 {
+    if(paused) return;
     switch (keyCode) {
         case EventKeyboard::KeyCode::KEY_UP_ARROW:
             movingUp = true;
@@ -97,4 +98,36 @@ void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *e
         default:
             break;
     }
+}
+
+// called every frame
+void HelloWorld::update(float delta)
+{
+    // random encounter
+    if(movingUp || movingDown || movingLeft || movingRight)
+    {
+        int i = rand() % 1000;
+        if(i < 3)
+        {
+            paused = true;
+            movingUp = false;
+            movingDown = false;
+            movingLeft = false;
+            movingRight = false;
+            this->scheduleOnce(schedule_selector(HelloWorld::unpause), 0.5);
+            audio->stopBackgroundMusic();
+            auto director = Director::getInstance();
+            auto scene = Battle::createScene();
+            director->pushScene(TransitionFade::create(0.5, scene, Color3B(255, 255, 255)));
+        }
+    }
+    
+    // update position
+    if(paused) return;
+    if(!audio->isBackgroundMusicPlaying()) audio->playBackgroundMusic("song.mp3");
+    if(movingUp) position.y += speed * delta;
+    if(movingDown) position.y -= speed * delta;
+    if(movingLeft) position.x -= speed * delta;
+    if(movingRight) position.x += speed * delta;
+    sprite->setPosition(position);
 }
