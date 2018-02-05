@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "HelloWorldScene.h"
 #include "Battle.h"
+#include "TextBox.hpp"
 
 // create scene, called in AppDelegate.cpp
 Scene* HelloWorld::createScene()
@@ -34,6 +35,15 @@ bool HelloWorld::init()
     keyboardListener->onKeyPressed = CC_CALLBACK_2(HelloWorld::onKeyPressed, this);
     keyboardListener->onKeyReleased = CC_CALLBACK_2(HelloWorld::onKeyReleased, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, this);
+    
+    // Test Text box
+    std::vector<std::string> text;
+    text.push_back("Page 1");
+    text.push_back("Page 2");
+    auto textBoxSize = Size(this->getContentSize().width, 128);
+    auto textBox = TextBox::create(text, textBoxSize);
+    this->addChild(textBox, 2);
+    
     
     // initialize random number generator
     srand(time(NULL));
