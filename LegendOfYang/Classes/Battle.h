@@ -5,6 +5,8 @@
 
 USING_NS_CC;
 
+enum Status { Attack, Defend, Flee, Victory };
+
 class Battle : public Scene
 {
 public:
@@ -17,9 +19,10 @@ public:
     
 private:
     bool victory;
-    Label *label;
+    Status status;
+    Label *label, *attackLabel, *defendLabel, *fleeLabel;
     FadeTo *die;
-    Sprite *sprite, *enemy;
+    Sprite *sprite, *enemy, *attackButton, *defendButton, *fleeButton;
     CocosDenshion::SimpleAudioEngine *audio;
     EventListenerKeyboard *keyboardListener;
 };
