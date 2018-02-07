@@ -2,6 +2,7 @@
 #include "HelloWorldScene.h"
 #include "Battle.h"
 #include "TextBox.hpp"
+#include "KeyboardMenu.hpp"
 
 // create scene, called in AppDelegate.cpp
 Scene* HelloWorld::createScene()
@@ -36,14 +37,19 @@ bool HelloWorld::init()
     keyboardListener->onKeyReleased = CC_CALLBACK_2(HelloWorld::onKeyReleased, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, this);
     
-    // Test Text box
-    std::vector<std::string> text;
-    text.push_back("Page 1");
-    text.push_back("Page 2");
-    auto textBoxSize = Size(this->getContentSize().width, 128);
-    auto textBox = TextBox::create(text, textBoxSize);
-    this->addChild(textBox, 2);
     
+    
+    // Test Menu
+    std::vector<LabelAndCallback> items;
+    LabelAndCallback item1, item2;
+    item1.first = "Option 1";
+    item2.first = "Option 2";
+    item1.second = CC_CALLBACK_1(HelloWorld::handleOption, this);
+    item2.second = CC_CALLBACK_1(HelloWorld::handleOption, this);
+    items.push_back(item1);
+    items.push_back(item2);
+    auto menu = KeyboardMenu::create(items);
+    this->addChild(menu, this->getChildrenCount() - 1);
     
     // initialize random number generator
     srand(time(NULL));
@@ -52,6 +58,18 @@ bool HelloWorld::init()
     this->scheduleUpdate();
     
     return true;
+}
+
+void HelloWorld::handleOption(std::string option) {
+    std::vector<std::string> text;
+    if (option == "Option 1") {
+        text.push_back("You selected option 1.");
+    } else if (option == "Option 2") {
+        text.push_back("You selected option 2.");
+    }
+    auto textBoxSize = Size(this->getContentSize().width, 128);
+    auto textBox = TextBox::create(text, textBoxSize);
+    this->addChild(textBox, 4);
 }
 
 void HelloWorld::unpause(float delta)

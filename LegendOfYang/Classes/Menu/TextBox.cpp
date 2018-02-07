@@ -9,7 +9,7 @@
 
 bool TextBox::init() {
     if (!Node::init()) return false;
-    background = LayerColor::create(Color4B(255, 255, 255, 255), this->getContentSize().width, this->getContentSize().height);
+    background = LayerColor::create(Color4B(0, 0, 255, 155), this->getContentSize().width, this->getContentSize().height);
     this->addChild(background);
     auto keyboardListener = EventListenerKeyboard::create();
     auto eventDispatcher = getEventDispatcher();
@@ -17,7 +17,7 @@ bool TextBox::init() {
     eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, this);
     currentPage = 0;
     textLabel = Label::createWithTTF("Don't use the create method use create(const Vector<std::string> &text, const Size size)", "Fonts/OpenSans-Bold.ttf", 24);
-    textLabel->setTextColor(Color4B::BLACK);
+    textLabel->setTextColor(Color4B::WHITE);
     textLabel->setAnchorPoint(cocos2d::Point(0.0f, 0.0f));
     this->addChild(textLabel);
     return true;
@@ -29,7 +29,7 @@ TextBox* TextBox::create(const std::vector<std::string> &text, const Size size) 
     textBox->textLabel->removeFromParent();
     textBox->textLabel = Label::createWithTTF(text.at(textBox->currentPage), "Fonts/OpenSans-Bold.ttf", 24);
     textBox->addChild(textBox->textLabel);
-    textBox->textLabel->setTextColor(Color4B::BLACK);
+    textBox->textLabel->setTextColor(Color4B::WHITE);
     textBox->textLabel->setAnchorPoint(cocos2d::Point(0.0f, 0.0f));
     
     textBox->setContentSize(size);
@@ -38,7 +38,7 @@ TextBox* TextBox::create(const std::vector<std::string> &text, const Size size) 
 }
 
 void TextBox::updateText(std::string page) {
-    textLabel->removeFromParent();
+    removeAllChildren();
     textLabel = Label::createWithTTF(_text.at(currentPage), "Fonts/OpenSans-Bold.ttf", 24);
     addChild(textLabel);
     textLabel->setTextColor(Color4B::BLACK);
@@ -61,7 +61,7 @@ void TextBox::setContentSize(const cocos2d::Size &contentSize) {
 }
 
 void TextBox::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event) {
-    
+    event->stopPropagation();
     switch (keyCode) {
         case EventKeyboard::KeyCode::KEY_ENTER:
         case EventKeyboard::KeyCode::KEY_SHIFT:
@@ -76,7 +76,6 @@ void TextBox::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event) {
             break;
             
         default:
-            event->stopPropagation();
             break;
     }
     

@@ -13,6 +13,7 @@ USING_NS_CC;
 class TextBox : public Node {
 private:
     virtual bool init() override;
+    
     void onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event);
     void updateText(std::string page);
     std::vector<std::string> _text;
