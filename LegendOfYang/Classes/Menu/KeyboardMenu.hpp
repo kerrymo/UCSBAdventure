@@ -10,22 +10,27 @@
 
 USING_NS_CC;
 
-// The provided menu class doesn't support keyboard and the interal class interface is extremely convoluted and basically can't be inherited from so I made my own
+// Class Description - This class displays a vertical box of options you can select
+// Use Cases - Action Selecting during a battle, Selecting Save file, Selecting Item from inventory, etc.
+
 typedef std::pair<std::string, std::function<void(std::string)>> LabelAndCallback;
 
 class KeyboardMenu : public Node {
-private:
+public:
+    // Interface functions
+    void setContentSize(const cocos2d::Size &contentSize) override;
+    
+    // Initialization functions
     virtual bool init() override;
+    // create a create() function that calls constructor, init and autorelease
+    CREATE_FUNC(KeyboardMenu);
+    static KeyboardMenu* create(const std::vector<LabelAndCallback> &items);
+    static KeyboardMenu* create(const std::vector<LabelAndCallback> &items, const Size &contentSize);
+    
+protected:
     void onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event);
     void updateDisplay();
     int selectedItem;
     std::vector<LabelAndCallback> _items;
-    
-public:
-    static KeyboardMenu* create(const std::vector<LabelAndCallback> &items);
-    static KeyboardMenu* create(const std::vector<LabelAndCallback> &items, const Size &contentSize);
-    void setContentSize(const cocos2d::Size &contentSize) override;
-    // create a create() function that calls constructor, init and autorelease
-    CREATE_FUNC(KeyboardMenu);
 };
 #endif /* KeyboardMenu_hpp */

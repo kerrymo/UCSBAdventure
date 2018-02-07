@@ -2,6 +2,7 @@
 #include "HelloWorldScene.h"
 #include "Battle.h"
 #include "TextBox.hpp"
+#include "PagedTextBox.hpp"
 #include "KeyboardMenu.hpp"
 
 // create scene, called in AppDelegate.cpp
@@ -38,6 +39,10 @@ bool HelloWorld::init()
     _eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, this);
     
     
+    // Test Text Box
+    auto textBoxSize = Size(this->getContentSize().width, 128);
+    auto textBox = PagedTextBox::create({"Test"}, textBoxSize);
+    this->addChild(textBox);
     
     // Test Menu
     std::vector<LabelAndCallback> items;
@@ -49,7 +54,7 @@ bool HelloWorld::init()
     items.push_back(item1);
     items.push_back(item2);
     auto menu = KeyboardMenu::create(items);
-    this->addChild(menu, this->getChildrenCount() - 1);
+    this->addChild(menu);
     
     // initialize random number generator
     srand(time(NULL));
@@ -68,7 +73,7 @@ void HelloWorld::handleOption(std::string option) {
         text.push_back("You selected option 2.");
     }
     auto textBoxSize = Size(this->getContentSize().width, 128);
-    auto textBox = TextBox::create(text, textBoxSize);
+    auto textBox = PagedTextBox::create(text, textBoxSize);
     this->addChild(textBox, 4);
 }
 

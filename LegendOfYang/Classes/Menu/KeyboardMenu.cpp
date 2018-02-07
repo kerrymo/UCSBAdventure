@@ -55,10 +55,13 @@ void KeyboardMenu::updateDisplay() { // Not very efficient but should work for o
 
 void KeyboardMenu::setContentSize(const cocos2d::Size &contentSize) {
     Size necessarySize;
-    necessarySize.height = fmax(contentSize.height, fontSize * _items.size() + 10);
-    necessarySize.width = 0;
+    float minimumMargin = 8.0f;
+    necessarySize.height = fmax(contentSize.height, fontSize * _items.size() + minimumMargin);
     for (auto labelAndCallback : _items) {
-        necessarySize.width = fmax(necessarySize.width, labelAndCallback.first.length() * fontSize / 1.7f); // This 1.7f is kind of hacky might fix it later
+        // Creating a dummy label right now is the only way to get the actual width of text on screen
+        auto labelText = labelAndCallback.first;
+        auto label = Label::createWithTTF(labelText, "Fonts/OpenSans-Bold.ttf", fontSize);
+        necessarySize.width = fmax(necessarySize.width, label->getContentSize().width + minimumMargin);
     }
     
     Node::setContentSize(necessarySize);
