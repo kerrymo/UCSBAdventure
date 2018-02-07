@@ -68,6 +68,12 @@
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
+		B360A03C20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */; };
+		B360A03D20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */; };
+		B3C0A5EA2028D3D30088189A /* TextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0A5E82028D3D30088189A /* TextBox.cpp */; };
+		B3C0A5EB2028D3D30088189A /* TextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0A5E82028D3D30088189A /* TextBox.cpp */; };
+		B3C0A5F8202B6F360088189A /* PagedTextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0A5F6202B6F360088189A /* PagedTextBox.cpp */; };
+		B3C0A5F9202B6F360088189A /* PagedTextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0A5F6202B6F360088189A /* PagedTextBox.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -175,6 +181,12 @@
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardMenu.cpp; sourceTree = "<group>"; };
+		B360A03B20282E6400FCB0AE /* KeyboardMenu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = KeyboardMenu.hpp; sourceTree = "<group>"; };
+		B3C0A5E82028D3D30088189A /* TextBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextBox.cpp; sourceTree = "<group>"; };
+		B3C0A5E92028D3D30088189A /* TextBox.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TextBox.hpp; sourceTree = "<group>"; };
+		B3C0A5F6202B6F360088189A /* PagedTextBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PagedTextBox.cpp; sourceTree = "<group>"; };
+		B3C0A5F7202B6F360088189A /* PagedTextBox.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PagedTextBox.hpp; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -324,6 +336,7 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B360A03920282B4300FCB0AE /* Menu */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				2288659E20278CCD00C6F6A9 /* Battle.cpp */,
@@ -381,6 +394,19 @@
 			name = Icons;
 			path = ios;
 			sourceTree = SOURCE_ROOT;
+		};
+		B360A03920282B4300FCB0AE /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */,
+				B360A03B20282E6400FCB0AE /* KeyboardMenu.hpp */,
+				B3C0A5E82028D3D30088189A /* TextBox.cpp */,
+				B3C0A5E92028D3D30088189A /* TextBox.hpp */,
+				B3C0A5F6202B6F360088189A /* PagedTextBox.cpp */,
+				B3C0A5F7202B6F360088189A /* PagedTextBox.hpp */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -536,8 +562,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				B3C0A5F8202B6F360088189A /* PagedTextBox.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				B3C0A5EA2028D3D30088189A /* TextBox.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				B360A03C20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				228865A020278CCE00C6F6A9 /* Battle.cpp in Sources */,
@@ -548,9 +577,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3C0A5F9202B6F360088189A /* PagedTextBox.cpp in Sources */,
+				B360A03D20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				B3C0A5EB2028D3D30088189A /* TextBox.cpp in Sources */,
 				228865A120278CD800C6F6A9 /* Battle.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

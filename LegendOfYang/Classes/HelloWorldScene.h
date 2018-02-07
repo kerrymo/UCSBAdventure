@@ -14,6 +14,7 @@ public:
     void onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event);
     void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event);
     void update(float) override;
+    void handleOption(std::string option);
     
     // create a create() function that calls constructor, init and autorelease
     CREATE_FUNC(HelloWorld);
