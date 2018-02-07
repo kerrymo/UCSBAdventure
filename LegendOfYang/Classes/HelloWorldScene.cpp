@@ -65,8 +65,9 @@ bool HelloWorld::init()
     return true;
 }
 
-void HelloWorld::handleOption(std::string option) {
+void HelloWorld::handleOption(Node *keyboardMenu) {
     std::vector<std::string> text;
+    auto option = ((KeyboardMenu*)keyboardMenu)->selectedLabelText();
     if (option == "Option 1") {
         text.push_back("You selected option 1.");
     } else if (option == "Option 2") {
@@ -74,7 +75,8 @@ void HelloWorld::handleOption(std::string option) {
     }
     auto textBoxSize = Size(this->getContentSize().width, 128);
     auto textBox = PagedTextBox::create(text, textBoxSize);
-    this->addChild(textBox, 4);
+    keyboardMenu->removeFromParent();
+    this->addChild(textBox);
 }
 
 void HelloWorld::unpause(float delta)

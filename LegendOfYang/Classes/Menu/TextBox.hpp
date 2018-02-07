@@ -21,12 +21,10 @@ public:
     // Initialization Functions
     virtual bool init() override;
     static TextBox *create(const std::string &text, const Size size);
-    // create a create() function that calls constructor, init and autorelease
     CREATE_FUNC(TextBox);
     
 protected:
     Label *textLabel;
     LayerColor *background;
 
-    
 };

@@ -85,9 +85,7 @@ void KeyboardMenu::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event) {
             break;
         case cocos2d::EventKeyboard::KeyCode::KEY_ENTER:
             // Call callback of selected item
-            
-            item.second(item.first);
-            removeFromParent();
+            item.second(this);
         default:
             break;
     }
