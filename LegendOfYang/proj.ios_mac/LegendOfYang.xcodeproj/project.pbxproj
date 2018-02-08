@@ -17,6 +17,14 @@
 		228865AD20279AC700C6F6A9 /* battle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 228865AB20279AC700C6F6A9 /* battle.mp3 */; };
 		228865AF20279F8200C6F6A9 /* victory.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 228865AE20279F8200C6F6A9 /* victory.mp3 */; };
 		228865B020279F8200C6F6A9 /* victory.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 228865AE20279F8200C6F6A9 /* victory.mp3 */; };
+		228865BB202A90D200C6F6A9 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 228865BA202A90D200C6F6A9 /* Player.cpp */; };
+		228865BC202A90D300C6F6A9 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 228865BA202A90D200C6F6A9 /* Player.cpp */; };
+		228865BF202A94E400C6F6A9 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 228865BE202A94E400C6F6A9 /* Enemy.cpp */; };
+		228865C0202A94E400C6F6A9 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 228865BE202A94E400C6F6A9 /* Enemy.cpp */; };
+		228865C4202BDE5100C6F6A9 /* fallen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 228865C2202BDE5000C6F6A9 /* fallen.mp3 */; };
+		228865C5202BDE5100C6F6A9 /* fallen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 228865C2202BDE5000C6F6A9 /* fallen.mp3 */; };
+		228865C7202BECFA00C6F6A9 /* world.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 228865C6202BECFA00C6F6A9 /* world.mp3 */; };
+		228865C8202BECFA00C6F6A9 /* world.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 228865C6202BECFA00C6F6A9 /* world.mp3 */; };
 		22FE38492022C2F10024386E /* song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22FE38482022C2F10024386E /* song.mp3 */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		294D0D641D0D56D500F7F5D4 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294D0D631D0D56D500F7F5D4 /* CoreText.framework */; };
@@ -133,6 +141,12 @@
 		228865A220278CF500C6F6A9 /* Battle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Battle.h; sourceTree = "<group>"; };
 		228865AB20279AC700C6F6A9 /* battle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = battle.mp3; sourceTree = "<group>"; };
 		228865AE20279F8200C6F6A9 /* victory.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = victory.mp3; sourceTree = "<group>"; };
+		228865B9202A90B600C6F6A9 /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		228865BA202A90D200C6F6A9 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		228865BD202A94D400C6F6A9 /* Enemy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
+		228865BE202A94E400C6F6A9 /* Enemy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
+		228865C2202BDE5000C6F6A9 /* fallen.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fallen.mp3; sourceTree = "<group>"; };
+		228865C6202BECFA00C6F6A9 /* world.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = world.mp3; sourceTree = "<group>"; };
 		22FE38482022C2F10024386E /* song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song.mp3; sourceTree = "<group>"; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		294D0D631D0D56D500F7F5D4 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
@@ -320,9 +334,11 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				22FE38482022C2F10024386E /* song.mp3 */,
 				228865AB20279AC700C6F6A9 /* battle.mp3 */,
+				228865C2202BDE5000C6F6A9 /* fallen.mp3 */,
+				22FE38482022C2F10024386E /* song.mp3 */,
 				228865AE20279F8200C6F6A9 /* victory.mp3 */,
+				228865C6202BECFA00C6F6A9 /* world.mp3 */,
 				521A8EA819F11F5000D177D7 /* fonts */,
 				3EACC98E19EE6D4300EB3C5E /* res */,
 				46880B7619C43A67006E1F66 /* CloseNormal.png */,
@@ -341,8 +357,12 @@
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				2288659E20278CCD00C6F6A9 /* Battle.cpp */,
 				228865A220278CF500C6F6A9 /* Battle.h */,
+				228865BE202A94E400C6F6A9 /* Enemy.cpp */,
+				228865BD202A94D400C6F6A9 /* Enemy.h */,
 				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
 				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
+				228865BA202A90D200C6F6A9 /* Player.cpp */,
+				228865B9202A90B600C6F6A9 /* Player.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -514,6 +534,8 @@
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
+				228865C7202BECFA00C6F6A9 /* world.mp3 in Resources */,
+				228865C4202BDE5100C6F6A9 /* fallen.mp3 in Resources */,
 				228865AC20279AC700C6F6A9 /* battle.mp3 in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */,
@@ -546,10 +568,12 @@
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				3EACC99019EE6D4300EB3C5E /* res in Resources */,
 				22FE38492022C2F10024386E /* song.mp3 in Resources */,
+				228865C8202BECFA00C6F6A9 /* world.mp3 in Resources */,
 				228865AD20279AC700C6F6A9 /* battle.mp3 in Resources */,
 				228865B020279F8200C6F6A9 /* victory.mp3 in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
 				46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */,
+				228865C5202BDE5100C6F6A9 /* fallen.mp3 in Resources */,
 				46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -561,8 +585,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				228865BF202A94E400C6F6A9 /* Enemy.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				B3C0A5F8202B6F360088189A /* PagedTextBox.cpp in Sources */,
+				228865BB202A90D200C6F6A9 /* Player.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				B3C0A5EA2028D3D30088189A /* TextBox.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
@@ -579,11 +605,13 @@
 			files = (
 				B3C0A5F9202B6F360088189A /* PagedTextBox.cpp in Sources */,
 				B360A03D20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */,
+				228865C0202A94E400C6F6A9 /* Enemy.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				B3C0A5EB2028D3D30088189A /* TextBox.cpp in Sources */,
 				228865A120278CD800C6F6A9 /* Battle.cpp in Sources */,
+				228865BC202A90D300C6F6A9 /* Player.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

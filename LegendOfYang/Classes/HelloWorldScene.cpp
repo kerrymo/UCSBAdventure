@@ -20,15 +20,14 @@ bool HelloWorld::init()
     
     // play background music
     audio = CocosDenshion::SimpleAudioEngine::getInstance();
-    audio->preloadBackgroundMusic("song.mp3");
     audio->stopBackgroundMusic();
-    audio->playBackgroundMusic("song.mp3", true);
+    audio->playBackgroundMusic("world.mp3", true);
     
     // create sprite
     sprite = Sprite::create("CloseNormal.png");
     sprite->setAnchorPoint(Vec2(0.5, 0.5));
     sprite->setPosition(100, 100);
-    this->addChild(sprite, 0);
+    this->addChild(sprite);
     
     // movement system
     speed = 500;
@@ -79,16 +78,12 @@ void HelloWorld::handleOption(Node *keyboardMenu) {
     this->addChild(textBox);
 }
 
-void HelloWorld::unpause(float delta)
-{
-    paused = false;
-}
-
 // when a key is pressed
 void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, cocos2d::Event *event)
 {
     if(paused) return;
-    switch (keyCode) {
+    switch (keyCode)
+    {
         case EventKeyboard::KeyCode::KEY_UP_ARROW:
             movingUp = true;
             break;
@@ -113,7 +108,8 @@ void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, cocos2d::Event *ev
 // when a key is released
 void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event)
 {
-    switch (keyCode) {
+    switch (keyCode)
+    {
         case EventKeyboard::KeyCode::KEY_UP_ARROW:
             movingUp = false;
             break;
@@ -144,16 +140,16 @@ void HelloWorld::update(float delta)
         int i = rand() % 1000;
         if(i < 3)
         {
-            paused = true;
             movingUp = false;
             movingDown = false;
             movingLeft = false;
             movingRight = false;
-            this->scheduleOnce(schedule_selector(HelloWorld::unpause), 0.5);
+            paused = true;
+            this->scheduleOnce([=](float delta){ paused = false; }, 0.5, "e");
             audio->stopBackgroundMusic();
             auto director = Director::getInstance();
             auto scene = Battle::createScene();
-            director->pushScene(TransitionFade::create(0.5, scene, Color3B(255, 255, 255)));
+            director->pushScene(TransitionFade::create(0.5, scene, Color3B::WHITE));
         }
     }
     
