@@ -15,21 +15,22 @@ USING_NS_CC;
 /* ExampleCode -
  std::vector<LabelAndCallback> items;
  LabelAndCallback item1, item2;
- item1.first = "Option 1";
- item2.first = "Option 2";
- item1.second = CC_CALLBACK_1(MyClassName::callBackFunction1, this);
- item2.second = CC_CALLBACK_1(MyClassName::callBackFunction2, this);
+ item1.first = "Attack";
+ item2.first = "Run";
+ item1.second = CC_CALLBACK_1(MyClassName::handleAttack, this);
+ item2.second = CC_CALLBACK_1(MyClassName::handleRun, this);
  items.push_back(item1);
  items.push_back(item2);
  auto menu = KeyboardMenu::create(items);
  guiNode->addChild(menu);
  
  // Somewhere in your class
- void MyClassName::callBackFunction1(Node *keyboardMenu) {
+ void MyClassName::handleAttack(Node *keyboardMenu) {
      // Handle callback 1
  }
- void MyClassName::callBackFunction2(Node *keyboardMenu) {
+ void MyClassName::handleRun(Node *keyboardMenu) {
      // Handle callback 2
+     keyboardMenu->removeFromParent();
  }
  */
 

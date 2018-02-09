@@ -16,6 +16,12 @@ public:
     void onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event);
     void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event);
     void update(float delta) override;
+    
+    // Invetory Functions
+    void selectItem(Node *sender); // Sender is always a keyboard menu
+    void close(Node *sender);
+    void openInventory(Node *sender);
+    
     // create a create() function that calls constructor, init and autorelease
     CREATE_FUNC(OverworldScene);
     
