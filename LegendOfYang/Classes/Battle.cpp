@@ -19,17 +19,41 @@ bool Battle::init()
     audio->preloadBackgroundMusic("battle.mp3");
     audio->playBackgroundMusic("battle.mp3", true);
     
+    //background
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("scene.plist");
+    Vec2 origin = Director::getInstance()->getVisibleOrigin();
+    Vec2 visibleSize = Director::getInstance()->getVisibleSize();
+    
+    auto background = Sprite::createWithSpriteFrameName("background2.png");
+    background->setPosition(origin.x + visibleSize.x/2, origin.y + visibleSize.y/2);
+    this->addChild(background);
+    
+    
+    auto frames = getAnimation("Resource/res/character.png", 8);
+    auto sprite = Sprite::createWithSpriteFrame(frames.front());
+    background->addChild(sprite);
+    sprite->setPosition(100,620);
+    
+    auto animation = Animation::createWithSpriteFrames(frames, 1.0f/8);
+    sprite->runAction(RepeatForever::create(Animate::create(animation)));
+    
+    auto movement = MoveTo::create(10, Vec2(2148,620));
+    auto resetPosition = MoveTo::create(0, Vec2(-150,620));
+    auto sequence = Sequence::create(movement, resetPosition, NULL);
+    sprite->runAction(RepeatForever::create(sequence));
+    
+    
     // create sprite
-    sprite = Sprite::create("CloseNormal.png");
-    sprite->setAnchorPoint(Vec2(0.5, 0.5));
-    sprite->setPosition(500, 100);
-    this->addChild(sprite, 0);
+    //sprite = Sprite::create("CloseNormal.png");
+    //sprite->setAnchorPoint(Vec2(0.5, 0.5));
+    //sprite->setPosition(500, 100);
+    //this->addChild(sprite, 0);
     
     // create enemy
-    enemy = Sprite::create("HelloWorld.png");
-    enemy->setAnchorPoint(Vec2(0.5, 0.5));
-    enemy->setPosition(600, 500);
-    this->addChild(enemy, 0);
+    //enemy = Sprite::create("HelloWorld.png");
+    //enemy->setAnchorPoint(Vec2(0.5, 0.5));
+    //enemy->setPosition(600, 500);
+    //this->addChild(enemy, 0);
     
     // create buttons
     attackButton = Sprite::create("CloseSelected.png");
@@ -156,4 +180,17 @@ void Battle::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event
         default:
             break;
     }
+}
+
+Vector<SpriteFrame*> Battle::getAnimation(const char *format, int count)
+{
+    auto spritecache = SpriteFrameCache::getInstance();
+    Vector<SpriteFrame*> animFrames;
+    char str[100];
+    for(int i = 1; i <= count; i++)
+    {
+        sprintf(str, format, i);
+        animFrames.pushBack(spritecache->getSpriteFrameByName(str));
+    }
+    return animFrames;
 }

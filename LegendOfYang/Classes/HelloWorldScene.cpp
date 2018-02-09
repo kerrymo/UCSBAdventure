@@ -62,6 +62,7 @@ bool HelloWorld::init()
     // schedule update
     this->scheduleUpdate();
     
+    
     return true;
 }
 
@@ -164,3 +165,5 @@ void HelloWorld::update(float delta)
     if(movingRight) position.x += speed * delta;
     sprite->setPosition(position);
 }
+
+

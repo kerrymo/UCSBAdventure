@@ -25,4 +25,5 @@ private:
     Sprite *sprite, *enemy, *attackButton, *defendButton, *fleeButton;
     CocosDenshion::SimpleAudioEngine *audio;
     EventListenerKeyboard *keyboardListener;
+    cocos2d::Vector<cocos2d::SpriteFrame*> getAnimation(const char *format, int count);
 };

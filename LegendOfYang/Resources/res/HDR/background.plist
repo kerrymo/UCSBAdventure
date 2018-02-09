@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>background.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{1300,800}</string>
+                <key>spriteSourceSize</key>
+                <string>{1300,800}</string>
+                <key>textureRect</key>
+                <string>{{1,1},{1300,800}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>1300 800 0 800 0 0 1300 0</string>
+                <key>verticesUV</key>
+                <string>1301 801 1 801 1 1 1301 1</string>
+            </dict>
+            <key>sprite copy 2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{104,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{104,75}</string>
+                <key>textureRect</key>
+                <string>{{1303,1},{104,75}}</string>
+                <key>textureRotated</key>
+                <true/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>104 75 0 75 0 0 104 0</string>
+                <key>verticesUV</key>
+                <string>1303 105 1303 1 1378 1 1378 105</string>
+            </dict>
+            <key>sprite copy 3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{104,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{104,75}</string>
+                <key>textureRect</key>
+                <string>{{1303,1},{104,75}}</string>
+                <key>textureRotated</key>
+                <true/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>104 75 0 75 0 0 104 0</string>
+                <key>verticesUV</key>
+                <string>1303 105 1303 1 1378 1 1378 105</string>
+            </dict>
+            <key>sprite copy 4.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{104,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{104,75}</string>
+                <key>textureRect</key>
+                <string>{{1303,1},{104,75}}</string>
+                <key>textureRotated</key>
+                <true/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>104 75 0 75 0 0 104 0</string>
+                <key>verticesUV</key>
+                <string>1303 105 1303 1 1378 1 1378 105</string>
+            </dict>
+            <key>sprite copy 5.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{104,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{104,75}</string>
+                <key>textureRect</key>
+                <string>{{1303,1},{104,75}}</string>
+                <key>textureRotated</key>
+                <true/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>104 75 0 75 0 0 104 0</string>
+                <key>verticesUV</key>
+                <string>1303 105 1303 1 1378 1 1378 105</string>
+            </dict>
+            <key>sprite copy 6.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{104,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{104,75}</string>
+                <key>textureRect</key>
+                <string>{{1303,1},{104,75}}</string>
+                <key>textureRotated</key>
+                <true/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>104 75 0 75 0 0 104 0</string>
+                <key>verticesUV</key>
+                <string>1303 105 1303 1 1378 1 1378 105</string>
+            </dict>
+            <key>sprite copy.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{104,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{104,75}</string>
+                <key>textureRect</key>
+                <string>{{1303,1},{104,75}}</string>
+                <key>textureRotated</key>
+                <true/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>104 75 0 75 0 0 104 0</string>
+                <key>verticesUV</key>
+                <string>1303 105 1303 1 1378 1 1378 105</string>
+            </dict>
+            <key>sprite.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{104,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{104,75}</string>
+                <key>textureRect</key>
+                <string>{{1303,1},{104,75}}</string>
+                <key>textureRotated</key>
+                <true/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>104 75 0 75 0 0 104 0</string>
+                <key>verticesUV</key>
+                <string>1303 105 1303 1 1378 1 1378 105</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>3</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>background.png</string>
+            <key>size</key>
+            <string>{1379,802}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:077d84bf94890577065f5323974d4a66:dd366f1122dad446c4e695a85ef59706:54715b2dc2122eee15174c4eee7bb98f$</string>
+            <key>textureFileName</key>
+            <string>background.png</string>
+        </dict>
+    </dict>
+</plist>

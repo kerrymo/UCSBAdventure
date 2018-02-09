@@ -22,6 +22,7 @@ public:
 private:
     int speed;
     bool movingUp, movingDown, movingLeft, movingRight, paused;
+    //cocos2d::Vector<cocos2d::SpriteFrame*> getAnimation(const char *format, int count);
     Sprite *sprite;
     CocosDenshion::SimpleAudioEngine *audio;
     Vec2 position;
