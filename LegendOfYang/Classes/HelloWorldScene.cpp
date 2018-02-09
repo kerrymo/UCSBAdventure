@@ -24,13 +24,14 @@ bool HelloWorld::init()
     audio->playBackgroundMusic("world.mp3", true);
     
     // create sprite
-    sprite = Sprite::create("CloseNormal.png");
+    sprite = Sprite::create("player_down.png");
+    sprite->setScale(2.5);
     sprite->setAnchorPoint(Vec2(0.5, 0.5));
     sprite->setPosition(100, 100);
     this->addChild(sprite);
     
     // movement system
-    speed = 500;
+    speed = 250;
     position = sprite->getPosition();
     keyboardListener = EventListenerKeyboard::create();
     keyboardListener->onKeyPressed = CC_CALLBACK_2(HelloWorld::onKeyPressed, this);
