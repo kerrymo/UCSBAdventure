@@ -74,6 +74,20 @@
 		B3C0A5EB2028D3D30088189A /* TextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0A5E82028D3D30088189A /* TextBox.cpp */; };
 		B3C0A5F8202B6F360088189A /* PagedTextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0A5F6202B6F360088189A /* PagedTextBox.cpp */; };
 		B3C0A5F9202B6F360088189A /* PagedTextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0A5F6202B6F360088189A /* PagedTextBox.cpp */; };
+		B3C0A5FE202BB7770088189A /* OverworldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0A5FC202BB7770088189A /* OverworldScene.cpp */; };
+		B3C0A5FF202BB7770088189A /* OverworldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0A5FC202BB7770088189A /* OverworldScene.cpp */; };
+		B3C0A608202BEB4D0088189A /* test.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A607202BEB480088189A /* test.tmx */; };
+		B3C0A609202BEB4E0088189A /* test.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A607202BEB480088189A /* test.tmx */; };
+		B3C0A60A202BEB500088189A /* Terrain.tsx in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A606202BEB240088189A /* Terrain.tsx */; };
+		B3C0A60B202BEB500088189A /* Terrain.tsx in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A606202BEB240088189A /* Terrain.tsx */; };
+		B3C0A60C202BEB530088189A /* terrain.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A603202BEABD0088189A /* terrain.png */; };
+		B3C0A60D202BEB530088189A /* terrain.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A603202BEABD0088189A /* terrain.png */; };
+		B3C0A613202CF88C0088189A /* TileMap.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A60F202CF8700088189A /* TileMap.tmx */; };
+		B3C0A616202CF8940088189A /* meta_tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A60E202BED600088189A /* meta_tiles.png */; };
+		B3C0A617202CF8940088189A /* TileMap.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A60F202CF8700088189A /* TileMap.tmx */; };
+		B3C0A618202CF8940088189A /* tmw_desert_spacing.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A611202CF8710088189A /* tmw_desert_spacing.png */; };
+		B3C0A619202CF8950088189A /* meta_tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A60E202BED600088189A /* meta_tiles.png */; };
+		B3C0A61A202CF8950088189A /* tmw_desert_spacing.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A611202CF8710088189A /* tmw_desert_spacing.png */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -187,6 +201,14 @@
 		B3C0A5E92028D3D30088189A /* TextBox.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TextBox.hpp; sourceTree = "<group>"; };
 		B3C0A5F6202B6F360088189A /* PagedTextBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PagedTextBox.cpp; sourceTree = "<group>"; };
 		B3C0A5F7202B6F360088189A /* PagedTextBox.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PagedTextBox.hpp; sourceTree = "<group>"; };
+		B3C0A5FC202BB7770088189A /* OverworldScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OverworldScene.cpp; sourceTree = "<group>"; };
+		B3C0A5FD202BB7770088189A /* OverworldScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OverworldScene.hpp; sourceTree = "<group>"; };
+		B3C0A603202BEABD0088189A /* terrain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terrain.png; sourceTree = "<group>"; };
+		B3C0A606202BEB240088189A /* Terrain.tsx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Terrain.tsx; sourceTree = "<group>"; };
+		B3C0A607202BEB480088189A /* test.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = test.tmx; sourceTree = "<group>"; };
+		B3C0A60E202BED600088189A /* meta_tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meta_tiles.png; sourceTree = "<group>"; };
+		B3C0A60F202CF8700088189A /* TileMap.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TileMap.tmx; sourceTree = "<group>"; };
+		B3C0A611202CF8710088189A /* tmw_desert_spacing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tmw_desert_spacing.png; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -320,6 +342,12 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B3C0A60E202BED600088189A /* meta_tiles.png */,
+				B3C0A60F202CF8700088189A /* TileMap.tmx */,
+				B3C0A611202CF8710088189A /* tmw_desert_spacing.png */,
+				B3C0A607202BEB480088189A /* test.tmx */,
+				B3C0A606202BEB240088189A /* Terrain.tsx */,
+				B3C0A603202BEABD0088189A /* terrain.png */,
 				22FE38482022C2F10024386E /* song.mp3 */,
 				228865AB20279AC700C6F6A9 /* battle.mp3 */,
 				228865AE20279F8200C6F6A9 /* victory.mp3 */,
@@ -343,6 +371,8 @@
 				228865A220278CF500C6F6A9 /* Battle.h */,
 				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
 				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
+				B3C0A5FC202BB7770088189A /* OverworldScene.cpp */,
+				B3C0A5FD202BB7770088189A /* OverworldScene.hpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -513,6 +543,8 @@
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
+				B3C0A608202BEB4D0088189A /* test.tmx in Resources */,
+				B3C0A616202CF8940088189A /* meta_tiles.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				228865AC20279AC700C6F6A9 /* battle.mp3 in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
@@ -528,12 +560,16 @@
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
+				B3C0A60C202BEB530088189A /* terrain.png in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
+				B3C0A60A202BEB500088189A /* Terrain.tsx in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				228865AF20279F8200C6F6A9 /* victory.mp3 in Resources */,
+				B3C0A618202CF8940088189A /* tmw_desert_spacing.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
 				521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */,
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
+				B3C0A617202CF8940088189A /* TileMap.tmx in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -543,14 +579,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8219C43A67006E1F66 /* HelloWorld.png in Resources */,
+				B3C0A60D202BEB530088189A /* terrain.png in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
+				B3C0A61A202CF8950088189A /* tmw_desert_spacing.png in Resources */,
 				3EACC99019EE6D4300EB3C5E /* res in Resources */,
 				22FE38492022C2F10024386E /* song.mp3 in Resources */,
 				228865AD20279AC700C6F6A9 /* battle.mp3 in Resources */,
+				B3C0A60B202BEB500088189A /* Terrain.tsx in Resources */,
 				228865B020279F8200C6F6A9 /* victory.mp3 in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
 				46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */,
+				B3C0A613202CF88C0088189A /* TileMap.tmx in Resources */,
+				B3C0A619202CF8950088189A /* meta_tiles.png in Resources */,
+				B3C0A609202BEB4E0088189A /* test.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,6 +612,7 @@
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				228865A020278CCE00C6F6A9 /* Battle.cpp in Sources */,
+				B3C0A5FE202BB7770088189A /* OverworldScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +625,7 @@
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				B3C0A5FF202BB7770088189A /* OverworldScene.cpp in Sources */,
 				B3C0A5EB2028D3D30088189A /* TextBox.cpp in Sources */,
 				228865A120278CD800C6F6A9 /* Battle.cpp in Sources */,
 			);
