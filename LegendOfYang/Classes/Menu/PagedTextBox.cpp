@@ -16,7 +16,7 @@ bool PagedTextBox::init() {
     return true;
 }
 
-TextBox* PagedTextBox::create(const std::vector<std::string> &text, const Size size) {
+PagedTextBox* PagedTextBox::create(const std::vector<std::string> &text, const Size size) {
     auto box = PagedTextBox::create();
     box->setContentSize(size);
     box->currentPage = 0;
@@ -26,6 +26,28 @@ TextBox* PagedTextBox::create(const std::vector<std::string> &text, const Size s
     
     return box;
 }
+
+PagedTextBox* PagedTextBox::create(const std::string &text) {
+    return create({text});
+}
+
+PagedTextBox* PagedTextBox::create(const std::vector<std::string> &text) {
+    // Set default Size
+    auto box = PagedTextBox::create();
+    auto defaultSize = Director::getInstance()->getWinSize();
+    auto margins = Size(16.0f, 16.0f);
+    defaultSize.height = 160.0f;
+    box->setPosition(margins);
+    box->setContentSize(defaultSize - (Size)(2*margins));
+    
+    // Normal initialization
+    box->currentPage = 0;
+    box->_text = text;
+    box->updateText(text.at(box->currentPage));
+    
+    return box;
+}
+
 
 void PagedTextBox::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event) {
     event->stopPropagation();

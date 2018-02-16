@@ -41,7 +41,7 @@ bool HelloWorld::init()
     
     // Test Text Box
     auto textBoxSize = Size(this->getContentSize().width, 128);
-    auto textBox = PagedTextBox::create({"Test"}, textBoxSize);
+    auto textBox = PagedTextBox::create("Test");
     this->addChild(textBox);
     
     // Test Menu

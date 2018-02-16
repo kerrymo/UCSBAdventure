@@ -8,6 +8,9 @@
 #include "OverworldScene.hpp"
 #include "PagedTextBox.hpp"
 #include "KeyboardMenu.hpp"
+#include "Inventory.hpp"
+#include "PlayerStatsDisplay.hpp"
+#include "YangPhysics.hpp"
 
 // initialize
 bool OverworldScene::init() {
@@ -27,13 +30,13 @@ Scene* OverworldScene::createWithTileMap(std::string filename) {
     scene->meta = scene->tileMap->getLayer("Meta");
     scene->world->addChild(scene->tileMap, 0, 99);
     
-    scene->player = Sprite::create("CloseNormal.png");
+    // Add player
+    scene->player = Entity::create("CloseNormal.png");
     scene->player->setContentSize(Size(24, 24));
-    scene->player->setPosition(Vec2(64.0f, 64.0f));
+    scene->player->setPosition(Vec2(64.0f, 1024.0f));
     scene->player->setAnchorPoint(Vec2(0.0f, 0.0f));
     scene->world->addChild(scene->player);
     scene->world->runAction(Follow::create(scene->player));
-    
     
     // Setup keyboard listener
     auto keyboardListener = EventListenerKeyboard::create();
@@ -42,7 +45,10 @@ Scene* OverworldScene::createWithTileMap(std::string filename) {
     scene->_eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, scene);
     
     // schedule update
-    scene->scheduleUpdate();
+    scene->scheduleUpdateWithPriority(LOOP_UPDATE_ORDER_INPUT);
+    
+    // Add physics handler to the world
+    scene->world->addChild(YangPhysics::createWithTileMap(scene->tileMap));
     
     return scene;
 }
@@ -51,67 +57,11 @@ void OverworldScene::update(float delta) {
     float vx = heldKey[(int)EventKeyboard::KeyCode::KEY_RIGHT_ARROW] - heldKey[(int)EventKeyboard::KeyCode::KEY_LEFT_ARROW];
     float vy = heldKey[(int)EventKeyboard::KeyCode::KEY_UP_ARROW] - heldKey[(int)EventKeyboard::KeyCode::KEY_DOWN_ARROW];
     
-    //log("Tile ID : %d\n", tileID);
-    
     auto velocityDirection = Vec2(vx, vy);
     velocityDirection.normalize(); // Components shouldn't compound speed should be the same in any direction
-    player->setPosition(player->getPosition() + 200.0f * delta * velocityDirection);
-    Vec2 tilePlayerIsOn = tileCoordForPosition(player->getPosition() + player->getContentSize()/2);
-    auto boundingBox = player->getBoundingBox();
-    for (int i = tilePlayerIsOn.x - 1; i < tilePlayerIsOn.x + 2; i++) {
-        for (int j = tilePlayerIsOn.y - 1; j < tilePlayerIsOn.y + 2; j++) {
-            if (i >= 0 && j >= 0 && i < tileMap->getMapSize().width && j < tileMap->getMapSize().height && meta->getTileGIDAt(Vec2(i,j)) == 49 && boundingBox.intersectsRect(meta->getTileAt(Vec2(i,j))->getBoundingBox())) {
-                auto boundingBox2 = meta->getTileAt(Vec2(i,j))->getBoundingBox();
-                float dx = (boundingBox.size.width + boundingBox2.size.width) / 2.0f - fabsf(boundingBox.origin.x - boundingBox2.origin.x);
-                float dy = (boundingBox.size.height + boundingBox2.size.height) / 2.0f - fabsf(boundingBox.origin.y - boundingBox2.origin.y);
-                printf("%f\n", dx);
-                if (dx / abs(vx+0.001f) < dy / abs(vy+0.001f)) {
-                    // Intersected on x side first
-                    if (boundingBox.origin.x < boundingBox2.origin.x) {
-                        player->setPosition(Vec2(boundingBox.origin.x - dx, player->getPosition().y));
-                    } else {
-                        player->setPosition(Vec2(boundingBox.origin.x + dx, player->getPosition().y));
-                    }
-                    
-                } else {
-                    if (boundingBox.origin.y < boundingBox2.origin.y) {
-                        player->setPosition(Vec2(player->getPosition().x, boundingBox.origin.y - dy));
-                    } else {
-                        player->setPosition(Vec2(player->getPosition().x, boundingBox.origin.y + dy));
-                    }
-                }
-            }
-        }
-    }
     
-}
-
-#pragma mark inventory
-
-void OverworldScene::openInventory(Node *sender) {
-    std::vector<LabelAndCallback> items;
-    LabelAndCallback item1, item2, item3;
-    item1.first = "Baseball Bat";
-    item2.first = "Bottle Rocket";
-    item3.first = "back";
-    item1.second = item2.second = CC_CALLBACK_1(OverworldScene::selectItem, this);
-    item3.second = CC_CALLBACK_1(OverworldScene::close, this);
-    items = {item1, item2, item3};
-    auto menu = KeyboardMenu::create(items);
-    gui->addChild(menu);
-}
-
-void OverworldScene::selectItem(Node *sender) {
-    auto keyboardMenu = (KeyboardMenu*)sender;
-    auto message = { "You selected the " + keyboardMenu->selectedLabelText() };
-    auto textBoxSize = Size(this->getContentSize().width, 128);
-    auto textBox = PagedTextBox::create(message, textBoxSize);
-    keyboardMenu->removeFromParent();
-    gui->addChild(textBox);
-}
-
-void OverworldScene::close(Node *sender) {
-    sender->removeFromParent();
+    player->velocity = velocityDirection * 200.0f;
+    
 }
 
 Vec2 OverworldScene::tileCoordForPosition(Vec2 position) {
@@ -125,15 +75,26 @@ Vec2 OverworldScene::tileCoordForPosition(Vec2 position) {
 
 void OverworldScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event) {
     heldKey[(int)keyCode] = true;
+    
     if (keyCode == EventKeyboard::KeyCode::KEY_E) {
+        // Present Inventory
         std::vector<LabelAndCallback> items;
-        LabelAndCallback item1, item2;
+        LabelAndCallback item1, item2, item3;
         item1.first = "Inventory";
-        item2.first = "Close";
-        item1.second = CC_CALLBACK_1(OverworldScene::openInventory, this);
-        item2.second = CC_CALLBACK_1(OverworldScene::close, this);
+        item1.second = [this](Node *sender) { // TODO : self should be weak, shared_ptr, or autorelease
+            this->gui->addChild(Inventory::create());
+        };
+        item2.first = "Stats";
+        item2.second = [this](Node *sender) {
+            this->gui->addChild(PlayerStatsDisplay::create());
+        };
+        item3.first = "Close";
+        item3.second = [](Node *sender) {
+            sender->removeFromParent();
+        };
         items.push_back(item1);
         items.push_back(item2);
+        items.push_back(item3);
         auto menu = KeyboardMenu::create(items);
         gui->addChild(menu);
     }

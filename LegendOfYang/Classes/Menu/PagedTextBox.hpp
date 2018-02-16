@@ -10,12 +10,14 @@ USING_NS_CC;
 #include "TextBox.hpp"
 
 // Class Description - This class represents creates a text box that closes or scrolls through pages as you press the Enter key
-// Use Cases - Dialouge with NPCS
+// Use Cases - Dialouge with NPCS, Displaying item information
 
 class PagedTextBox : public TextBox {
 public:
     // Initialization functions
-    static TextBox *create(const std::vector<std::string> &text, const Size size);
+    static PagedTextBox* create(const std::string &text);
+    static PagedTextBox* create(const std::vector<std::string> &text);
+    static PagedTextBox *create(const std::vector<std::string> &text, const Size size);
     CREATE_FUNC(PagedTextBox);
     
 protected:

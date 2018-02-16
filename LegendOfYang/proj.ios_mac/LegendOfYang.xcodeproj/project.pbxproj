@@ -68,6 +68,12 @@
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
+		B31D5059202F7CFC00B861A4 /* Inventory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31D5057202F7CFC00B861A4 /* Inventory.cpp */; };
+		B31D505A202F7CFC00B861A4 /* Inventory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31D5057202F7CFC00B861A4 /* Inventory.cpp */; };
+		B31D5060202FDFC300B861A4 /* PlayerStatsDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31D505E202FDFC300B861A4 /* PlayerStatsDisplay.cpp */; };
+		B31D5061202FDFC300B861A4 /* PlayerStatsDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31D505E202FDFC300B861A4 /* PlayerStatsDisplay.cpp */; };
+		B31D50672030196500B861A4 /* YangPhysics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31D50652030196500B861A4 /* YangPhysics.cpp */; };
+		B31D50682030196500B861A4 /* YangPhysics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31D50652030196500B861A4 /* YangPhysics.cpp */; };
 		B360A03C20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */; };
 		B360A03D20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */; };
 		B3C0A5EA2028D3D30088189A /* TextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0A5E82028D3D30088189A /* TextBox.cpp */; };
@@ -88,6 +94,10 @@
 		B3C0A618202CF8940088189A /* tmw_desert_spacing.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A611202CF8710088189A /* tmw_desert_spacing.png */; };
 		B3C0A619202CF8950088189A /* meta_tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A60E202BED600088189A /* meta_tiles.png */; };
 		B3C0A61A202CF8950088189A /* tmw_desert_spacing.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A611202CF8710088189A /* tmw_desert_spacing.png */; };
+		B3CCC10520366AC200F5CABB /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3CCC10320366AC200F5CABB /* Entity.cpp */; };
+		B3CCC10620366AC200F5CABB /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3CCC10320366AC200F5CABB /* Entity.cpp */; };
+		B3ED82EB202E836D004D7CC1 /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3ED82E9202E836D004D7CC1 /* Utility.cpp */; };
+		B3ED82EC202E836D004D7CC1 /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3ED82E9202E836D004D7CC1 /* Utility.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -195,6 +205,12 @@
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B31D5057202F7CFC00B861A4 /* Inventory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Inventory.cpp; sourceTree = "<group>"; };
+		B31D5058202F7CFC00B861A4 /* Inventory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Inventory.hpp; sourceTree = "<group>"; };
+		B31D505E202FDFC300B861A4 /* PlayerStatsDisplay.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerStatsDisplay.cpp; sourceTree = "<group>"; };
+		B31D505F202FDFC300B861A4 /* PlayerStatsDisplay.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PlayerStatsDisplay.hpp; sourceTree = "<group>"; };
+		B31D50652030196500B861A4 /* YangPhysics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = YangPhysics.cpp; sourceTree = "<group>"; };
+		B31D50662030196500B861A4 /* YangPhysics.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = YangPhysics.hpp; sourceTree = "<group>"; };
 		B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardMenu.cpp; sourceTree = "<group>"; };
 		B360A03B20282E6400FCB0AE /* KeyboardMenu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = KeyboardMenu.hpp; sourceTree = "<group>"; };
 		B3C0A5E82028D3D30088189A /* TextBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextBox.cpp; sourceTree = "<group>"; };
@@ -209,6 +225,10 @@
 		B3C0A60E202BED600088189A /* meta_tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meta_tiles.png; sourceTree = "<group>"; };
 		B3C0A60F202CF8700088189A /* TileMap.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TileMap.tmx; sourceTree = "<group>"; };
 		B3C0A611202CF8710088189A /* tmw_desert_spacing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tmw_desert_spacing.png; sourceTree = "<group>"; };
+		B3CCC10320366AC200F5CABB /* Entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
+		B3CCC10420366AC200F5CABB /* Entity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Entity.hpp; sourceTree = "<group>"; };
+		B3ED82E9202E836D004D7CC1 /* Utility.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Utility.cpp; sourceTree = "<group>"; };
+		B3ED82EA202E836D004D7CC1 /* Utility.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Utility.hpp; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -364,6 +384,7 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B3ED82EE202E9220004D7CC1 /* Physics */,
 				B360A03920282B4300FCB0AE /* Menu */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
@@ -373,6 +394,8 @@
 				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
 				B3C0A5FC202BB7770088189A /* OverworldScene.cpp */,
 				B3C0A5FD202BB7770088189A /* OverworldScene.hpp */,
+				B3ED82E9202E836D004D7CC1 /* Utility.cpp */,
+				B3ED82EA202E836D004D7CC1 /* Utility.hpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -434,8 +457,23 @@
 				B3C0A5E92028D3D30088189A /* TextBox.hpp */,
 				B3C0A5F6202B6F360088189A /* PagedTextBox.cpp */,
 				B3C0A5F7202B6F360088189A /* PagedTextBox.hpp */,
+				B31D5057202F7CFC00B861A4 /* Inventory.cpp */,
+				B31D5058202F7CFC00B861A4 /* Inventory.hpp */,
+				B31D505E202FDFC300B861A4 /* PlayerStatsDisplay.cpp */,
+				B31D505F202FDFC300B861A4 /* PlayerStatsDisplay.hpp */,
 			);
 			path = Menu;
+			sourceTree = "<group>";
+		};
+		B3ED82EE202E9220004D7CC1 /* Physics */ = {
+			isa = PBXGroup;
+			children = (
+				B31D50652030196500B861A4 /* YangPhysics.cpp */,
+				B31D50662030196500B861A4 /* YangPhysics.hpp */,
+				B3CCC10320366AC200F5CABB /* Entity.cpp */,
+				B3CCC10420366AC200F5CABB /* Entity.hpp */,
+			);
+			path = Physics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -605,13 +643,18 @@
 			files = (
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				B3C0A5F8202B6F360088189A /* PagedTextBox.cpp in Sources */,
+				B31D50672030196500B861A4 /* YangPhysics.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				B3C0A5EA2028D3D30088189A /* TextBox.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				B360A03C20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				B3ED82EB202E836D004D7CC1 /* Utility.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				228865A020278CCE00C6F6A9 /* Battle.cpp in Sources */,
+				B31D5059202F7CFC00B861A4 /* Inventory.cpp in Sources */,
+				B3CCC10520366AC200F5CABB /* Entity.cpp in Sources */,
+				B31D5060202FDFC300B861A4 /* PlayerStatsDisplay.cpp in Sources */,
 				B3C0A5FE202BB7770088189A /* OverworldScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -620,13 +663,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3ED82EC202E836D004D7CC1 /* Utility.cpp in Sources */,
 				B3C0A5F9202B6F360088189A /* PagedTextBox.cpp in Sources */,
 				B360A03D20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				B31D505A202F7CFC00B861A4 /* Inventory.cpp in Sources */,
+				B31D5061202FDFC300B861A4 /* PlayerStatsDisplay.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				B3C0A5FF202BB7770088189A /* OverworldScene.cpp in Sources */,
+				B31D50682030196500B861A4 /* YangPhysics.cpp in Sources */,
 				B3C0A5EB2028D3D30088189A /* TextBox.cpp in Sources */,
+				B3CCC10620366AC200F5CABB /* Entity.cpp in Sources */,
 				228865A120278CD800C6F6A9 /* Battle.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

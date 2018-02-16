@@ -72,6 +72,7 @@ void KeyboardMenu::setContentSize(const cocos2d::Size &contentSize) {
 void KeyboardMenu::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event) {
     event->stopPropagation();
     auto &item = _items.at(selectedItem);
+    
     switch (keyCode) {
         case cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW:
         case cocos2d::EventKeyboard::KeyCode::KEY_W:

@@ -7,7 +7,7 @@
 
 #pragma once
 USING_NS_CC;
-#include <unordered_set>
+#include "Entity.hpp"
 
 class OverworldScene : public Scene {
 public:
@@ -17,22 +17,16 @@ public:
     void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event);
     void update(float delta) override;
     
-    // Invetory Functions
-    void selectItem(Node *sender); // Sender is always a keyboard menu
-    void close(Node *sender);
-    void openInventory(Node *sender);
-    
     // create a create() function that calls constructor, init and autorelease
     CREATE_FUNC(OverworldScene);
     
 protected:
     Vec2 tileCoordForPosition(Vec2 position);
     
-    Node *player;
+    Entity *player;
     Node *gui, *world;
     TMXTiledMap *tileMap;
     TMXLayer *meta; // Contains collision information
     bool heldKey[200];
-    EventListenerKeyboard *keyboardListener;
     
 };
