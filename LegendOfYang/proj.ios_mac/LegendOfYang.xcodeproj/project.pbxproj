@@ -25,6 +25,14 @@
 		228865C5202BDE5100C6F6A9 /* fallen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 228865C2202BDE5000C6F6A9 /* fallen.mp3 */; };
 		228865C7202BECFA00C6F6A9 /* world.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 228865C6202BECFA00C6F6A9 /* world.mp3 */; };
 		228865C8202BECFA00C6F6A9 /* world.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 228865C6202BECFA00C6F6A9 /* world.mp3 */; };
+		228865CD202E8D6800C6F6A9 /* player_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 228865C9202E8D6700C6F6A9 /* player_down.png */; };
+		228865CE202E8D6900C6F6A9 /* player_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 228865C9202E8D6700C6F6A9 /* player_down.png */; };
+		228865CF202E8D6900C6F6A9 /* player_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 228865CA202E8D6700C6F6A9 /* player_up.png */; };
+		228865D0202E8D6900C6F6A9 /* player_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 228865CA202E8D6700C6F6A9 /* player_up.png */; };
+		228865D1202E8D6900C6F6A9 /* player_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 228865CB202E8D6800C6F6A9 /* player_right.png */; };
+		228865D2202E8D6900C6F6A9 /* player_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 228865CB202E8D6800C6F6A9 /* player_right.png */; };
+		228865D3202E8D6900C6F6A9 /* player_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 228865CC202E8D6800C6F6A9 /* player_left.png */; };
+		228865D4202E8D6900C6F6A9 /* player_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 228865CC202E8D6800C6F6A9 /* player_left.png */; };
 		22FE38492022C2F10024386E /* song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22FE38482022C2F10024386E /* song.mp3 */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		294D0D641D0D56D500F7F5D4 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294D0D631D0D56D500F7F5D4 /* CoreText.framework */; };
@@ -147,6 +155,10 @@
 		228865BE202A94E400C6F6A9 /* Enemy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
 		228865C2202BDE5000C6F6A9 /* fallen.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fallen.mp3; sourceTree = "<group>"; };
 		228865C6202BECFA00C6F6A9 /* world.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = world.mp3; sourceTree = "<group>"; };
+		228865C9202E8D6700C6F6A9 /* player_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_down.png; sourceTree = "<group>"; };
+		228865CA202E8D6700C6F6A9 /* player_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_up.png; sourceTree = "<group>"; };
+		228865CB202E8D6800C6F6A9 /* player_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_right.png; sourceTree = "<group>"; };
+		228865CC202E8D6800C6F6A9 /* player_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_left.png; sourceTree = "<group>"; };
 		22FE38482022C2F10024386E /* song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song.mp3; sourceTree = "<group>"; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		294D0D631D0D56D500F7F5D4 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
@@ -344,6 +356,10 @@
 				46880B7619C43A67006E1F66 /* CloseNormal.png */,
 				46880B7719C43A67006E1F66 /* CloseSelected.png */,
 				46880B7A19C43A67006E1F66 /* HelloWorld.png */,
+				228865C9202E8D6700C6F6A9 /* player_down.png */,
+				228865CC202E8D6800C6F6A9 /* player_left.png */,
+				228865CB202E8D6800C6F6A9 /* player_right.png */,
+				228865CA202E8D6700C6F6A9 /* player_up.png */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -531,11 +547,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
+				228865D1202E8D6900C6F6A9 /* player_right.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				228865C7202BECFA00C6F6A9 /* world.mp3 in Resources */,
 				228865C4202BDE5100C6F6A9 /* fallen.mp3 in Resources */,
+				228865CD202E8D6800C6F6A9 /* player_down.png in Resources */,
+				228865CF202E8D6900C6F6A9 /* player_up.png in Resources */,
 				228865AC20279AC700C6F6A9 /* battle.mp3 in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */,
@@ -548,6 +567,7 @@
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
+				228865D3202E8D6900C6F6A9 /* player_left.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
@@ -567,12 +587,16 @@
 				46880B8219C43A67006E1F66 /* HelloWorld.png in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				3EACC99019EE6D4300EB3C5E /* res in Resources */,
+				228865D4202E8D6900C6F6A9 /* player_left.png in Resources */,
 				22FE38492022C2F10024386E /* song.mp3 in Resources */,
+				228865D0202E8D6900C6F6A9 /* player_up.png in Resources */,
 				228865C8202BECFA00C6F6A9 /* world.mp3 in Resources */,
 				228865AD20279AC700C6F6A9 /* battle.mp3 in Resources */,
+				228865CE202E8D6900C6F6A9 /* player_down.png in Resources */,
 				228865B020279F8200C6F6A9 /* victory.mp3 in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
 				46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */,
+				228865D2202E8D6900C6F6A9 /* player_right.png in Resources */,
 				228865C5202BDE5100C6F6A9 /* fallen.mp3 in Resources */,
 				46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */,
 			);

@@ -7,7 +7,9 @@
 
 USING_NS_CC;
 
-enum Status { Attack, Defend, Flee, Victory };
+enum Status { ChoosingCommand, ChoosingTarget, InAction, Victory, Fallen };
+enum Command { Attack, Defend, Flee };
+enum Target { Left, Middle, Right };
 
 class Battle : public Scene
 {
@@ -16,7 +18,9 @@ public:
     virtual bool init() override;
     void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event);
     void displayDamage(int, int, int);
-    void enemyAttack();
+    void playerAttack(Enemy*);
+    void enemyAttack(Enemy*);
+    void endTurn();
     void win();
     void gameOver();
     
@@ -24,12 +28,15 @@ public:
     CREATE_FUNC(Battle);
     
 private:
-    bool paused, victory, fallen;
+    float delay;
+    int scheduleKey;
     Player player;
-    Enemy enemy;
+    Enemy *enemy[3];
     Status status;
+    Command command;
+    Target target;
     Label *hpLabel, *attackLabel, *defendLabel, *fleeLabel, *lootLabel, *levelUpLabel, *gameOverLabel;
-    Sprite *playerSprite, *enemySprite, *attackButton, *defendButton, *fleeButton;
+    Sprite *playerSprite, *attackButton, *defendButton, *fleeButton;
     CocosDenshion::SimpleAudioEngine *audio;
     EventListenerKeyboard *keyboardListener;
 };

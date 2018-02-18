@@ -156,7 +156,7 @@ void HelloWorld::update(float delta)
     
     // update position
     if(paused) return;
-    if(!audio->isBackgroundMusicPlaying()) audio->playBackgroundMusic("song.mp3");
+    if(!audio->isBackgroundMusicPlaying()) audio->playBackgroundMusic("world.mp3");
     if(movingUp) position.y += speed * delta;
     if(movingDown) position.y -= speed * delta;
     if(movingLeft) position.x -= speed * delta;
