@@ -68,6 +68,10 @@
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
+		B31721AD203CE377002F42FF /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31721AB203CE377002F42FF /* Enemy.cpp */; };
+		B31721AE203CE377002F42FF /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31721AB203CE377002F42FF /* Enemy.cpp */; };
+		B31721AF203CE377002F42FF /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31721AC203CE377002F42FF /* Player.cpp */; };
+		B31721B0203CE377002F42FF /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31721AC203CE377002F42FF /* Player.cpp */; };
 		B31D5059202F7CFC00B861A4 /* Inventory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31D5057202F7CFC00B861A4 /* Inventory.cpp */; };
 		B31D505A202F7CFC00B861A4 /* Inventory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31D5057202F7CFC00B861A4 /* Inventory.cpp */; };
 		B31D5060202FDFC300B861A4 /* PlayerStatsDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31D505E202FDFC300B861A4 /* PlayerStatsDisplay.cpp */; };
@@ -207,6 +211,10 @@
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B31721A8203CE376002F42FF /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		B31721AA203CE377002F42FF /* Enemy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
+		B31721AB203CE377002F42FF /* Enemy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
+		B31721AC203CE377002F42FF /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		B31D5057202F7CFC00B861A4 /* Inventory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Inventory.cpp; sourceTree = "<group>"; };
 		B31D5058202F7CFC00B861A4 /* Inventory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Inventory.hpp; sourceTree = "<group>"; };
 		B31D505E202FDFC300B861A4 /* PlayerStatsDisplay.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerStatsDisplay.cpp; sourceTree = "<group>"; };
@@ -390,16 +398,12 @@
 			children = (
 				B3ED82EE202E9220004D7CC1 /* Physics */,
 				B360A03920282B4300FCB0AE /* Menu */,
+				B31721B1203CE37F002F42FF /* Data */,
+				B31721B2203CE39E002F42FF /* Scenes */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				B3CCC11A20392F7900F5CABB /* EntityCreator.cpp */,
 				B3CCC11B20392F7900F5CABB /* EntityCreator.hpp */,
-				2288659E20278CCD00C6F6A9 /* Battle.cpp */,
-				228865A220278CF500C6F6A9 /* Battle.h */,
-				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
-				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
-				B3C0A5FC202BB7770088189A /* OverworldScene.cpp */,
-				B3C0A5FD202BB7770088189A /* OverworldScene.hpp */,
 				B3ED82E9202E836D004D7CC1 /* Utility.cpp */,
 				B3ED82EA202E836D004D7CC1 /* Utility.hpp */,
 			);
@@ -453,6 +457,30 @@
 			name = Icons;
 			path = ios;
 			sourceTree = SOURCE_ROOT;
+		};
+		B31721B1203CE37F002F42FF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B31721AB203CE377002F42FF /* Enemy.cpp */,
+				B31721AA203CE377002F42FF /* Enemy.h */,
+				B31721AC203CE377002F42FF /* Player.cpp */,
+				B31721A8203CE376002F42FF /* Player.h */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		B31721B2203CE39E002F42FF /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				2288659E20278CCD00C6F6A9 /* Battle.cpp */,
+				228865A220278CF500C6F6A9 /* Battle.h */,
+				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
+				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
+				B3C0A5FC202BB7770088189A /* OverworldScene.cpp */,
+				B3C0A5FD202BB7770088189A /* OverworldScene.hpp */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
 		};
 		B360A03920282B4300FCB0AE /* Menu */ = {
 			isa = PBXGroup;
@@ -648,6 +676,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				B31721AD203CE377002F42FF /* Enemy.cpp in Sources */,
+				B31721AF203CE377002F42FF /* Player.cpp in Sources */,
 				B3C0A5F8202B6F360088189A /* PagedTextBox.cpp in Sources */,
 				B31D50672030196500B861A4 /* YangPhysics.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
@@ -678,10 +708,12 @@
 				B31D5061202FDFC300B861A4 /* PlayerStatsDisplay.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				B31721B0203CE377002F42FF /* Player.cpp in Sources */,
 				B3C0A5FF202BB7770088189A /* OverworldScene.cpp in Sources */,
 				B31D50682030196500B861A4 /* YangPhysics.cpp in Sources */,
 				B3C0A5EB2028D3D30088189A /* TextBox.cpp in Sources */,
 				B3CCC11D20392F7900F5CABB /* EntityCreator.cpp in Sources */,
+				B31721AE203CE377002F42FF /* Enemy.cpp in Sources */,
 				B3CCC10620366AC200F5CABB /* Entity.cpp in Sources */,
 				228865A120278CD800C6F6A9 /* Battle.cpp in Sources */,
 			);

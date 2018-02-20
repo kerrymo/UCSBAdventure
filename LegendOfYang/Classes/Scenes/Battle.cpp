@@ -20,7 +20,7 @@ bool Battle::init()
     audio->playBackgroundMusic("battle.mp3", true);
     
     // create sprite
-    playerSprite = Sprite::create("player_down.png");
+    playerSprite = Sprite::create("CloseNormal.png");
     playerSprite->setScale(2.5);
     playerSprite->setAnchorPoint(Vec2(0.5, 0.5));
     playerSprite->setPosition(500, 100);
