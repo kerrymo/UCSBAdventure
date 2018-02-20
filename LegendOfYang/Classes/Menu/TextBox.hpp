@@ -20,6 +20,7 @@ public:
     
     // Initialization Functions
     virtual bool init() override;
+    static TextBox* create(const std::string &text);
     static TextBox *create(const std::string &text, const Size size);
     CREATE_FUNC(TextBox);
     

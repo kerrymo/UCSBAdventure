@@ -34,7 +34,7 @@ KeyboardMenu* KeyboardMenu::create(const std::vector<LabelAndCallback> &items) {
 void KeyboardMenu::updateDisplay() { // Not very efficient but should work for our purposes
     // Add background
     removeAllChildren();
-    auto background = LayerColor::create(Color4B(0, 0, 255, 155), this->getContentSize().width, this->getContentSize().height);
+    auto background = LayerColor::create(Color4B(0, 0, 255, 200), this->getContentSize().width, this->getContentSize().height);
     this->addChild(background);
     
     int offset = 0;
@@ -72,6 +72,7 @@ void KeyboardMenu::setContentSize(const cocos2d::Size &contentSize) {
 void KeyboardMenu::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event) {
     event->stopPropagation();
     auto &item = _items.at(selectedItem);
+    
     switch (keyCode) {
         case cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW:
         case cocos2d::EventKeyboard::KeyCode::KEY_W:
