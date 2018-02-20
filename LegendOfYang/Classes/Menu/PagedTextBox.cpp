@@ -28,7 +28,9 @@ PagedTextBox* PagedTextBox::create(const std::vector<std::string> &text, const S
 }
 
 PagedTextBox* PagedTextBox::create(const std::string &text) {
-    return create({text});
+    auto vec = std::vector<std::string>();
+    vec.push_back(text);
+    return create(vec);
 }
 
 PagedTextBox* PagedTextBox::create(const std::vector<std::string> &text) {

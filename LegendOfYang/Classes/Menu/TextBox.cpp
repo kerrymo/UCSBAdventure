@@ -11,9 +11,20 @@ bool TextBox::init() {
     if (!Node::init()) return false;
     background = LayerColor::create(Color4B(0, 0, 255, 200), this->getContentSize().width, this->getContentSize().height);
     this->addChild(background);
-    
-    updateText("Don't use the create method use create(const Vector<std::string> &text, const Size size)");
+    updateText("Don't use the create() method");
     return true;
+}
+
+TextBox* TextBox::create(const std::string &text) {
+    auto textBox = TextBox::create();
+    auto defaultSize = Director::getInstance()->getWinSize();
+    auto margins = Size(16.0f, 16.0f);
+    defaultSize.height = 160.0f;
+    textBox->setPosition(margins);
+    textBox->setContentSize(defaultSize - (Size)(2*margins));
+    textBox->updateText(text);
+    
+    return textBox;
 }
 
 TextBox* TextBox::create(const std::string &text, const Size size) {

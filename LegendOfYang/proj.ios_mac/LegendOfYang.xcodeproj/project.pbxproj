@@ -96,6 +96,8 @@
 		B3C0A61A202CF8950088189A /* tmw_desert_spacing.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A611202CF8710088189A /* tmw_desert_spacing.png */; };
 		B3CCC10520366AC200F5CABB /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3CCC10320366AC200F5CABB /* Entity.cpp */; };
 		B3CCC10620366AC200F5CABB /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3CCC10320366AC200F5CABB /* Entity.cpp */; };
+		B3CCC11C20392F7900F5CABB /* EntityCreator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3CCC11A20392F7900F5CABB /* EntityCreator.cpp */; };
+		B3CCC11D20392F7900F5CABB /* EntityCreator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3CCC11A20392F7900F5CABB /* EntityCreator.cpp */; };
 		B3ED82EB202E836D004D7CC1 /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3ED82E9202E836D004D7CC1 /* Utility.cpp */; };
 		B3ED82EC202E836D004D7CC1 /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3ED82E9202E836D004D7CC1 /* Utility.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
@@ -227,6 +229,8 @@
 		B3C0A611202CF8710088189A /* tmw_desert_spacing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tmw_desert_spacing.png; sourceTree = "<group>"; };
 		B3CCC10320366AC200F5CABB /* Entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
 		B3CCC10420366AC200F5CABB /* Entity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Entity.hpp; sourceTree = "<group>"; };
+		B3CCC11A20392F7900F5CABB /* EntityCreator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EntityCreator.cpp; sourceTree = "<group>"; };
+		B3CCC11B20392F7900F5CABB /* EntityCreator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EntityCreator.hpp; sourceTree = "<group>"; };
 		B3ED82E9202E836D004D7CC1 /* Utility.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Utility.cpp; sourceTree = "<group>"; };
 		B3ED82EA202E836D004D7CC1 /* Utility.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Utility.hpp; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -388,6 +392,8 @@
 				B360A03920282B4300FCB0AE /* Menu */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
+				B3CCC11A20392F7900F5CABB /* EntityCreator.cpp */,
+				B3CCC11B20392F7900F5CABB /* EntityCreator.hpp */,
 				2288659E20278CCD00C6F6A9 /* Battle.cpp */,
 				228865A220278CF500C6F6A9 /* Battle.h */,
 				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
@@ -656,6 +662,7 @@
 				B3CCC10520366AC200F5CABB /* Entity.cpp in Sources */,
 				B31D5060202FDFC300B861A4 /* PlayerStatsDisplay.cpp in Sources */,
 				B3C0A5FE202BB7770088189A /* OverworldScene.cpp in Sources */,
+				B3CCC11C20392F7900F5CABB /* EntityCreator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,6 +681,7 @@
 				B3C0A5FF202BB7770088189A /* OverworldScene.cpp in Sources */,
 				B31D50682030196500B861A4 /* YangPhysics.cpp in Sources */,
 				B3C0A5EB2028D3D30088189A /* TextBox.cpp in Sources */,
+				B3CCC11D20392F7900F5CABB /* EntityCreator.cpp in Sources */,
 				B3CCC10620366AC200F5CABB /* Entity.cpp in Sources */,
 				228865A120278CD800C6F6A9 /* Battle.cpp in Sources */,
 			);

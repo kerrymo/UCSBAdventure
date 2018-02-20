@@ -11,6 +11,7 @@
 #include "Inventory.hpp"
 #include "PlayerStatsDisplay.hpp"
 #include "YangPhysics.hpp"
+#include "Battle.h"
 
 // initialize
 bool OverworldScene::init() {
@@ -20,8 +21,8 @@ bool OverworldScene::init() {
 Scene* OverworldScene::createWithTileMap(std::string filename) {
     // Setup node Layers
     auto scene = OverworldScene::create();
-    scene->gui = Node::create();
-    scene->world = Node::create();
+    scene->gui = Entity::create();
+    scene->world = Entity::create();
     scene->addChild(scene->world, 0);
     scene->addChild(scene->gui, 1); // GUI always has higher event priority over anything else
     
@@ -30,13 +31,30 @@ Scene* OverworldScene::createWithTileMap(std::string filename) {
     scene->meta = scene->tileMap->getLayer("Meta");
     scene->world->addChild(scene->tileMap, 0, 99);
     
+    // Add physics handler to the world
+    scene->physics = YangPhysics::createWithTileMap(scene->tileMap);
+    scene->world->addChild(scene->physics);
+    
     // Add player
-    scene->player = Entity::create("CloseNormal.png");
-    scene->player->setContentSize(Size(24, 24));
-    scene->player->setPosition(Vec2(64.0f, 1024.0f));
-    scene->player->setAnchorPoint(Vec2(0.0f, 0.0f));
+    scene->player = createPlayer(scene->physics);
+    scene->player->setPosition(Vec2(256.0f, 1024.0f));
+    
     scene->world->addChild(scene->player);
     scene->world->runAction(Follow::create(scene->player));
+    
+    // Add NPC
+    auto npc = createTalkingNPC(scene->gui, "Hello World");
+    npc->setPosition(Vec2(64.0f, 1024.0f));
+    scene->world->addChild(npc);
+    
+    // Add Enemy
+    auto enemy = createFollowingEnemy(scene->physics, scene->player);
+    enemy->setPosition(Vec2(512.0f, 1024.0f));
+    scene->world->addChild(enemy);
+    
+    auto enemy2 = createCalpirgEnemy(scene->physics, scene->player, scene->gui);
+    enemy2->setPosition(Vec2(650.0f, 1024.0f));
+    scene->world->addChild(enemy2);
     
     // Setup keyboard listener
     auto keyboardListener = EventListenerKeyboard::create();
@@ -47,10 +65,22 @@ Scene* OverworldScene::createWithTileMap(std::string filename) {
     // schedule update
     scene->scheduleUpdateWithPriority(LOOP_UPDATE_ORDER_INPUT);
     
-    // Add physics handler to the world
-    scene->world->addChild(YangPhysics::createWithTileMap(scene->tileMap));
+    // Automatically pause world when something is added to gui
+    auto guiListener = EventListenerCustom::create("childrenChanged", CC_CALLBACK_1(OverworldScene::guiChildrenChanged, scene));
+    scene->getEventDispatcher()->addEventListenerWithSceneGraphPriority(guiListener, scene);
     
     return scene;
+}
+
+void OverworldScene::guiChildrenChanged(EventCustom *event) {
+    auto sender = (Node*)(event->getUserData());
+    if (sender == gui) {
+        if (sender->getChildrenCount() > 0) {
+            physics->pauseAll();
+        } else {
+            physics->resumeAll();
+        }
+    }
 }
 
 void OverworldScene::update(float delta) {
@@ -62,6 +92,19 @@ void OverworldScene::update(float delta) {
     
     player->velocity = velocityDirection * 200.0f;
     
+}
+
+void OverworldScene::onExitTransitionDidStart()  {
+    Scene::onExitTransitionDidStart();
+    for (int i = 0; i < 200; i++) {
+        heldKey[i] = false;
+    }
+    physics->pauseAll();
+}
+
+void OverworldScene::onEnter() {
+    Scene::onEnter();
+    physics->resumeAll();
 }
 
 Vec2 OverworldScene::tileCoordForPosition(Vec2 position) {
@@ -89,7 +132,7 @@ void OverworldScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event) 
             this->gui->addChild(PlayerStatsDisplay::create());
         };
         item3.first = "Close";
-        item3.second = [](Node *sender) {
+        item3.second = [this](Node *sender) {
             sender->removeFromParent();
         };
         items.push_back(item1);
