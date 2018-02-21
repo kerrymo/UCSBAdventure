@@ -363,7 +363,7 @@ void Battle::endTurn()
     for(int i = 0; i < 3; i++) enemyAttack(enemy[i]);
     this->scheduleOnce([=](float delta){
         Player::undefend();
-        status = ChoosingCommand;
+        if(status != Fallen) status = ChoosingCommand;
     }, delay, std::to_string(scheduleKey));
     scheduleKey = 0;
     delay = 0.0;
