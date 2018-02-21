@@ -11,6 +11,7 @@
 
 const int defaultSize = 32;
 
+// Description : All these functions just initialize specific entities.
 Entity* createPlayer(YangPhysics *physics);
 Entity* createBasicNPC();
 Entity* createTalkingNPC(Node *gui, std::string message);

@@ -38,17 +38,26 @@ typedef std::pair<std::string, std::function<void(Node*)>> LabelAndCallback;
 
 class KeyboardMenu : public Node {
 public:
-    // Interface functions
+    
+    // Description : returns the text of the currently selected label
     std::string selectedLabelText() { return _items.at(selectedItem).first; };
+    
+    // Description : Arranges data according to the size specified
+    // Postcondition : If the provided size is too small the size defaults to the minimum size to contain the children.
     void setContentSize(const cocos2d::Size &contentSize) override;
     
-    // Initialization functions
-    virtual bool init() override;
-    CREATE_FUNC(KeyboardMenu);
+    // Description : Initializes a menu with corresponding labels and callbacks
+    // Postcondition : A menu with the provided items and the minimum size to contain those items
     static KeyboardMenu* create(const std::vector<LabelAndCallback> &items);
+    
+    // Description : Initializes a menu with corresponding labels and callbacks and a size
+    // Postcondition : A menu with the provided items and is the size of contentsize unless contentSize is smaller than the minimum size to contain the items
     static KeyboardMenu* create(const std::vector<LabelAndCallback> &items, const Size &contentSize);
     
 protected:
+    virtual bool init() override;
+    CREATE_FUNC(KeyboardMenu);
+    
     void onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event);
     void updateDisplay();
     int selectedItem;

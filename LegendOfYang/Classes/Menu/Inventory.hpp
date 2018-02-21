@@ -12,10 +12,11 @@ USING_NS_CC;
 
 class Inventory : public Node {
 public:
-    virtual bool init() override;
+    // Description : creates an inventory menu
     CREATE_FUNC(Inventory);
     
 protected:
+    virtual bool init() override;
     void selectItem(Node *sender);
     void close(Node *sender);
     void open(Node *sender);

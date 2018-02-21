@@ -13,11 +13,6 @@
 #include "YangPhysics.hpp"
 #include "Battle.h"
 
-// initialize
-bool OverworldScene::init() {
-    return Scene::initWithPhysics();
-}
-
 Scene* OverworldScene::createWithTileMap(std::string filename) {
     // Setup node Layers
     auto scene = OverworldScene::create();
