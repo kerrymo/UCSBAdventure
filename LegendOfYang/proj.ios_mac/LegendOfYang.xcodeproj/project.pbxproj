@@ -11,6 +11,10 @@
 		1AC6FB30180E99EB004C840B /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FB07180E9839004C840B /* libcocos2d iOS.a */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		22600654203CF95500640E3C /* fallen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22600651203CF95400640E3C /* fallen.mp3 */; };
+		22600655203CF95500640E3C /* fallen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22600651203CF95400640E3C /* fallen.mp3 */; };
+		22600656203CF95500640E3C /* world.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22600653203CF95500640E3C /* world.mp3 */; };
+		22600657203CF95500640E3C /* world.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22600653203CF95500640E3C /* world.mp3 */; };
 		228865A020278CCE00C6F6A9 /* Battle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2288659E20278CCD00C6F6A9 /* Battle.cpp */; };
 		228865A120278CD800C6F6A9 /* Battle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2288659E20278CCD00C6F6A9 /* Battle.cpp */; };
 		228865AC20279AC700C6F6A9 /* battle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 228865AB20279AC700C6F6A9 /* battle.mp3 */; };
@@ -159,6 +163,8 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* LegendOfYang-mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LegendOfYang-mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		22600651203CF95400640E3C /* fallen.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fallen.mp3; sourceTree = "<group>"; };
+		22600653203CF95500640E3C /* world.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = world.mp3; sourceTree = "<group>"; };
 		2288659E20278CCD00C6F6A9 /* Battle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Battle.cpp; sourceTree = "<group>"; };
 		228865A220278CF500C6F6A9 /* Battle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Battle.h; sourceTree = "<group>"; };
 		228865AB20279AC700C6F6A9 /* battle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = battle.mp3; sourceTree = "<group>"; };
@@ -380,6 +386,8 @@
 				B3C0A607202BEB480088189A /* test.tmx */,
 				B3C0A606202BEB240088189A /* Terrain.tsx */,
 				B3C0A603202BEABD0088189A /* terrain.png */,
+				22600651203CF95400640E3C /* fallen.mp3 */,
+				22600653203CF95500640E3C /* world.mp3 */,
 				22FE38482022C2F10024386E /* song.mp3 */,
 				228865AB20279AC700C6F6A9 /* battle.mp3 */,
 				228865AE20279F8200C6F6A9 /* victory.mp3 */,
@@ -555,7 +563,16 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0500;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						LastSwiftMigration = 0920;
+					};
+					5087E73D17EB910900C73F5D = {
+						LastSwiftMigration = 0920;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "LegendOfYang" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -616,6 +633,7 @@
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				B3C0A608202BEB4D0088189A /* test.tmx in Resources */,
+				22600656203CF95500640E3C /* world.mp3 in Resources */,
 				B3C0A616202CF8940088189A /* meta_tiles.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				228865AC20279AC700C6F6A9 /* battle.mp3 in Resources */,
@@ -638,6 +656,7 @@
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				228865AF20279F8200C6F6A9 /* victory.mp3 in Resources */,
 				B3C0A618202CF8940088189A /* tmw_desert_spacing.png in Resources */,
+				22600654203CF95500640E3C /* fallen.mp3 in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
 				521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */,
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
@@ -652,6 +671,7 @@
 			files = (
 				46880B8219C43A67006E1F66 /* HelloWorld.png in Resources */,
 				B3C0A60D202BEB530088189A /* terrain.png in Resources */,
+				22600657203CF95500640E3C /* world.mp3 in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				B3C0A61A202CF8950088189A /* tmw_desert_spacing.png in Resources */,
 				3EACC99019EE6D4300EB3C5E /* res in Resources */,
@@ -660,6 +680,7 @@
 				B3C0A60B202BEB500088189A /* Terrain.tsx in Resources */,
 				228865B020279F8200C6F6A9 /* victory.mp3 in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
+				22600655203CF95500640E3C /* fallen.mp3 in Resources */,
 				46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */,
 				B3C0A613202CF88C0088189A /* TileMap.tmx in Resources */,
@@ -739,6 +760,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				ENABLE_BITCODE = NO;
@@ -755,13 +777,18 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
 				);
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "LegendOfYang-mobile-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END)";
 				VALID_ARCHS = "arm64 armv7";
@@ -772,6 +799,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				ENABLE_BITCODE = NO;
@@ -787,13 +815,17 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
 				);
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "LegendOfYang-mobile-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END)";
 				VALID_ARCHS = "arm64 armv7";
@@ -807,6 +839,7 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -822,11 +855,16 @@
 					"$(SRCROOT)/../cocos2d/external/glfw3/include/mac",
 				);
 				INFOPLIST_FILE = mac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_MAC_BEGIN)",
 					"$(_COCOS_LIB_MAC_END)",
 				);
+				SWIFT_OBJC_BRIDGING_HEADER = "LegendOfYang-desktop-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END)";
 			};
 			name = Debug;
@@ -838,6 +876,7 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = mac/Prefix.pch;
@@ -852,11 +891,15 @@
 					"$(SRCROOT)/../cocos2d/external/glfw3/include/mac",
 				);
 				INFOPLIST_FILE = mac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_MAC_BEGIN)",
 					"$(_COCOS_LIB_MAC_END)",
 				);
+				SWIFT_OBJC_BRIDGING_HEADER = "LegendOfYang-desktop-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END)";
 			};
 			name = Release;

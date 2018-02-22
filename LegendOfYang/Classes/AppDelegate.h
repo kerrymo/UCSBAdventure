@@ -11,9 +11,22 @@ Private inheritance here hides part of interface from Director.
 class  AppDelegate : private cocos2d::Application
 {
 public:
+    /**
+     The default constructor of the application.
+     Postcondition: the application is set up.
+    */
     AppDelegate();
+    
+    /**
+     The destructor of the application.
+     Postcondition: the application is closed.
+    */
     virtual ~AppDelegate();
 
+    /**
+     Set OpenGL context attributes.
+     Postcondition: the OpenGL context attributes are set.
+    */
     virtual void initGLContextAttrs();
 
     /**
