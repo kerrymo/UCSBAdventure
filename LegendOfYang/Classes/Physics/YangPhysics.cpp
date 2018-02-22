@@ -121,7 +121,7 @@ void YangPhysics::update(float delta) {
                 contactEndedCallbacks[(uint64_t)node1](node1, node2);
             }
             if (contactEndedCallbacks.find((uint64_t)node2) != contactEndedCallbacks.end()) {
-                contactEndedCallbacks[(uint64_t)node2](node1, node2);
+                contactEndedCallbacks[(uint64_t)node2](node2, node1);
             }
             currentContacts.erase(contactRepresentation(node1, node2));
         }
