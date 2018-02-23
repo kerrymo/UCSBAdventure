@@ -29,10 +29,7 @@ bool Battle::init()
     // create enemies
     for(int i = 0; i < 3; i++)
     {
-        enemy[i] = new Enemy();
-        enemy[i]->createSprite();
-        enemy[i]->setPosition(200 * i + 400, 500);
-        enemy[i]->getSprite()->setPosition(enemy[i]->getPosition());
+        enemy[i] = new Enemy(i);
         this->addChild(enemy[i]->getSprite());
     }
     
@@ -326,7 +323,6 @@ void Battle::playerAttack(Enemy* enemy)
 {
     int damage = enemy->takeDamage(Player::getAtk());
     displayDamage(damage, enemy->getPosition().x, enemy->getPosition().y + 150);
-    if(enemy->getHp() <= 0) enemy->die();
     playerSprite->setPositionY(150);
     this->scheduleOnce([=](float delta){ playerSprite->setPositionY(100); }, 0.5, std::to_string(scheduleKey));
     scheduleKey++;

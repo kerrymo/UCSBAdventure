@@ -15,6 +15,51 @@
 		22600655203CF95500640E3C /* fallen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22600651203CF95400640E3C /* fallen.mp3 */; };
 		22600656203CF95500640E3C /* world.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22600653203CF95500640E3C /* world.mp3 */; };
 		22600657203CF95500640E3C /* world.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22600653203CF95500640E3C /* world.mp3 */; };
+		2260065D203FD7D100640E3C /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7A19C43A67006E1F66 /* HelloWorld.png */; };
+		2260065E203FD7D100640E3C /* terrain.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A603202BEABD0088189A /* terrain.png */; };
+		2260065F203FD7D100640E3C /* world.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22600653203CF95500640E3C /* world.mp3 */; };
+		22600660203FD7D100640E3C /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 503AE0F617EB97AB00D1A890 /* Icon.icns */; };
+		22600661203FD7D100640E3C /* tmw_desert_spacing.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A611202CF8710088189A /* tmw_desert_spacing.png */; };
+		22600662203FD7D100640E3C /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
+		22600663203FD7D100640E3C /* song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22FE38482022C2F10024386E /* song.mp3 */; };
+		22600664203FD7D100640E3C /* battle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 228865AB20279AC700C6F6A9 /* battle.mp3 */; };
+		22600665203FD7D100640E3C /* Terrain.tsx in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A606202BEB240088189A /* Terrain.tsx */; };
+		22600666203FD7D100640E3C /* victory.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 228865AE20279F8200C6F6A9 /* victory.mp3 */; };
+		22600667203FD7D100640E3C /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
+		22600668203FD7D100640E3C /* fallen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22600651203CF95400640E3C /* fallen.mp3 */; };
+		22600669203FD7D100640E3C /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
+		2260066A203FD7D100640E3C /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7719C43A67006E1F66 /* CloseSelected.png */; };
+		2260066B203FD7D100640E3C /* TileMap.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A60F202CF8700088189A /* TileMap.tmx */; };
+		2260066C203FD7D100640E3C /* meta_tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A60E202BED600088189A /* meta_tiles.png */; };
+		2260066D203FD7D100640E3C /* test.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B3C0A607202BEB480088189A /* test.tmx */; };
+		2260066F203FD7D100640E3C /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3ED82E9202E836D004D7CC1 /* Utility.cpp */; };
+		22600670203FD7D100640E3C /* PagedTextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0A5F6202B6F360088189A /* PagedTextBox.cpp */; };
+		22600671203FD7D100640E3C /* KeyboardMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */; };
+		22600673203FD7D100640E3C /* Inventory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31D5057202F7CFC00B861A4 /* Inventory.cpp */; };
+		22600674203FD7D100640E3C /* PlayerStatsDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31D505E202FDFC300B861A4 /* PlayerStatsDisplay.cpp */; };
+		22600675203FD7D100640E3C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 503AE10317EB98FF00D1A890 /* main.cpp */; };
+		22600676203FD7D100640E3C /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */; };
+		22600677203FD7D100640E3C /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31721AC203CE377002F42FF /* Player.cpp */; };
+		22600678203FD7D100640E3C /* OverworldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0A5FC202BB7770088189A /* OverworldScene.cpp */; };
+		22600679203FD7D100640E3C /* YangPhysics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31D50652030196500B861A4 /* YangPhysics.cpp */; };
+		2260067A203FD7D100640E3C /* TextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0A5E82028D3D30088189A /* TextBox.cpp */; };
+		2260067B203FD7D100640E3C /* EntityCreator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3CCC11A20392F7900F5CABB /* EntityCreator.cpp */; };
+		2260067C203FD7D100640E3C /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31721AB203CE377002F42FF /* Enemy.cpp */; };
+		2260067D203FD7D100640E3C /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3CCC10320366AC200F5CABB /* Entity.cpp */; };
+		2260067E203FD7D100640E3C /* Battle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2288659E20278CCD00C6F6A9 /* Battle.cpp */; };
+		22600680203FD7D100640E3C /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ED545A7D1B68A1FA00C3958E /* libiconv.dylib */; };
+		22600681203FD7D100640E3C /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAF9180E9839004C840B /* libcocos2d Mac.a */; };
+		22600682203FD7D100640E3C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
+		22600683203FD7D100640E3C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
+		22600684203FD7D100640E3C /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503AE11A17EB9C5A00D1A890 /* IOKit.framework */; };
+		22600685203FD7D100640E3C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5087E78A17EB975400C73F5D /* OpenGL.framework */; };
+		22600686203FD7D100640E3C /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5087E78817EB974C00C73F5D /* AppKit.framework */; };
+		22600687203FD7D100640E3C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		22600688203FD7D100640E3C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
+		22600689203FD7D100640E3C /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620B132DFF330009C878 /* OpenAL.framework */; };
+		2260068A203FD7D100640E3C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620D132DFF430009C878 /* AVFoundation.framework */; };
+		2260068B203FD7D100640E3C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620F132DFF4E0009C878 /* AudioToolbox.framework */; };
+		22600694203FD89B00640E3C /* TestDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22600692203FD89A00640E3C /* TestDelegate.cpp */; };
 		228865A020278CCE00C6F6A9 /* Battle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2288659E20278CCD00C6F6A9 /* Battle.cpp */; };
 		228865A120278CD800C6F6A9 /* Battle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2288659E20278CCD00C6F6A9 /* Battle.cpp */; };
 		228865AC20279AC700C6F6A9 /* battle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 228865AB20279AC700C6F6A9 /* battle.mp3 */; };
@@ -148,6 +193,13 @@
 			remoteGlobalIDString = A07A4C241783777C0073F6A7;
 			remoteInfo = "cocos2dx iOS";
 		};
+		2260065B203FD7D100640E3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1551A33E158F2AB200E66CFE;
+			remoteInfo = "cocos2dx Mac";
+		};
 		22FE38442022B0300024386E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */;
@@ -165,6 +217,11 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		22600651203CF95400640E3C /* fallen.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fallen.mp3; sourceTree = "<group>"; };
 		22600653203CF95500640E3C /* world.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = world.mp3; sourceTree = "<group>"; };
+		2260068F203FD7D100640E3C /* LegendOfYang-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LegendOfYang-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		22600691203FD7E600640E3C /* LegendOfYang-desktop copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "LegendOfYang-desktop copy-Info.plist"; path = "/Users/JasonLiu/Documents/github/UCSBAdventureCS48/LegendOfYang/proj.ios_mac/LegendOfYang-desktop copy-Info.plist"; sourceTree = "<absolute>"; };
+		22600692203FD89A00640E3C /* TestDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestDelegate.cpp; sourceTree = "<group>"; };
+		22600693203FD89A00640E3C /* TestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDelegate.h; sourceTree = "<group>"; };
+		22600695203FDC1D00640E3C /* catch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = "<group>"; };
 		2288659E20278CCD00C6F6A9 /* Battle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Battle.cpp; sourceTree = "<group>"; };
 		228865A220278CF500C6F6A9 /* Battle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Battle.h; sourceTree = "<group>"; };
 		228865AB20279AC700C6F6A9 /* battle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = battle.mp3; sourceTree = "<group>"; };
@@ -280,6 +337,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2260067F203FD7D100640E3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22600680203FD7D100640E3C /* libiconv.dylib in Frameworks */,
+				22600681203FD7D100640E3C /* libcocos2d Mac.a in Frameworks */,
+				22600682203FD7D100640E3C /* libz.dylib in Frameworks */,
+				22600683203FD7D100640E3C /* Security.framework in Frameworks */,
+				22600684203FD7D100640E3C /* IOKit.framework in Frameworks */,
+				22600685203FD7D100640E3C /* OpenGL.framework in Frameworks */,
+				22600686203FD7D100640E3C /* AppKit.framework in Frameworks */,
+				22600687203FD7D100640E3C /* Foundation.framework in Frameworks */,
+				22600688203FD7D100640E3C /* QuartzCore.framework in Frameworks */,
+				22600689203FD7D100640E3C /* OpenAL.framework in Frameworks */,
+				2260068A203FD7D100640E3C /* AVFoundation.framework in Frameworks */,
+				2260068B203FD7D100640E3C /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5087E75C17EB910900C73F5D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -322,6 +398,7 @@
 			children = (
 				1D6058910D05DD3D006BFB54 /* LegendOfYang-mobile.app */,
 				5087E76F17EB910900C73F5D /* LegendOfYang-desktop.app */,
+				2260068F203FD7D100640E3C /* LegendOfYang-test.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -346,6 +423,7 @@
 				080E96DDFE201D6D7F000001 /* ios */,
 				503AE10617EB990700D1A890 /* mac */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				22600691203FD7E600640E3C /* LegendOfYang-desktop copy-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -410,8 +488,11 @@
 				B31721B2203CE39E002F42FF /* Scenes */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
+				22600695203FDC1D00640E3C /* catch.hpp */,
 				B3CCC11A20392F7900F5CABB /* EntityCreator.cpp */,
 				B3CCC11B20392F7900F5CABB /* EntityCreator.hpp */,
+				22600692203FD89A00640E3C /* TestDelegate.cpp */,
+				22600693203FD89A00640E3C /* TestDelegate.h */,
 				B3ED82E9202E836D004D7CC1 /* Utility.cpp */,
 				B3ED82EA202E836D004D7CC1 /* Utility.hpp */,
 			);
@@ -539,6 +620,24 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* LegendOfYang-mobile.app */;
 			productType = "com.apple.product-type.application";
 		};
+		22600659203FD7D100640E3C /* LegendOfYang-test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2260068C203FD7D100640E3C /* Build configuration list for PBXNativeTarget "LegendOfYang-test" */;
+			buildPhases = (
+				2260065C203FD7D100640E3C /* Resources */,
+				2260066E203FD7D100640E3C /* Sources */,
+				2260067F203FD7D100640E3C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2260065A203FD7D100640E3C /* PBXTargetDependency */,
+			);
+			name = "LegendOfYang-test";
+			productName = iphone;
+			productReference = 2260068F203FD7D100640E3C /* LegendOfYang-test.app */;
+			productType = "com.apple.product-type.application";
+		};
 		5087E73D17EB910900C73F5D /* LegendOfYang-desktop */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5087E76C17EB910900C73F5D /* Build configuration list for PBXNativeTarget "LegendOfYang-desktop" */;
@@ -596,6 +695,7 @@
 			targets = (
 				1D6058900D05DD3D006BFB54 /* LegendOfYang-mobile */,
 				5087E73D17EB910900C73F5D /* LegendOfYang-desktop */,
+				22600659203FD7D100640E3C /* LegendOfYang-test */,
 			);
 		};
 /* End PBXProject section */
@@ -665,6 +765,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2260065C203FD7D100640E3C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2260065D203FD7D100640E3C /* HelloWorld.png in Resources */,
+				2260065E203FD7D100640E3C /* terrain.png in Resources */,
+				2260065F203FD7D100640E3C /* world.mp3 in Resources */,
+				22600660203FD7D100640E3C /* Icon.icns in Resources */,
+				22600661203FD7D100640E3C /* tmw_desert_spacing.png in Resources */,
+				22600662203FD7D100640E3C /* res in Resources */,
+				22600663203FD7D100640E3C /* song.mp3 in Resources */,
+				22600664203FD7D100640E3C /* battle.mp3 in Resources */,
+				22600665203FD7D100640E3C /* Terrain.tsx in Resources */,
+				22600666203FD7D100640E3C /* victory.mp3 in Resources */,
+				22600667203FD7D100640E3C /* fonts in Resources */,
+				22600668203FD7D100640E3C /* fallen.mp3 in Resources */,
+				22600669203FD7D100640E3C /* CloseNormal.png in Resources */,
+				2260066A203FD7D100640E3C /* CloseSelected.png in Resources */,
+				2260066B203FD7D100640E3C /* TileMap.tmx in Resources */,
+				2260066C203FD7D100640E3C /* meta_tiles.png in Resources */,
+				2260066D203FD7D100640E3C /* test.tmx in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5087E74817EB910900C73F5D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -717,6 +841,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2260066E203FD7D100640E3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2260066F203FD7D100640E3C /* Utility.cpp in Sources */,
+				22600670203FD7D100640E3C /* PagedTextBox.cpp in Sources */,
+				22600671203FD7D100640E3C /* KeyboardMenu.cpp in Sources */,
+				22600673203FD7D100640E3C /* Inventory.cpp in Sources */,
+				22600674203FD7D100640E3C /* PlayerStatsDisplay.cpp in Sources */,
+				22600675203FD7D100640E3C /* main.cpp in Sources */,
+				22600676203FD7D100640E3C /* HelloWorldScene.cpp in Sources */,
+				22600677203FD7D100640E3C /* Player.cpp in Sources */,
+				22600678203FD7D100640E3C /* OverworldScene.cpp in Sources */,
+				22600679203FD7D100640E3C /* YangPhysics.cpp in Sources */,
+				22600694203FD89B00640E3C /* TestDelegate.cpp in Sources */,
+				2260067A203FD7D100640E3C /* TextBox.cpp in Sources */,
+				2260067B203FD7D100640E3C /* EntityCreator.cpp in Sources */,
+				2260067C203FD7D100640E3C /* Enemy.cpp in Sources */,
+				2260067D203FD7D100640E3C /* Entity.cpp in Sources */,
+				2260067E203FD7D100640E3C /* Battle.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5087E75617EB910900C73F5D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -752,6 +899,11 @@
 			isa = PBXTargetDependency;
 			name = "cocos2dx iOS";
 			targetProxy = 1AC6FB24180E99E1004C840B /* PBXContainerItemProxy */;
+		};
+		2260065A203FD7D100640E3C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "cocos2dx Mac";
+			targetProxy = 2260065B203FD7D100640E3C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -829,6 +981,81 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END)";
 				VALID_ARCHS = "arm64 armv7";
+			};
+			name = Release;
+		};
+		2260068D203FD7D100640E3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = mac/Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_FILE32API,
+					"COCOS2D_DEBUG=1",
+					"TESTING=1",
+					"CC_ENABLE_CHIPMUNK_INTEGRATION=1",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../cocos2d/external/glfw3/include/mac",
+				);
+				INFOPLIST_FILE = "LegendOfYang-desktop copy-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = (
+					"$(_COCOS_LIB_MAC_BEGIN)",
+					"$(_COCOS_LIB_MAC_END)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LegendOfYang-desktop-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END)";
+			};
+			name = Debug;
+		};
+		2260068E203FD7D100640E3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = mac/Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_FILE32API,
+					"CC_ENABLE_CHIPMUNK_INTEGRATION=1",
+					NDEBUG,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../cocos2d/external/glfw3/include/mac",
+				);
+				INFOPLIST_FILE = "LegendOfYang-desktop copy-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = (
+					"$(_COCOS_LIB_MAC_BEGIN)",
+					"$(_COCOS_LIB_MAC_END)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LegendOfYang-desktop-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END)";
 			};
 			name = Release;
 		};
@@ -963,6 +1190,15 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		2260068C203FD7D100640E3C /* Build configuration list for PBXNativeTarget "LegendOfYang-test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2260068D203FD7D100640E3C /* Debug */,
+				2260068E203FD7D100640E3C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
