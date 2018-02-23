@@ -11,7 +11,7 @@ public:
      The default constructor.
      Postcondition: a new object is created.
     */
-    Enemy();
+    Enemy(int);
     
     /**
      The getter of exp.
@@ -70,12 +70,6 @@ public:
      Postcondition: the hp is reduced by the damage taken.
     */
     int takeDamage(int);
-    
-    /**
-     Create a sprite for the enemy.
-     Postcondition: a new sprite is created for the enemy.
-    */
-    void createSprite();
     
     /**
      Check if the enemy is dead.

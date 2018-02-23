@@ -1,6 +1,6 @@
 #include "Enemy.h"
 
-Enemy::Enemy()
+Enemy::Enemy(int i)
 {
     exp = 4;
     gold = 5;
@@ -8,6 +8,10 @@ Enemy::Enemy()
     atk = 2;
     def = 0;
     dead = false;
+    sprite = Sprite::create("HelloWorld.png");
+    sprite->setAnchorPoint(Vec2(0.5, 0.5));
+    setPosition(200 * i + 400, 500);
+    sprite->setPosition(getPosition());
 }
 
 int Enemy::getExp()
@@ -40,18 +44,13 @@ int Enemy::takeDamage(int rawDamage)
     int damage = rawDamage - def;
     if(damage < 0) return 0;
     hp -= damage;
+    if(hp <= 0) die();
     return damage;
 }
 
 Sprite* Enemy::getSprite() const
 {
     return sprite;
-}
-
-void Enemy::createSprite()
-{
-    sprite = Sprite::create("HelloWorld.png");
-    sprite->setAnchorPoint(Vec2(0.5, 0.5));
 }
 
 bool Enemy::isDead()
