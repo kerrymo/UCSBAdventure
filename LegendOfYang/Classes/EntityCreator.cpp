@@ -10,10 +10,39 @@
 #include "TextBox.hpp"
 #include "KeyboardMenu.hpp"
 #include "Battle.h"
+#include "OverworldScene.hpp"
+#include "Utility.hpp"
 
-Entity* createPlayer(YangPhysics *physics) {
+void EntityCreator::setupAnimation(Entity *entity) {
+    auto size = entity->getContentSize();
+    entity->setTexture("player_down.png");
+    entity->setContentSize(size);
+    auto orientationListener = EventListenerCustom::create("orientation-changed", [entity](EventCustom* event) {
+        
+        auto sender = (Entity*)event->getUserData();
+        if (sender == entity) { // Adjust Player animation
+            float theta = atan2f(entity->getOrientation().y, entity->getOrientation().x);
+            auto size = entity->getContentSize();
+            if (theta <= M_PI_4+ 0.01f && theta >= -M_PI_4 - 0.01f) {
+                entity->setTexture("player_right.png");
+            } else if (theta > M_PI_4 && theta < 3*M_PI_4) {
+                entity->setTexture("player_up.png");
+            } else if (theta > 3 * M_PI_4 || theta < -3*M_PI_4) {
+                entity->setTexture("player_left.png");
+            } else {
+                entity->setTexture("player_down.png");
+            }
+            
+            entity->setContentSize(size);
+        }
+    });
+    
+    scene->physics->getEventDispatcher()->addEventListenerWithSceneGraphPriority(orientationListener, entity);
+}
+
+Entity* EntityCreator::createPlayer() {
     // Add player
-    auto player = Entity::create("CloseNormal.png");
+    auto player = Entity::create("player_down.png");
     player->setName("player");
     player->setContentSize(Size(defaultSize, defaultSize));
     player->isDynamic = true;
@@ -26,20 +55,21 @@ Entity* createPlayer(YangPhysics *physics) {
     interactionBox->isSolid = false;
     interactionBox->isDynamic = false;
     auto interactionKeyboardListener = EventListenerKeyboard::create();
-    interactionKeyboardListener->onKeyPressed = [interactionBox, physics, player](EventKeyboard::KeyCode keyCode, Event *event) {
+    interactionKeyboardListener->onKeyPressed = [interactionBox, this, player](EventKeyboard::KeyCode keyCode, Event *event) {
         if (keyCode == EventKeyboard::KeyCode::KEY_ENTER) {
             auto boundingBox = interactionBox->getCollisionBox();
-            boundingBox.origin += defaultSize * player->getOrientation() + (player->getContentSize() - interactionBox->getContentSize())/2.0f;
-            auto potentialInteracters = physics->getCollidingEntities(boundingBox);
+            boundingBox.origin += defaultSize * player->getOrientation() + (player->getContentSize() - interactionBox->getContentSize()) / 2.0f;
+            auto potentialInteracters = scene->physics->getCollidingEntities(boundingBox);
             for (auto potentialInteracter : potentialInteracters) {
                 if (potentialInteracter->interact != nullptr) {
                     potentialInteracter->interact();
-                    potentialInteracter->setOrientation(player->getBoundingBox().origin - potentialInteracter->getBoundingBox().origin);
                     break; // So you only interact with one thing at a time
                 }
             }
         }
     };
+    
+    setupAnimation(player);
     
     player->getEventDispatcher()->addEventListenerWithSceneGraphPriority(interactionKeyboardListener, interactionBox);
     player->addChild(interactionBox);
@@ -48,30 +78,34 @@ Entity* createPlayer(YangPhysics *physics) {
 }
 
 
-Entity* createBasicEnemy(YangPhysics *physics, Entity *player) {
+Entity* EntityCreator::createBasicEnemy() {
     auto enemy = Entity::create("CloseNormal.png");
     enemy->setContentSize(Size(defaultSize, defaultSize));
     
-    physics->registerCallbackOnContact([player](Node *enemy, Node *otherEntity) {
-        if (player == otherEntity) {
+    scene->physics->registerCallbackOnContact([this](Node *enemy, Node *otherEntity) {
+        if (scene->player == otherEntity) {
             enemy->removeFromParent();
             Director::getInstance()->pushScene(TransitionFade::create(0.5, Battle::createScene(), Color3B(255, 255, 255)));
         }
     }, enemy);
     
+    enemy->setColor(Color3B(255, 150, 150));
+    
+    setupAnimation(enemy);
+    
     return enemy;
 }
 
-Entity* createFollowingEnemy(YangPhysics *physics, Entity *player) {
-    auto enemy = createBasicEnemy(physics, player);
+Entity* EntityCreator::createFollowingEnemy() {
+    auto enemy = createBasicEnemy();
     enemy->isDynamic = true;
-    auto visiblityBox = Entity::create("CloseNormal.png");
+    auto visiblityBox = Entity::create();
     visiblityBox->isSolid = false;
     visiblityBox->isDynamic = false;
-    visiblityBox->setContentSize(Size(4.0f * defaultSize, 4.0f * defaultSize));
+    visiblityBox->setContentSize(Size(6.0f * defaultSize, 6.0f * defaultSize));
     visiblityBox->setAnchorPoint(Vec2::ZERO);
-    auto followPlayer = [player, enemy]() {
-        Vec2 towardPlayer = player->getPosition() - enemy->getPosition();
+    auto followPlayer = [this, enemy]() {
+        Vec2 towardPlayer = scene->player->getPosition() - enemy->getPosition();
         towardPlayer.normalize();
         enemy->velocity = 150.0f * towardPlayer;
     };
@@ -87,14 +121,14 @@ Entity* createFollowingEnemy(YangPhysics *physics, Entity *player) {
     
     enemy->behavior = wander;
     
-    physics->registerCallbackOnContact([player, enemy, followPlayer](Entity *visibilityBox, Entity *otherEntity) {
-        if (player == otherEntity) {
+    scene->physics->registerCallbackOnContact([this, enemy, followPlayer](Entity *visibilityBox, Entity *otherEntity) {
+        if (scene->player == otherEntity) {
             enemy->behavior = followPlayer;
         }
     }, visiblityBox);
     
-    physics->registerCallbackOnSeperate([enemy, player, wander](Entity *visibilityBox, Entity *otherEntity) {
-        if (player == otherEntity) {
+    scene->physics->registerCallbackOnSeperate([this, enemy, wander](Entity *visibilityBox, Entity *otherEntity) {
+        if (scene->player == otherEntity) {
             enemy->behavior = wander;
         }
     }, visiblityBox);
@@ -106,20 +140,20 @@ Entity* createFollowingEnemy(YangPhysics *physics, Entity *player) {
         }
     });
     
-    physics->getEventDispatcher()->addEventListenerWithSceneGraphPriority(orientationListener, enemy);
+    scene->physics->getEventDispatcher()->addEventListenerWithSceneGraphPriority(orientationListener, enemy);
     
     enemy->addChild(visiblityBox);
     
     return enemy;
 }
 
-Entity* createCalpirgEnemy(YangPhysics *physics, Entity *player, Node *gui) {
-    auto enemy = createFollowingEnemy(physics, player);
+Entity* EntityCreator::createCalpirgEnemy() {
+    auto enemy = createFollowingEnemy();
     auto textBox = TextBox::create("Would you like to make a 10$ donation to Calpirg?");
     
     LabelAndCallback item1, item2;
     item1.first = "Yes";
-    item1.second = [gui, textBox, enemy](Node *sender){
+    item1.second = [this, textBox, enemy](Node *sender) {
         sender->removeFromParent();
         sender->release();
         textBox->updateText("Thank you! Your donation will go to a good cause.");
@@ -130,13 +164,12 @@ Entity* createCalpirgEnemy(YangPhysics *physics, Entity *player, Node *gui) {
                 textBox->removeFromParent();
                 textBox->release();
             }
-            ;
         };
         textBox->getEventDispatcher()->addEventListenerWithSceneGraphPriority(closeListener, textBox);
     };
     
     item2.first = "No";
-    item2.second = [gui, textBox, enemy](Node *sender){
+    item2.second = [textBox, enemy](Node *sender){
         sender->removeFromParent();
         sender->release();
         textBox->updateText("Wrong answer bucko.");
@@ -155,10 +188,10 @@ Entity* createCalpirgEnemy(YangPhysics *physics, Entity *player, Node *gui) {
     auto menu = KeyboardMenu::create({item1, item2});
     
     
-    physics->registerCallbackOnContact([player, textBox, menu, gui](Node *enemy, Node *otherEntity) {
-        if (player == otherEntity) {
-            gui->addChild(textBox);
-            gui->addChild(menu);
+    scene->physics->registerCallbackOnContact([textBox, menu, this](Node *enemy, Node *otherEntity) {
+        if (scene->player == otherEntity) {
+            scene->gui->addChild(textBox);
+            scene->gui->addChild(menu);
             menu->setPosition(textBox->getPosition() + Vec2(0.0f, textBox->getContentSize().height));
         }
     }, enemy);
@@ -169,19 +202,45 @@ Entity* createCalpirgEnemy(YangPhysics *physics, Entity *player, Node *gui) {
     return enemy;
 }
 
-Entity* createBasicNPC() {
+Entity* EntityCreator::createBasicNPC() {
     auto npc = Entity::create("CloseNormal.png");
     npc->setContentSize(Size(defaultSize, defaultSize));
     npc->isDynamic = false;
     
+    npc->setColor(Color3B(150, 255, 150));
+    setupAnimation(npc);
+    
     return npc;
 }
 
-Entity* createTalkingNPC(Node* gui, std::string message) {
+Entity* EntityCreator::createLoadingZone(std::string worldFilename) {
+    auto loadingZone = Entity::create("CloseNormal.png");
+    loadingZone->setContentSize(Size(defaultSize, defaultSize));
+    loadingZone->isDynamic = false;
+    loadingZone->isSolid = false;
+    
+    scene->physics->registerCallbackOnContact([this, worldFilename](Node *loadingZone, Node *otherEntity) {
+        if (scene->player == otherEntity) {
+            Director::getInstance()->replaceScene(TransitionFade::create(0.5, OverworldScene::createWithTileMap(worldFilename), Color3B(0, 0, 0)));
+        }
+    }, loadingZone);
+    
+    return loadingZone;
+}
+
+Entity* EntityCreator::createTalkingNPC(std::string message) {
     auto npc = createBasicNPC();
-    npc->interact = [gui, message]() {
-        gui->addChild(PagedTextBox::create(message));
+    auto lookAround = [npc](float dt) {
+        npc->setOrientation(randomDirection());
     };
+    auto scheduler = Director::getInstance()->getScheduler();
+    scheduler->schedule(lookAround, this, 4.0f, kRepeatForever, 0.0f, false, "myCallbackKey");
+    
+    npc->interact = [this, message, npc]() {
+        npc->setOrientation(scene->player->getCollisionBox().origin - npc->getCollisionBox().origin);
+        scene->gui->addChild(PagedTextBox::create(message));
+    };
+    
     
     return npc;
 }

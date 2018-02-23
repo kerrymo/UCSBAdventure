@@ -23,3 +23,5 @@ static Rect intersectionOfRectangles(Rect r1, Rect r2);
 // Postcondition : if the position is out of bounds of the tilemap the coordinate will be out of bounds of the tile map.
 // If the coordinate is within bounds then the tile coordinate will be within the bounds of the tilemap.
 Vec2 tileCoordForPosition(Vec2 position, TMXTiledMap *tileMap);
+
+Vec2 randomDirection();

@@ -12,6 +12,8 @@ USING_NS_CC;
 #include "EntityCreator.hpp"
 
 class OverworldScene : public Scene {
+    friend class EntityCreator;
+    
 public:
     // Description : initializes map using the filename of the tilemap
     // Precondition : N / A
@@ -41,6 +43,7 @@ public:
     
 protected:
     Vec2 tileCoordForPosition(Vec2 position);
+    EntityCreator *entityCreator;
     Entity *player;
     Node *gui, *world;
     TMXTiledMap *tileMap;

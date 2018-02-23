@@ -22,3 +22,9 @@ Vec2 tileCoordForPosition(Vec2 position, TMXTiledMap *tileMap) {
     int y = ((tileMap->getMapSize().height * tileSize.height) - position.y) / tileSize.height;
     return Vec2(x, y);
 }
+
+Vec2 randomDirection() {
+    Vec2 rvec = Vec2(RandomHelper::random_real(-1.0f, 1.0f), RandomHelper::random_real(-1.0f, 1.0f));
+    rvec.normalize();
+    return rvec;
+}

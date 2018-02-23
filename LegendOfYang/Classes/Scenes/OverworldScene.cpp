@@ -30,26 +30,35 @@ Scene* OverworldScene::createWithTileMap(std::string filename) {
     scene->physics = YangPhysics::createWithTileMap(scene->tileMap);
     scene->world->addChild(scene->physics);
     
+    // Setup Entity Creator
+    auto entityCreator = new EntityCreator(scene);
+    scene->entityCreator = entityCreator;
+    
     // Add player
-    scene->player = createPlayer(scene->physics);
+    scene->player = entityCreator->createPlayer();
     scene->player->setPosition(Vec2(256.0f, 1024.0f));
     
     scene->world->addChild(scene->player);
     scene->world->runAction(Follow::create(scene->player));
     
     // Add NPC
-    auto npc = createTalkingNPC(scene->gui, "Hello World");
+    auto npc = entityCreator->createTalkingNPC("Hello World");
     npc->setPosition(Vec2(64.0f, 1024.0f));
     scene->world->addChild(npc);
     
     // Add Enemy
-    auto enemy = createFollowingEnemy(scene->physics, scene->player);
+    auto enemy = entityCreator->createFollowingEnemy();
     enemy->setPosition(Vec2(512.0f, 1024.0f));
     scene->world->addChild(enemy);
     
-    auto enemy2 = createCalpirgEnemy(scene->physics, scene->player, scene->gui);
+    auto enemy2 = entityCreator->createCalpirgEnemy();
     enemy2->setPosition(Vec2(650.0f, 1024.0f));
     scene->world->addChild(enemy2);
+    
+    // Add loading zone
+    auto loadingZone = entityCreator->createLoadingZone(filename);
+    loadingZone->setPosition(640.0f, 1280.0f);
+    scene->world->addChild(loadingZone);
     
     // Setup keyboard listener
     auto keyboardListener = EventListenerKeyboard::create();
@@ -79,8 +88,8 @@ void OverworldScene::guiChildrenChanged(EventCustom *event) {
 }
 
 void OverworldScene::update(float delta) {
-    float vx = heldKey[(int)EventKeyboard::KeyCode::KEY_RIGHT_ARROW] - heldKey[(int)EventKeyboard::KeyCode::KEY_LEFT_ARROW];
-    float vy = heldKey[(int)EventKeyboard::KeyCode::KEY_UP_ARROW] - heldKey[(int)EventKeyboard::KeyCode::KEY_DOWN_ARROW];
+    float vx = (heldKey[(int)EventKeyboard::KeyCode::KEY_RIGHT_ARROW] || heldKey[(int)EventKeyboard::KeyCode::KEY_D]) - (heldKey[(int)EventKeyboard::KeyCode::KEY_LEFT_ARROW] || heldKey[(int)EventKeyboard::KeyCode::KEY_A]);
+    float vy = (heldKey[(int)EventKeyboard::KeyCode::KEY_UP_ARROW] || heldKey[(int)EventKeyboard::KeyCode::KEY_W]) - (heldKey[(int)EventKeyboard::KeyCode::KEY_DOWN_ARROW] || heldKey[(int)EventKeyboard::KeyCode::KEY_S]);
     
     auto velocityDirection = Vec2(vx, vy);
     velocityDirection.normalize(); // Components shouldn't compound speed should be the same in any direction

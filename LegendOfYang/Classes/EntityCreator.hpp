@@ -11,10 +11,22 @@
 
 const int defaultSize = 32;
 
-// Description : All these functions just initialize specific entities.
-Entity* createPlayer(YangPhysics *physics);
-Entity* createBasicNPC();
-Entity* createTalkingNPC(Node *gui, std::string message);
-Entity* createBasicEnemy(YangPhysics *physics, Entity *player);
-Entity* createFollowingEnemy(YangPhysics *physics, Entity *player);
-Entity* createCalpirgEnemy(YangPhysics *physics, Entity *player, Node *gui);
+class OverworldScene;
+class EntityCreator {
+public:
+    EntityCreator(OverworldScene *s) : scene(s) {};
+    
+    // Description : All these functions just initialize specific entities.
+    Entity* createPlayer();
+    Entity* createBasicNPC();
+    Entity* createTalkingNPC(std::string message);
+    Entity* createBasicEnemy();
+    Entity* createFollowingEnemy();
+    Entity* createCalpirgEnemy();
+    Entity* createLoadingZone(std::string worldFilename);
+    
+protected:
+    void setupAnimation(Entity *entity);
+    OverworldScene *scene;
+};
+
