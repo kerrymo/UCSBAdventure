@@ -24,7 +24,6 @@ public:
     // Description : creates a many paged text box with the given size
     static PagedTextBox *create(const std::vector<std::string> &text, const Size size);
     
-    
 protected:
     virtual bool init() override;
     CREATE_FUNC(PagedTextBox);

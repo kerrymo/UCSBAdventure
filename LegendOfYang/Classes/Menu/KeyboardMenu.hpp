@@ -38,6 +38,7 @@ typedef std::pair<std::string, std::function<void(Node*)>> LabelAndCallback;
 
 class KeyboardMenu : public Node {
 public:
+    CREATE_FUNC(KeyboardMenu);
     
     // Description : returns the text of the currently selected label
     std::string selectedLabelText() { return _items.at(selectedItem).first; };
@@ -54,9 +55,13 @@ public:
     // Postcondition : A menu with the provided items and is the size of contentsize unless contentSize is smaller than the minimum size to contain the items
     static KeyboardMenu* create(const std::vector<LabelAndCallback> &items, const Size &contentSize);
     
+    // Description : Sets the items of the menu and updates it accordingly.
+    void setItems(const std::vector<LabelAndCallback> &items);
+    
+    // Description : Returns an item that closes the menu
+    static LabelAndCallback closeItem();
 protected:
     virtual bool init() override;
-    CREATE_FUNC(KeyboardMenu);
     
     void onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event);
     void updateDisplay();

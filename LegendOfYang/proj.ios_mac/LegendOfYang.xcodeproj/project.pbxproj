@@ -155,6 +155,12 @@
 		B3C0AF892040C91900072D79 /* player_left.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C0AF832040C7C200072D79 /* player_left.png */; };
 		B3C0AF8A2040C91900072D79 /* player_right.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C0AF812040C7C200072D79 /* player_right.png */; };
 		B3C0AF8B2040C91900072D79 /* player_up.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C0AF802040C7C200072D79 /* player_up.png */; };
+		B3C0AF8F204160CD00072D79 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0AF8D204160CD00072D79 /* Item.cpp */; };
+		B3C0AF90204160CD00072D79 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0AF8D204160CD00072D79 /* Item.cpp */; };
+		B3C0AF91204160CD00072D79 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0AF8D204160CD00072D79 /* Item.cpp */; };
+		B3C0AF9520420C0400072D79 /* Consumable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0AF9320420C0400072D79 /* Consumable.cpp */; };
+		B3C0AF9620420C0400072D79 /* Consumable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0AF9320420C0400072D79 /* Consumable.cpp */; };
+		B3C0AF9720420C0400072D79 /* Consumable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0AF9320420C0400072D79 /* Consumable.cpp */; };
 		B3CCC10520366AC200F5CABB /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3CCC10320366AC200F5CABB /* Entity.cpp */; };
 		B3CCC10620366AC200F5CABB /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3CCC10320366AC200F5CABB /* Entity.cpp */; };
 		B3CCC11C20392F7900F5CABB /* EntityCreator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3CCC11A20392F7900F5CABB /* EntityCreator.cpp */; };
@@ -310,6 +316,10 @@
 		B3C0AF812040C7C200072D79 /* player_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_right.png; sourceTree = "<group>"; };
 		B3C0AF822040C7C200072D79 /* player_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_down.png; sourceTree = "<group>"; };
 		B3C0AF832040C7C200072D79 /* player_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_left.png; sourceTree = "<group>"; };
+		B3C0AF8D204160CD00072D79 /* Item.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Item.cpp; sourceTree = "<group>"; };
+		B3C0AF8E204160CD00072D79 /* Item.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Item.hpp; sourceTree = "<group>"; };
+		B3C0AF9320420C0400072D79 /* Consumable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Consumable.cpp; sourceTree = "<group>"; };
+		B3C0AF9420420C0400072D79 /* Consumable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Consumable.hpp; sourceTree = "<group>"; };
 		B3CCC10320366AC200F5CABB /* Entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
 		B3CCC10420366AC200F5CABB /* Entity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Entity.hpp; sourceTree = "<group>"; };
 		B3CCC11A20392F7900F5CABB /* EntityCreator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EntityCreator.cpp; sourceTree = "<group>"; };
@@ -570,6 +580,10 @@
 				B31721AA203CE377002F42FF /* Enemy.h */,
 				B31721AC203CE377002F42FF /* Player.cpp */,
 				B31721A8203CE376002F42FF /* Player.h */,
+				B3C0AF8D204160CD00072D79 /* Item.cpp */,
+				B3C0AF8E204160CD00072D79 /* Item.hpp */,
+				B3C0AF9320420C0400072D79 /* Consumable.cpp */,
+				B3C0AF9420420C0400072D79 /* Consumable.hpp */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -848,6 +862,7 @@
 				B31721AD203CE377002F42FF /* Enemy.cpp in Sources */,
 				B31721AF203CE377002F42FF /* Player.cpp in Sources */,
 				B3C0A5F8202B6F360088189A /* PagedTextBox.cpp in Sources */,
+				B3C0AF9520420C0400072D79 /* Consumable.cpp in Sources */,
 				B31D50672030196500B861A4 /* YangPhysics.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				B3C0A5EA2028D3D30088189A /* TextBox.cpp in Sources */,
@@ -855,6 +870,7 @@
 				B360A03C20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				B3ED82EB202E836D004D7CC1 /* Utility.cpp in Sources */,
+				B3C0AF8F204160CD00072D79 /* Item.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				228865A020278CCE00C6F6A9 /* Battle.cpp in Sources */,
 				B31D5059202F7CFC00B861A4 /* Inventory.cpp in Sources */,
@@ -875,6 +891,8 @@
 				22600673203FD7D100640E3C /* Inventory.cpp in Sources */,
 				22600674203FD7D100640E3C /* PlayerStatsDisplay.cpp in Sources */,
 				22600675203FD7D100640E3C /* main.cpp in Sources */,
+				B3C0AF9720420C0400072D79 /* Consumable.cpp in Sources */,
+				B3C0AF91204160CD00072D79 /* Item.cpp in Sources */,
 				22600676203FD7D100640E3C /* HelloWorldScene.cpp in Sources */,
 				22600677203FD7D100640E3C /* Player.cpp in Sources */,
 				22600678203FD7D100640E3C /* OverworldScene.cpp in Sources */,
@@ -898,6 +916,8 @@
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				B31D505A202F7CFC00B861A4 /* Inventory.cpp in Sources */,
 				B31D5061202FDFC300B861A4 /* PlayerStatsDisplay.cpp in Sources */,
+				B3C0AF9620420C0400072D79 /* Consumable.cpp in Sources */,
+				B3C0AF90204160CD00072D79 /* Item.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				B31721B0203CE377002F42FF /* Player.cpp in Sources */,

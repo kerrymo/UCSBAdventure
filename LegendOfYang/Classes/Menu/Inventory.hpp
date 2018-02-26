@@ -16,8 +16,7 @@ public:
     CREATE_FUNC(Inventory);
     
 protected:
+    KeyboardMenu *menu;
     virtual bool init() override;
-    void selectItem(Node *sender);
-    void close(Node *sender);
-    void open(Node *sender);
+    void update();
 };

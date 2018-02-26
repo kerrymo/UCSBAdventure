@@ -10,6 +10,7 @@ USING_NS_CC;
 #include "Entity.hpp"
 #include "YangPhysics.hpp"
 #include "EntityCreator.hpp"
+#include "Item.hpp"
 
 class OverworldScene : public Scene {
     friend class EntityCreator;
@@ -49,5 +50,6 @@ protected:
     TMXTiledMap *tileMap;
     TMXLayer *meta; // Contains collision information
     bool heldKey[200];
+    Item *caffinePills;
     
 };

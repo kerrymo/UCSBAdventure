@@ -234,7 +234,7 @@ Entity* EntityCreator::createTalkingNPC(std::string message) {
         npc->setOrientation(randomDirection());
     };
     auto scheduler = Director::getInstance()->getScheduler();
-    scheduler->schedule(lookAround, this, 4.0f, kRepeatForever, 0.0f, false, "myCallbackKey");
+    scheduler->schedule(lookAround, npc, 4.0f, kRepeatForever, 0.0f, false, "myCallbackKey");
     
     npc->interact = [this, message, npc]() {
         npc->setOrientation(scene->player->getCollisionBox().origin - npc->getCollisionBox().origin);

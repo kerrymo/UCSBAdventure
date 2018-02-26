@@ -53,6 +53,11 @@ void KeyboardMenu::updateDisplay() { // Not very efficient but should work for o
     }
 }
 
+void KeyboardMenu::setItems(const std::vector<LabelAndCallback> &items) {
+    _items = items;
+    setContentSize(getContentSize());
+}
+
 void KeyboardMenu::setContentSize(const cocos2d::Size &contentSize) {
     Size necessarySize;
     float minimumMargin = 8.0f;
@@ -90,4 +95,13 @@ void KeyboardMenu::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event) {
         default:
             break;
     }
+}
+
+LabelAndCallback KeyboardMenu::closeItem() {
+    LabelAndCallback close;
+    close.first = "Close";
+    close.second = [](Node *sender) {
+        sender->removeFromParent();
+    };
+    return close;
 }

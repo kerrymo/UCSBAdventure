@@ -12,6 +12,8 @@
 #include "PlayerStatsDisplay.hpp"
 #include "YangPhysics.hpp"
 #include "Battle.h"
+#include "Consumable.hpp"
+#include "Player.h"
 
 Scene* OverworldScene::createWithTileMap(std::string filename) {
     // Setup node Layers
@@ -68,6 +70,13 @@ Scene* OverworldScene::createWithTileMap(std::string filename) {
     
     // schedule update
     scene->scheduleUpdateWithPriority(LOOP_UPDATE_ORDER_INPUT);
+    
+    auto caffinePills = new Consumable("Caffine Pills", "For lazy college students. (Fully heals you)", []() { Player::setCurrentHp(Player::getMaxHp()); });
+    auto degreePetition = new Consumable("Change of Major Form", "Your parents were tired of hearing you were undeclared so you got one of these. (Increases XP by 20)", []() { Player::gainExp(20); });
+    
+    Player::addItem(degreePetition);
+    Player::addItem(caffinePills);
+    Player::addItem(caffinePills);
     
     // Automatically pause world when something is added to gui
     auto guiListener = EventListenerCustom::create("childrenChanged", CC_CALLBACK_1(OverworldScene::guiChildrenChanged, scene));
@@ -126,22 +135,18 @@ void OverworldScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event) 
     if (keyCode == EventKeyboard::KeyCode::KEY_E) {
         // Present Inventory
         std::vector<LabelAndCallback> items;
-        LabelAndCallback item1, item2, item3;
+        LabelAndCallback item1, item2;
         item1.first = "Inventory";
-        item1.second = [this](Node *sender) { // TODO : self should be weak, shared_ptr, or autorelease
+        item1.second = [this](Node *sender) {
             this->gui->addChild(Inventory::create());
         };
         item2.first = "Stats";
         item2.second = [this](Node *sender) {
             this->gui->addChild(PlayerStatsDisplay::create());
         };
-        item3.first = "Close";
-        item3.second = [this](Node *sender) {
-            sender->removeFromParent();
-        };
         items.push_back(item1);
         items.push_back(item2);
-        items.push_back(item3);
+        items.push_back(KeyboardMenu::closeItem());
         auto menu = KeyboardMenu::create(items);
         gui->addChild(menu);
     }

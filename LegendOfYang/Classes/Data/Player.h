@@ -3,6 +3,8 @@
 #include "cocos2d.h"
 
 USING_NS_CC;
+#include "Item.hpp"
+#include <unordered_map>
 
 class Player
 {
@@ -12,6 +14,12 @@ public:
      Return: the lv variable.
     */
     static int getLv();
+    
+    /**
+     Level to string.
+     Return: gives level as string
+     */
+    static std::string lvToString(int lvl);
     
     /**
      The getter of exp.
@@ -36,7 +44,7 @@ public:
      Return: the currentHp variable.
     */
     static int getCurrentHp();
-    
+    static void setCurrentHp(int hp);
     /**
      The getter of atk.
      Return: the atk variable.
@@ -86,7 +94,20 @@ public:
     */
     static void undefend();
     
+    /**
+     Adds an item to the players inventory
+     */
+    static void addItem(Item *item);
+    
+    /**
+     Removes an item from the players inventory
+     */
+    static void removeItem(Item *item);
+    
+    static std::unordered_map<Item*, int> getItems() { return items; };
+    
 private:
     static int lv, exp, gold, maxHp, currentHp, atk, def;
     static bool defending;
+    static std::unordered_map<Item*, int> items;
 };

@@ -6,39 +6,30 @@
 //
 
 #include "Inventory.hpp"
+#include "Player.h"
 
 bool Inventory::init() {
     if (!Node::init()) return false;
-    std::vector<LabelAndCallback> items;
-    LabelAndCallback item1, item2, item3;
-    item1.first = "Baseball Bat";
-    item2.first = "Bottle Rocket";
-    item3.first = "back";
-    item1.second = item2.second = CC_CALLBACK_1(Inventory::selectItem, this);
-    item3.second = CC_CALLBACK_1(Inventory::close, this);
-    items = {item1, item2, item3};
-    auto menu = KeyboardMenu::create(items);
-    addChild(menu);
+    auto inventoryListener = EventListenerCustom::create("inventory-changed", [this](EventCustom *event) { update(); });
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(inventoryListener, this);
+    menu = KeyboardMenu::create();
+    this->addChild(menu);
+    update();
     return true;
 }
 
-void Inventory::selectItem(Node *sender) {
-    // TODO :: Add an item class that implements a function that presents a menu for what you can do with an item
-    // So it would look like gui.addChild(item.getMenu())
-    // Some options the menu would present could be...
-    // equipable item - presents a menu with equip and maybe something like info
-    // consumable item - presents a menu with eat
-    // All items - A throw away and back button to close the menu
-    // Tips : There are two ways to approach this
-    // Standard OOP way : inheritence with a base item class and two subclasses consumableItem and equipableItem
-    // Better way : using factory methods
+void Inventory::update() {
+    std::vector<LabelAndCallback> items;
+    for (auto itemAndQuantity : Player::getItems()) {
+        LabelAndCallback menuItem;
+        menuItem.first = itemAndQuantity.first->getName() + " : " + std::to_string(itemAndQuantity.second);
+        menuItem.second = [this, itemAndQuantity](Node *sender) { this->addChild(itemAndQuantity.first->getMenu()); };
+        items.push_back(menuItem);
+    }
     
-    auto keyboardMenu = (KeyboardMenu*)sender;
-    auto message = { "You selected the " + keyboardMenu->selectedLabelText() };
-    auto textBox = PagedTextBox::create(message);
-    addChild(textBox);
-}
-
-void Inventory::close(Node *sender) {
-    this->removeFromParent();
+    LabelAndCallback closeItem;
+    closeItem.first = "Close";
+    closeItem.second = [this](Node *sender) { this->removeFromParent(); };
+    items.push_back(closeItem);
+    menu->setItems(items);
 }
