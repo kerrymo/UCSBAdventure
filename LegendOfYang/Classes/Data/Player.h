@@ -33,6 +33,8 @@ public:
     */
     static int getGold();
     
+    static void setGold(int g) { gold = std::max(0, g); };
+    
     /**
      The getter of maxHp.
      Return: the maxHp variable.

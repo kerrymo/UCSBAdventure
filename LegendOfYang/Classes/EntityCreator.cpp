@@ -180,8 +180,7 @@ Entity* EntityCreator::createCalpirgEnemy() {
                 textBox->removeFromParent();
                 textBox->release();
                 Director::getInstance()->pushScene(TransitionFade::create(0.5, Battle::createScene(), Color3B(255, 255, 255)));
-            }
-            ;
+            };
         };
         textBox->getEventDispatcher()->addEventListenerWithSceneGraphPriority(closeListener, textBox);
     };
@@ -241,6 +240,49 @@ Entity* EntityCreator::createTalkingNPC(std::string message) {
         scene->gui->addChild(PagedTextBox::create(message));
     };
     
+    
+    return npc;
+}
+
+Entity* EntityCreator::createStoreNPC(std::vector<std::pair<Item*, int>> itemsAndPrices) {
+    auto npc = createBasicNPC();
+    npc->interact = [this, npc, itemsAndPrices]() {
+        auto textBox = TextBox::create("Hey kid I got that stuff you're looking for. You buying?");
+        
+        npc->setOrientation(scene->player->getCollisionBox().origin - npc->getCollisionBox().origin);
+        LabelAndCallback yesItem, noItem;
+        yesItem.first = "Yes";
+        yesItem.second = [this, itemsAndPrices](Node *sender) {
+            std::vector<LabelAndCallback> shopItems;
+            for (auto itemAndPrice : itemsAndPrices) {
+                LabelAndCallback shopItem;
+                shopItem.first = itemAndPrice.first->getName() + "   $" + std::to_string(itemAndPrice.second);
+                shopItem.second = [this, itemAndPrice](Node *sender) {
+                    if (Player::getGold() > itemAndPrice.second) {
+                        Player::addItem(itemAndPrice.first);
+                        Player::setGold(Player::getGold() - itemAndPrice.second);
+                        scene->gui->addChild(PagedTextBox::create("Holla Holla get Dollas."));
+                    } else {
+                        scene->gui->addChild(PagedTextBox::create("Come back here when you're not poor."));
+                    }
+                };
+                shopItems.push_back(shopItem);
+            }
+            shopItems.push_back(KeyboardMenu::closeItem());
+            scene->gui->addChild(KeyboardMenu::create(shopItems));
+        };
+        noItem.first = "No";
+        noItem.second = [this, textBox](Node *sender) {
+            textBox->removeFromParent();
+            sender->removeFromParent();
+            scene->gui->addChild(PagedTextBox::create("If your GPA ever gets too low come see me again."));
+        };
+        auto menu = KeyboardMenu::create({yesItem, noItem});
+        menu->setPosition(textBox->getPosition() + Vec2(0.0f, textBox->getContentSize().height));
+        
+        scene->gui->addChild(textBox);
+        scene->gui->addChild(menu);
+    };
     
     return npc;
 }

@@ -43,11 +43,6 @@ Scene* OverworldScene::createWithTileMap(std::string filename) {
     scene->world->addChild(scene->player);
     scene->world->runAction(Follow::create(scene->player));
     
-    // Add NPC
-    auto npc = entityCreator->createTalkingNPC("Hello World");
-    npc->setPosition(Vec2(64.0f, 1024.0f));
-    scene->world->addChild(npc);
-    
     // Add Enemy
     auto enemy = entityCreator->createFollowingEnemy();
     enemy->setPosition(Vec2(512.0f, 1024.0f));
@@ -72,11 +67,16 @@ Scene* OverworldScene::createWithTileMap(std::string filename) {
     scene->scheduleUpdateWithPriority(LOOP_UPDATE_ORDER_INPUT);
     
     auto caffinePills = new Consumable("Caffine Pills", "For lazy college students. (Fully heals you)", []() { Player::setCurrentHp(Player::getMaxHp()); });
-    auto degreePetition = new Consumable("Change of Major Form", "Your parents were tired of hearing you were undeclared so you got one of these. (Increases XP by 20)", []() { Player::gainExp(20); });
+    auto degreePetition = new Consumable("Change of Major Form", "Your parents were tired of hearing you were undeclared so you grabbed one of these. (Increases XP by 20)", []() { Player::gainExp(20); });
     
     Player::addItem(degreePetition);
     Player::addItem(caffinePills);
     Player::addItem(caffinePills);
+    
+    // Add NPC
+    auto npc = entityCreator->createStoreNPC({{caffinePills, 10}, {degreePetition, 10}});
+    npc->setPosition(Vec2(64.0f, 1024.0f));
+    scene->world->addChild(npc);
     
     // Automatically pause world when something is added to gui
     auto guiListener = EventListenerCustom::create("childrenChanged", CC_CALLBACK_1(OverworldScene::guiChildrenChanged, scene));

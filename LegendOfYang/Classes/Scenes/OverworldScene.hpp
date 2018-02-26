@@ -50,6 +50,5 @@ protected:
     TMXTiledMap *tileMap;
     TMXLayer *meta; // Contains collision information
     bool heldKey[200];
-    Item *caffinePills;
     
 };

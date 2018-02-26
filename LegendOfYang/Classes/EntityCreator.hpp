@@ -8,6 +8,7 @@
 #pragma once
 #include "Entity.hpp"
 #include "YangPhysics.hpp"
+#include "Item.hpp"
 
 const int defaultSize = 32;
 
@@ -24,6 +25,7 @@ public:
     Entity* createFollowingEnemy();
     Entity* createCalpirgEnemy();
     Entity* createLoadingZone(std::string worldFilename);
+    Entity* createStoreNPC(std::vector<std::pair<Item*, int>> itemsAndPrices);
     
 protected:
     void setupAnimation(Entity *entity);
