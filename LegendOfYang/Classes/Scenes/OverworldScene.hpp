@@ -19,7 +19,7 @@ public:
     // Description : initializes map using the filename of the tilemap
     // Precondition : N / A
     // Postcondition : A fully configured scene according to the contents of the tilemap file
-    static Scene* createWithTileMap(std::string filename);
+    static OverworldScene* createWithTileMap(std::string filename);
     
     // Description : A hook for a callback function.
     // Postcondition : Pauses the game world when the gui has any member in it unpauses the game world when there is nothing left in the gui
@@ -42,12 +42,12 @@ public:
     // Description : A pointer to the physics world
     YangPhysics *physics;
     
+    // Description : A pointer to the tilemap
+    TMXTiledMap *tileMap;
 protected:
-    Vec2 tileCoordForPosition(Vec2 position);
     EntityCreator *entityCreator;
     Entity *player;
     Node *gui, *world;
-    TMXTiledMap *tileMap;
     TMXLayer *meta; // Contains collision information
     bool heldKey[200];
     

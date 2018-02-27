@@ -12,6 +12,7 @@
 #include "Battle.h"
 #include "OverworldScene.hpp"
 #include "Utility.hpp"
+#include <iostream>
 
 void EntityCreator::setupAnimation(Entity *entity) {
     auto size = entity->getContentSize();
@@ -149,23 +150,39 @@ Entity* EntityCreator::createFollowingEnemy() {
 
 Entity* EntityCreator::createCalpirgEnemy() {
     auto enemy = createFollowingEnemy();
-    auto textBox = TextBox::create("Would you like to make a 10$ donation to Calpirg?");
+    auto textBox = TextBox::create("Would you like to make a $10 donation to Calpirg?");
     
     LabelAndCallback item1, item2;
     item1.first = "Yes";
     item1.second = [this, textBox, enemy](Node *sender) {
         sender->removeFromParent();
         sender->release();
-        textBox->updateText("Thank you! Your donation will go to a good cause.");
-        auto closeListener = EventListenerKeyboard::create();
-        closeListener->onKeyPressed = [enemy, textBox](EventKeyboard::KeyCode keyCode, Event *event) {
-            if (keyCode == EventKeyboard::KeyCode::KEY_ENTER) {
-                enemy->removeFromParent();
-                textBox->removeFromParent();
-                textBox->release();
-            }
-        };
-        textBox->getEventDispatcher()->addEventListenerWithSceneGraphPriority(closeListener, textBox);
+        if (Player::getGold() >= 10) {
+            textBox->updateText("Thank you! Your donation will go to a good cause.");
+            auto closeListener = EventListenerKeyboard::create();
+            closeListener->onKeyPressed = [enemy, textBox](EventKeyboard::KeyCode keyCode, Event *event) {
+                if (keyCode == EventKeyboard::KeyCode::KEY_ENTER) {
+                    Player::setGold(Player::getGold()-10);
+                    enemy->removeFromParent();
+                    textBox->removeFromParent();
+                    textBox->release();
+                }
+            };
+            textBox->getEventDispatcher()->addEventListenerWithSceneGraphPriority(closeListener, textBox);
+        } else {
+            textBox->updateText("Hey you don't have enough money.");
+            auto closeListener = EventListenerKeyboard::create();
+            closeListener->onKeyPressed = [enemy, textBox](EventKeyboard::KeyCode keyCode, Event *event) {
+                if (keyCode == EventKeyboard::KeyCode::KEY_ENTER) {
+                    enemy->removeFromParent();
+                    textBox->removeFromParent();
+                    textBox->release();
+                    Director::getInstance()->pushScene(TransitionFade::create(0.5, Battle::createScene(), Color3B(255, 255, 255)));
+                }
+            };
+            textBox->getEventDispatcher()->addEventListenerWithSceneGraphPriority(closeListener, textBox);
+        }
+        
     };
     
     item2.first = "No";
@@ -212,15 +229,19 @@ Entity* EntityCreator::createBasicNPC() {
     return npc;
 }
 
-Entity* EntityCreator::createLoadingZone(std::string worldFilename) {
+Entity* EntityCreator::createLoadingZone(std::string worldFilename, std::string entranceName) {
     auto loadingZone = Entity::create("CloseNormal.png");
     loadingZone->setContentSize(Size(defaultSize, defaultSize));
     loadingZone->isDynamic = false;
     loadingZone->isSolid = false;
     
-    scene->physics->registerCallbackOnContact([this, worldFilename](Node *loadingZone, Node *otherEntity) {
+    scene->physics->registerCallbackOnContact([this, worldFilename, entranceName](Node *loadingZone, Node *otherEntity) {
         if (scene->player == otherEntity) {
-            Director::getInstance()->replaceScene(TransitionFade::create(0.5, OverworldScene::createWithTileMap(worldFilename), Color3B(0, 0, 0)));
+            auto nextScene = OverworldScene::createWithTileMap(worldFilename);
+            auto entrance = nextScene->world->getChildByName(entranceName);
+            
+            nextScene->player->setPosition(entrance->getPosition());
+            Director::getInstance()->replaceScene(TransitionFade::create(0.5, nextScene, Color3B(0, 0, 0)));
         }
     }, loadingZone);
     
@@ -285,4 +306,9 @@ Entity* EntityCreator::createStoreNPC(std::vector<std::pair<Item*, int>> itemsAn
     };
     
     return npc;
+}
+
+Entity* createChest(Item *item) {
+    // TODO : The graphics needed are already in the resource folder
+    
 }

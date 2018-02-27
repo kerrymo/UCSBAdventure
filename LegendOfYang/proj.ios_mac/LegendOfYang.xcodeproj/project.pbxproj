@@ -326,6 +326,8 @@
 		B3CCC11B20392F7900F5CABB /* EntityCreator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EntityCreator.hpp; sourceTree = "<group>"; };
 		B3ED82E9202E836D004D7CC1 /* Utility.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Utility.cpp; sourceTree = "<group>"; };
 		B3ED82EA202E836D004D7CC1 /* Utility.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Utility.hpp; sourceTree = "<group>"; };
+		B3F617372046229200D2ECB9 /* chestOpened.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chestOpened.png; sourceTree = "<group>"; };
+		B3F617382046229D00D2ECB9 /* chestClosed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chestClosed.png; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -480,6 +482,8 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B3F617382046229D00D2ECB9 /* chestClosed.png */,
+				B3F617372046229200D2ECB9 /* chestOpened.png */,
 				B3C0AF822040C7C200072D79 /* player_down.png */,
 				B3C0AF832040C7C200072D79 /* player_left.png */,
 				B3C0AF812040C7C200072D79 /* player_right.png */,

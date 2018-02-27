@@ -88,6 +88,7 @@ void Player::gainGold(int gainedGold)
     gold += gainedGold;
 }
 
+
 void Player::defend()
 {
     defending = true;
