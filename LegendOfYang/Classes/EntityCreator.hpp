@@ -24,8 +24,9 @@ public:
     Entity* createBasicEnemy();
     Entity* createFollowingEnemy();
     Entity* createCalpirgEnemy();
-    Entity* createLoadingZone(std::string worldFilename);
+    Entity* createLoadingZone(std::string worldFilename, std::string entranceName);
     Entity* createStoreNPC(std::vector<std::pair<Item*, int>> itemsAndPrices);
+    Entity* createChest(Item *item);
     
 protected:
     void setupAnimation(Entity *entity);

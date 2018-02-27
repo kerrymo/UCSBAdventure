@@ -14,8 +14,9 @@
 #include "Battle.h"
 #include "Consumable.hpp"
 #include "Player.h"
+#include <iostream>
 
-Scene* OverworldScene::createWithTileMap(std::string filename) {
+OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
     // Setup node Layers
     auto scene = OverworldScene::create();
     scene->gui = Entity::create();
@@ -38,24 +39,44 @@ Scene* OverworldScene::createWithTileMap(std::string filename) {
     
     // Add player
     scene->player = entityCreator->createPlayer();
-    scene->player->setPosition(Vec2(256.0f, 1024.0f));
     
     scene->world->addChild(scene->player);
     scene->world->runAction(Follow::create(scene->player));
     
-    // Add Enemy
-    auto enemy = entityCreator->createFollowingEnemy();
-    enemy->setPosition(Vec2(512.0f, 1024.0f));
-    scene->world->addChild(enemy);
-    
-    auto enemy2 = entityCreator->createCalpirgEnemy();
-    enemy2->setPosition(Vec2(650.0f, 1024.0f));
-    scene->world->addChild(enemy2);
-    
-    // Add loading zone
-    auto loadingZone = entityCreator->createLoadingZone(filename);
-    loadingZone->setPosition(640.0f, 1280.0f);
-    scene->world->addChild(loadingZone);
+    // Populate world with entities
+    auto objectGroup = scene->tileMap->getObjectGroup("Objects");
+    if (objectGroup != nullptr) {
+        auto spawnPoint = objectGroup->getObject("SpawnPoint");
+        int x = spawnPoint["x"].asInt();
+        int y = spawnPoint["y"].asInt();
+        scene->player->setPosition(x,y);
+        
+        for (auto metaObject : objectGroup->getObjects()) {
+            auto objectMap = metaObject.asValueMap();
+            Node *entity;
+            auto type = objectMap["type"].asString();
+            if (type == "TalkingNPC") {
+                entity = entityCreator->createTalkingNPC(objectMap["message"].asString());
+            } else if (type == "LoadingZone") {
+                entity = entityCreator->createLoadingZone(objectMap["world"].asString() + ".tmx", objectMap["entrance"].asString());
+                entity->setContentSize(Size(objectMap["width"].asFloat(), objectMap["height"].asFloat()));
+            } else if (type == "Entrance") {
+                entity = Node::create();
+            } else if (type == "FollowingEnemy") {
+                entity = entityCreator->createFollowingEnemy();
+            } else if (type == "StoreNPC") {
+                entity = entityCreator->createStoreNPC({{Consumable::caffinePills, 10}, {Consumable::degreePetition, 10}});
+            } else if (type == "CalpirgEnemy") {
+                entity = entityCreator->createCalpirgEnemy();
+            } else {
+                continue;
+            }
+            std::cout << metaObject.getDescription();
+            entity->setPosition(objectMap["x"].asFloat(), objectMap["y"].asFloat());
+            entity->setName(objectMap["name"].asString());
+            scene->world->addChild(entity);
+        }
+    }
     
     // Setup keyboard listener
     auto keyboardListener = EventListenerKeyboard::create();
@@ -65,17 +86,6 @@ Scene* OverworldScene::createWithTileMap(std::string filename) {
     
     // schedule update
     scene->scheduleUpdateWithPriority(LOOP_UPDATE_ORDER_INPUT);
-    
-    
-    
-    Player::addItem(Consumable::degreePetition);
-    Player::addItem(Consumable::caffinePills);
-    Player::addItem(Consumable::caffinePills);
-    
-    // Add NPC
-    auto npc = entityCreator->createStoreNPC({{Consumable::caffinePills, 10}, {Consumable::degreePetition, 10}});
-    npc->setPosition(Vec2(64.0f, 1024.0f));
-    scene->world->addChild(npc);
     
     // Automatically pause world when something is added to gui
     auto guiListener = EventListenerCustom::create("childrenChanged", CC_CALLBACK_1(OverworldScene::guiChildrenChanged, scene));
@@ -117,13 +127,6 @@ void OverworldScene::onExitTransitionDidStart()  {
 void OverworldScene::onEnter() {
     Scene::onEnter();
     physics->resumeAll();
-}
-
-Vec2 OverworldScene::tileCoordForPosition(Vec2 position) {
-    Size tileSize = tileMap->getTileSize();
-    int x = position.x / tileSize.width;
-    int y = ((tileMap->getMapSize().height * tileSize.height) - position.y) / tileSize.height;
-    return Vec2(x, y);
 }
 
 #pragma mark input
