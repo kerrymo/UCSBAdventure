@@ -167,6 +167,7 @@
 		B3CCC11D20392F7900F5CABB /* EntityCreator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3CCC11A20392F7900F5CABB /* EntityCreator.cpp */; };
 		B3ED82EB202E836D004D7CC1 /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3ED82E9202E836D004D7CC1 /* Utility.cpp */; };
 		B3ED82EC202E836D004D7CC1 /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3ED82E9202E836D004D7CC1 /* Utility.cpp */; };
+		B3F617302044B9A900D2ECB9 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -895,6 +896,7 @@
 				B3C0AF91204160CD00072D79 /* Item.cpp in Sources */,
 				22600676203FD7D100640E3C /* HelloWorldScene.cpp in Sources */,
 				22600677203FD7D100640E3C /* Player.cpp in Sources */,
+				B3F617302044B9A900D2ECB9 /* AppDelegate.cpp in Sources */,
 				22600678203FD7D100640E3C /* OverworldScene.cpp in Sources */,
 				22600679203FD7D100640E3C /* YangPhysics.cpp in Sources */,
 				22600694203FD89B00640E3C /* TestDelegate.cpp in Sources */,

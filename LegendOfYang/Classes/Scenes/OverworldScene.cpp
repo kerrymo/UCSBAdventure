@@ -66,15 +66,14 @@ Scene* OverworldScene::createWithTileMap(std::string filename) {
     // schedule update
     scene->scheduleUpdateWithPriority(LOOP_UPDATE_ORDER_INPUT);
     
-    auto caffinePills = new Consumable("Caffine Pills", "For lazy college students. (Fully heals you)", []() { Player::setCurrentHp(Player::getMaxHp()); });
-    auto degreePetition = new Consumable("Change of Major Form", "Your parents were tired of hearing you were undeclared so you grabbed one of these. (Increases XP by 20)", []() { Player::gainExp(20); });
     
-    Player::addItem(degreePetition);
-    Player::addItem(caffinePills);
-    Player::addItem(caffinePills);
+    
+    Player::addItem(Consumable::degreePetition);
+    Player::addItem(Consumable::caffinePills);
+    Player::addItem(Consumable::caffinePills);
     
     // Add NPC
-    auto npc = entityCreator->createStoreNPC({{caffinePills, 10}, {degreePetition, 10}});
+    auto npc = entityCreator->createStoreNPC({{Consumable::caffinePills, 10}, {Consumable::degreePetition, 10}});
     npc->setPosition(Vec2(64.0f, 1024.0f));
     scene->world->addChild(npc);
     
