@@ -10,6 +10,8 @@
 #include <iomanip> // setprecision
 #include <sstream> // stringstream
 
+// TODO : Display more stats like experience till the next level
+
 bool PlayerStatsDisplay::init() {
     if (!Node::init()) return false;
     std::vector<LabelAndCallback> items;

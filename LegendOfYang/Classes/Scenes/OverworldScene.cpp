@@ -68,6 +68,10 @@ OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
                 entity = entityCreator->createStoreNPC({{Consumable::caffinePills, 10}, {Consumable::degreePetition, 10}});
             } else if (type == "CalpirgEnemy") {
                 entity = entityCreator->createCalpirgEnemy();
+            } else if (type == "Chest") {
+                auto itemName = objectMap["item"].asString();
+                
+                entity = entityCreator->createChest(Item::itemFromName(itemName));
             } else {
                 continue;
             }

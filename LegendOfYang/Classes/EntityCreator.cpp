@@ -308,7 +308,20 @@ Entity* EntityCreator::createStoreNPC(std::vector<std::pair<Item*, int>> itemsAn
     return npc;
 }
 
-Entity* createChest(Item *item) {
-    // TODO : The graphics needed are already in the resource folder
+Entity* EntityCreator::createChest(Item *item) {
+    // TODO : Implement this object
+    auto chest = Entity::create("chestClosed.png");
+    chest->isSolid = true;
+    chest->isDynamic = false;
     
+    chest->interact = [item, chest, this]() {
+        // Add item to players inventory
+        
+        // Change the graphic to the opened chest graphic
+        
+        // Display a message saying what item the player recieved
+        
+    };
+    
+    return chest;
 }
