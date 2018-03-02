@@ -17,6 +17,9 @@
 #include <iostream>
 
 OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
+    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    audio->playBackgroundMusic("world.mp3", true);
+    
     // Setup node Layers
     auto scene = OverworldScene::create();
     scene->gui = Entity::create();
@@ -114,6 +117,8 @@ void OverworldScene::update(float delta) {
     
     player->velocity = velocityDirection * 200.0f;
     
+    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    if(!audio->isBackgroundMusicPlaying()) audio->playBackgroundMusic("world.mp3");
 }
 
 void OverworldScene::onExitTransitionDidStart()  {

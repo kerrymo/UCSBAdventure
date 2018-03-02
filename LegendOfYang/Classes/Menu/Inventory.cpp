@@ -20,7 +20,7 @@ bool Inventory::init() {
 
 void Inventory::update() {
     std::vector<LabelAndCallback> items;
-    for (auto itemAndQuantity : Player::getItems()) {
+    for (auto itemAndQuantity : Party::getItems()) {
         LabelAndCallback menuItem;
         menuItem.first = itemAndQuantity.first->getName() + " : " + std::to_string(itemAndQuantity.second);
         menuItem.second = [this, itemAndQuantity](Node *sender) { this->addChild(itemAndQuantity.first->getMenu()); };

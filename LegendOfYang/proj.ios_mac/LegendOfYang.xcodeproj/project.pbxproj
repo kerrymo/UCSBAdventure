@@ -66,6 +66,9 @@
 		228865AD20279AC700C6F6A9 /* battle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 228865AB20279AC700C6F6A9 /* battle.mp3 */; };
 		228865AF20279F8200C6F6A9 /* victory.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 228865AE20279F8200C6F6A9 /* victory.mp3 */; };
 		228865B020279F8200C6F6A9 /* victory.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 228865AE20279F8200C6F6A9 /* victory.mp3 */; };
+		22AEA3282048EAD600098565 /* Party.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22AEA3272048EAD600098565 /* Party.cpp */; };
+		22AEA3292048EAD600098565 /* Party.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22AEA3272048EAD600098565 /* Party.cpp */; };
+		22AEA32A2048EAD600098565 /* Party.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22AEA3272048EAD600098565 /* Party.cpp */; };
 		22FE38492022C2F10024386E /* song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22FE38482022C2F10024386E /* song.mp3 */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		294D0D641D0D56D500F7F5D4 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294D0D631D0D56D500F7F5D4 /* CoreText.framework */; };
@@ -240,6 +243,8 @@
 		228865A220278CF500C6F6A9 /* Battle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Battle.h; sourceTree = "<group>"; };
 		228865AB20279AC700C6F6A9 /* battle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = battle.mp3; sourceTree = "<group>"; };
 		228865AE20279F8200C6F6A9 /* victory.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = victory.mp3; sourceTree = "<group>"; };
+		22AEA3252048EAAF00098565 /* Party.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Party.h; sourceTree = "<group>"; };
+		22AEA3272048EAD600098565 /* Party.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Party.cpp; sourceTree = "<group>"; };
 		22FE38482022C2F10024386E /* song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song.mp3; sourceTree = "<group>"; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		294D0D631D0D56D500F7F5D4 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
@@ -588,6 +593,8 @@
 				B3C0AF8E204160CD00072D79 /* Item.hpp */,
 				B3C0AF9320420C0400072D79 /* Consumable.cpp */,
 				B3C0AF9420420C0400072D79 /* Consumable.hpp */,
+				22AEA3272048EAD600098565 /* Party.cpp */,
+				22AEA3252048EAAF00098565 /* Party.h */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -868,6 +875,7 @@
 				B3C0A5F8202B6F360088189A /* PagedTextBox.cpp in Sources */,
 				B3C0AF9520420C0400072D79 /* Consumable.cpp in Sources */,
 				B31D50672030196500B861A4 /* YangPhysics.cpp in Sources */,
+				22AEA3282048EAD600098565 /* Party.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				B3C0A5EA2028D3D30088189A /* TextBox.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
@@ -891,6 +899,7 @@
 			files = (
 				2260066F203FD7D100640E3C /* Utility.cpp in Sources */,
 				22600670203FD7D100640E3C /* PagedTextBox.cpp in Sources */,
+				22AEA32A2048EAD600098565 /* Party.cpp in Sources */,
 				22600671203FD7D100640E3C /* KeyboardMenu.cpp in Sources */,
 				22600673203FD7D100640E3C /* Inventory.cpp in Sources */,
 				22600674203FD7D100640E3C /* PlayerStatsDisplay.cpp in Sources */,
@@ -916,6 +925,7 @@
 			files = (
 				B3ED82EC202E836D004D7CC1 /* Utility.cpp in Sources */,
 				B3C0A5F9202B6F360088189A /* PagedTextBox.cpp in Sources */,
+				22AEA3292048EAD600098565 /* Party.cpp in Sources */,
 				B360A03D20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				B31D505A202F7CFC00B861A4 /* Inventory.cpp in Sources */,

@@ -4,10 +4,11 @@
 #include "SimpleAudioEngine.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Party.h"
 
 USING_NS_CC;
 
-enum Status { ChoosingCommand, ChoosingTarget, InAction, Victory, Fallen };
+enum Status { ChoosingCommand, ChoosingTarget, InAction, Victory};
 enum Command { Attack, Defend, Flee };
 enum Target { Left, Middle, Right };
 
@@ -89,13 +90,12 @@ public:
     
 private:
     float delay;
-    int scheduleKey;
-    Player player;
+    int scheduleKey, actingPlayer;
     Enemy *enemy[3];
     Status status;
     Command command;
     Target target;
-    Label *hpLabel, *attackLabel, *defendLabel, *fleeLabel, *lootLabel, *levelUpLabel, *gameOverLabel;
+    Label *attackLabel, *defendLabel, *fleeLabel, *lootLabel, *levelUpLabel, *gameOverLabel;
     Sprite *playerSprite, *attackButton, *defendButton, *fleeButton;
     CocosDenshion::SimpleAudioEngine *audio;
     EventListenerKeyboard *keyboardListener;

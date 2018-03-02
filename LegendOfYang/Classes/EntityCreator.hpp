@@ -9,6 +9,7 @@
 #include "Entity.hpp"
 #include "YangPhysics.hpp"
 #include "Item.hpp"
+#include "Party.h"
 
 const int defaultSize = 32;
 

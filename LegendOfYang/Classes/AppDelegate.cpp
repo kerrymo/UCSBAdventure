@@ -93,6 +93,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     }
 
     register_all_packages();
+    
+    Party party;
 
     // create a scene. it's an autorelease object
     auto scene = OverworldScene::createWithTileMap("TileMap.tmx");

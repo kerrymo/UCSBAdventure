@@ -86,6 +86,8 @@ Entity* EntityCreator::createBasicEnemy() {
     scene->physics->registerCallbackOnContact([this](Node *enemy, Node *otherEntity) {
         if (scene->player == otherEntity) {
             enemy->removeFromParent();
+            auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+            audio->stopBackgroundMusic();
             Director::getInstance()->pushScene(TransitionFade::create(0.5, Battle::createScene(), Color3B(255, 255, 255)));
         }
     }, enemy);
@@ -157,12 +159,12 @@ Entity* EntityCreator::createCalpirgEnemy() {
     item1.second = [this, textBox, enemy](Node *sender) {
         sender->removeFromParent();
         sender->release();
-        if (Player::getGold() >= 10) {
+        if (Party::getGold() >= 10) {
             textBox->updateText("Thank you! Your donation will go to a good cause.");
             auto closeListener = EventListenerKeyboard::create();
             closeListener->onKeyPressed = [enemy, textBox](EventKeyboard::KeyCode keyCode, Event *event) {
                 if (keyCode == EventKeyboard::KeyCode::KEY_ENTER) {
-                    Player::setGold(Player::getGold()-10);
+                    Party::setGold(Party::getGold()-10);
                     enemy->removeFromParent();
                     textBox->removeFromParent();
                     textBox->release();
@@ -279,9 +281,9 @@ Entity* EntityCreator::createStoreNPC(std::vector<std::pair<Item*, int>> itemsAn
                 LabelAndCallback shopItem;
                 shopItem.first = itemAndPrice.first->getName() + "   $" + std::to_string(itemAndPrice.second);
                 shopItem.second = [this, itemAndPrice](Node *sender) {
-                    if (Player::getGold() > itemAndPrice.second) {
-                        Player::addItem(itemAndPrice.first);
-                        Player::setGold(Player::getGold() - itemAndPrice.second);
+                    if (Party::getGold() > itemAndPrice.second) {
+                        Party::addItem(itemAndPrice.first);
+                        Party::setGold(Party::getGold() - itemAndPrice.second);
                         scene->gui->addChild(PagedTextBox::create("Holla Holla get Dollas."));
                     } else {
                         scene->gui->addChild(PagedTextBox::create("Come back here when you're not poor."));

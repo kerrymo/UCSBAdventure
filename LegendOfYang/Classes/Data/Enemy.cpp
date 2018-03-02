@@ -1,16 +1,16 @@
 #include "Enemy.h"
 
-Enemy::Enemy(int i)
+Enemy::Enemy(int x, int y)
 {
-    exp = 4;
+    exp = 6;
     gold = 5;
     hp = 30;
-    atk = 2;
+    atk = 20;
     def = 0;
     dead = false;
     sprite = Sprite::create("HelloWorld.png");
     sprite->setAnchorPoint(Vec2(0.5, 0.5));
-    setPosition(200 * i + 400, 500);
+    setPosition(x, y);
     sprite->setPosition(getPosition());
 }
 

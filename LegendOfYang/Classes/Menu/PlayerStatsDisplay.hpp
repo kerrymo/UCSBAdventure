@@ -9,6 +9,7 @@
 USING_NS_CC;
 #include "KeyboardMenu.hpp"
 #include "PagedTextBox.hpp"
+#include "Party.h"
 
 class PlayerStatsDisplay : public Node {
 public:

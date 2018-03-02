@@ -11,7 +11,7 @@ public:
      The default constructor.
      Postcondition: a new object is created.
     */
-    Enemy(int);
+    Enemy(int, int);
     
     /**
      The getter of exp.

@@ -7,6 +7,7 @@
 
 #pragma once
 #include "Item.hpp"
+#include "Party.h"
 
 class Consumable : public Item {
 public:

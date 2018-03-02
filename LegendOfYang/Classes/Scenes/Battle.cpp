@@ -19,18 +19,16 @@ bool Battle::init()
     audio->preloadBackgroundMusic("battle.mp3");
     audio->playBackgroundMusic("battle.mp3", true);
     
-    // create sprite
-    playerSprite = Sprite::create("CloseNormal.png");
-    playerSprite->setScale(2.5);
-    playerSprite->setAnchorPoint(Vec2(0.5, 0.5));
-    playerSprite->setPosition(500, 100);
-    this->addChild(playerSprite);
-    
     // create enemies
     for(int i = 0; i < 3; i++)
     {
-        enemy[i] = new Enemy(i);
+        enemy[i] = new Enemy(200 * i + 400, 500);
         this->addChild(enemy[i]->getSprite());
+        if(Party::getPlayer(i)->isDead()) continue;
+        Party::getPlayer(i)->createSprite(200 * i + 400, 150);
+        this->addChild(Party::getPlayer(i)->getSprite());
+        Party::getPlayer(i)->createHpLabel(200 * i + 400, 50);
+        this->addChild(Party::getPlayer(i)->getHpLabel());
     }
     
     // create buttons
@@ -50,10 +48,6 @@ bool Battle::init()
     this->addChild(fleeButton);
     
     // add labels
-    hpLabel = Label::createWithSystemFont("HP " + std::to_string(Player::getCurrentHp()) + "/" + std::to_string(Player::getMaxHp()), "Arial", 25);
-    hpLabel->setPosition(500, 50);
-    this->addChild(hpLabel);
-    
     attackLabel = Label::createWithSystemFont("Attack", "Arial", 30);
     attackLabel->enableBold();
     attackLabel->setPosition(200, 500);
@@ -73,6 +67,8 @@ bool Battle::init()
     target = Left;
     delay = 0.0;
     scheduleKey = 0;
+    actingPlayer = Party::getFirstLivingPlayer();
+    Party::getPlayer(actingPlayer)->getSprite()->setColor(Color3B::YELLOW);
     
     // handle input
     keyboardListener = EventListenerKeyboard::create();
@@ -85,7 +81,7 @@ bool Battle::init()
 void Battle::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event)
 {
     // refuse input if game is in action or over
-    if(status == InAction || status == Fallen) return;
+    if(status == InAction || Party::fallen()) return;
     
     switch (keyCode)
     {
@@ -241,7 +237,7 @@ void Battle::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event
                         // if defend is chosen, temporarily reduce damage taken
                         case Defend:
                             status = InAction;
-                            Player::defend();
+                            Party::getPlayer(actingPlayer)->defend();
                             endTurn();
                             break;
                         
@@ -321,26 +317,32 @@ void Battle::displayDamage(int damage, int x, int y)
 // called when the player attacks an enemy
 void Battle::playerAttack(Enemy* enemy)
 {
-    int damage = enemy->takeDamage(Player::getAtk());
+    int damage = enemy->takeDamage(Party::getPlayer(actingPlayer)->getAtk());
     displayDamage(damage, enemy->getPosition().x, enemy->getPosition().y + 150);
-    playerSprite->setPositionY(150);
-    this->scheduleOnce([=](float delta){ playerSprite->setPositionY(100); }, 0.5, std::to_string(scheduleKey));
+    Party::getPlayer(actingPlayer)->getSprite()->setPositionY(200);
+    int temp = actingPlayer;
+    this->scheduleOnce([=](float delta){ Party::getPlayer(temp)->getSprite()->setPositionY(150); }, 0.5, std::to_string(scheduleKey));
     scheduleKey++;
     delay++;
-    
-    
 }
 
 // called when an enemy attacks a player
 void Battle::enemyAttack(Enemy* enemy)
 {
-    if(enemy->isDead()) return;
+    if(enemy->isDead() || Party::fallen()) return;
     this->scheduleOnce([=](float delta){
+        int playerAttacked;
+        do playerAttacked = rand() % 3;
+        while(Party::getPlayer(playerAttacked)->isDead());
         enemy->getSprite()->setPositionY(450);
-        int damage = Player::takeDamage(enemy->getAtk());
-        displayDamage(damage, 500, 200);
-        hpLabel->setString("HP " + std::to_string(Player::getCurrentHp()) + "/" + std::to_string(Player::getMaxHp()));
-        if(Player::getCurrentHp() == 0) gameOver();
+        int damage = Party::getPlayer(playerAttacked)->takeDamage(enemy->getAtk());
+        displayDamage(damage, 200 * playerAttacked + 400, 250);
+        Party::getPlayer(playerAttacked)->updateHpLabel();
+        if(Party::getPlayer(playerAttacked)->getCurrentHp() == 0)
+        {
+            Party::getPlayer(playerAttacked)->die();
+            if(Party::fallen()) gameOver();
+        }
     }, delay, std::to_string(scheduleKey));
     scheduleKey++;
     this->scheduleOnce([=](float delta){ enemy->getSprite()->setPositionY(500); }, delay + 0.5, std::to_string(scheduleKey));
@@ -356,11 +358,33 @@ void Battle::endTurn()
         win();
         return;
     }
-    for(int i = 0; i < 3; i++) enemyAttack(enemy[i]);
-    this->scheduleOnce([=](float delta){
-        Player::undefend();
-        if(status != Fallen) status = ChoosingCommand;
-    }, delay, std::to_string(scheduleKey));
+    Party::getPlayer(actingPlayer)->getSprite()->setColor(Color3B::WHITE);
+    do actingPlayer++;
+    while(actingPlayer != 3 && Party::getPlayer(actingPlayer)->isDead());
+    if(actingPlayer == 3)
+    {
+        for(int i = 0; i < 3; i++)
+            enemyAttack(enemy[i]);
+        this->scheduleOnce([=](float delta){
+            for(int i = 0; i < 3; i++)
+                Party::getPlayer(i)->undefend();
+            if(!Party::fallen())
+            {
+                status = ChoosingCommand;
+                actingPlayer = Party::getFirstLivingPlayer();
+                Party::getPlayer(actingPlayer)->getSprite()->setColor(Color3B::YELLOW);
+            }
+        }, delay, std::to_string(scheduleKey));
+    } else
+    {
+        this->scheduleOnce([=](float delta){
+            if(!Party::fallen())
+            {
+                status = ChoosingCommand;
+                Party::getPlayer(actingPlayer)->getSprite()->setColor(Color3B::YELLOW);
+            }
+        }, delay, std::to_string(scheduleKey));
+    }
     scheduleKey = 0;
     delay = 0.0;
 }
@@ -377,30 +401,32 @@ void Battle::win()
         expGained += enemy[i]->getExp();
         goldGained += enemy[i]->getGold();
     }
-    lootLabel = Label::createWithSystemFont("You gained " + std::to_string(expGained) + " exp and " + std::to_string(goldGained) + " gold!", "Arial", 30);
+    expGained /= Party::getNumOfLivingPlayer();
+    lootLabel = Label::createWithSystemFont("Your party gained " + std::to_string(expGained) + " exp and " + std::to_string(goldGained) + " gold!", "Arial", 30);
     lootLabel->setPosition(500, 750);
     this->addChild(lootLabel);
-    int levelBefore = Player::getLv();
-    Player::gainExp(expGained);
-    int levelGained = Player::getLv() - levelBefore;
-    if(levelGained > 0)
-    {
-        if(levelGained == 1)
-            levelUpLabel = Label::createWithSystemFont("You gained a level!", "Arial", 30);
-        else
-            levelUpLabel = Label::createWithSystemFont("You gained " + std::to_string(levelGained) + " levels!", "Arial", 30);
-        levelUpLabel->setPosition(500, 700);
-        this->addChild(levelUpLabel);
-        hpLabel->setString("HP " + std::to_string(Player::getCurrentHp()) + "/" + std::to_string(Player::getMaxHp()));
+    for(int i = 0; i < 3; i++) {
+        if(Party::getPlayer(i)->isDead()) continue;
+        int levelBefore = Party::getPlayer(i)->getLv();
+        Party::getPlayer(i)->gainExp(expGained);
+        int levelGained = Party::getPlayer(i)->getLv() - levelBefore;
+        if(levelGained > 0)
+        {
+            if(levelGained == 1)
+                levelUpLabel = Label::createWithSystemFont("Player" + std::to_string(i + 1) + " gained a level!", "Arial", 30);
+            else
+                levelUpLabel = Label::createWithSystemFont("Player" + std::to_string(i + 1) + " gained " + std::to_string(levelGained) + " levels!", "Arial", 30);
+            levelUpLabel->setPosition(500, 700 - 50 * i);
+            this->addChild(levelUpLabel);
+            Party::getPlayer(i)->getHpLabel()->setString("HP " + std::to_string(Party::getPlayer(i)->getCurrentHp()) + "/" + std::to_string(Party::getPlayer(i)->getMaxHp()));
+        }
     }
-    Player::gainGold(goldGained);
+    Party::gainGold(goldGained);
 }
 
 // called when the player is fallen
 void Battle::gameOver()
 {
-    status = Fallen;
-    playerSprite->runAction(FadeTo::create(0.25, 0));
     gameOverLabel = Label::createWithSystemFont("Game Over", "Arial", 50);
     gameOverLabel->enableBold();
     gameOverLabel->setPosition(500, 400);
