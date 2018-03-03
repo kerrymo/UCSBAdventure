@@ -281,15 +281,9 @@ Entity* EntityCreator::createStoreNPC(std::vector<std::pair<Item*, int>> itemsAn
                 LabelAndCallback shopItem;
                 shopItem.first = itemAndPrice.first->getName() + "   $" + std::to_string(itemAndPrice.second);
                 shopItem.second = [this, itemAndPrice](Node *sender) {
-<<<<<<< HEAD
-                    if (Party::getGold() > itemAndPrice.second) {
+                    if (Party::getGold() >= itemAndPrice.second) {
                         Party::addItem(itemAndPrice.first);
                         Party::setGold(Party::getGold() - itemAndPrice.second);
-=======
-                    if (Player::getGold() >= itemAndPrice.second) {
-                        Player::addItem(itemAndPrice.first);
-                        Player::setGold(Player::getGold() - itemAndPrice.second);
->>>>>>> tilemapLoading
                         scene->gui->addChild(PagedTextBox::create("Holla Holla get Dollas."));
                     } else {
                         scene->gui->addChild(PagedTextBox::create("Come back here when you're not poor."));

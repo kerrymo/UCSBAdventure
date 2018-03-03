@@ -17,14 +17,10 @@
 #include <iostream>
 
 OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
-<<<<<<< HEAD
     auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
     audio->playBackgroundMusic("world.mp3", true);
     
     // Setup node Layers
-=======
-    
->>>>>>> tilemapLoading
     auto scene = OverworldScene::create();
     
     // Setup Tile map
