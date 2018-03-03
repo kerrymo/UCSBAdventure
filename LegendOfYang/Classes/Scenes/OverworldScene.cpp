@@ -124,13 +124,12 @@ void OverworldScene::update(float delta) {
     velocityDirection.normalize(); // Components shouldn't compound speed should be the same in any direction
     
     player->velocity = velocityDirection * 200.0f;
-    
-    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
-    if(!audio->isBackgroundMusicPlaying()) audio->playBackgroundMusic("world.mp3");
 }
 
 void OverworldScene::onExitTransitionDidStart()  {
     Scene::onExitTransitionDidStart();
+    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    audio->stopBackgroundMusic();
     for (int i = 0; i < 200; i++) {
         heldKey[i] = false;
     }
@@ -140,6 +139,8 @@ void OverworldScene::onExitTransitionDidStart()  {
 void OverworldScene::onEnter() {
     Scene::onEnter();
     physics->resumeAll();
+    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    audio->playBackgroundMusic("world.mp3");
 }
 
 #pragma mark input

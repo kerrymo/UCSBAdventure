@@ -14,11 +14,6 @@ bool Battle::init()
     // call parent init
     if (!Scene::init()) return false;
     
-    // play background music
-    audio = CocosDenshion::SimpleAudioEngine::getInstance();
-    audio->preloadBackgroundMusic("battle.mp3");
-    audio->playBackgroundMusic("battle.mp3", true);
-    
     // create enemies
     for(int i = 0; i < 3; i++)
     {
@@ -422,6 +417,15 @@ void Battle::win()
         }
     }
     Party::gainGold(goldGained);
+}
+
+void Battle::onEnterTransitionDidFinish() {
+    Scene::onEnterTransitionDidFinish();
+    
+    // play background music
+    audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    audio->preloadBackgroundMusic("battle.mp3");
+    audio->playBackgroundMusic("battle.mp3", true);
 }
 
 // called when the player is fallen

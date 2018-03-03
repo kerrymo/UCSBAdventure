@@ -86,8 +86,6 @@ Entity* EntityCreator::createBasicEnemy() {
     scene->physics->registerCallbackOnContact([this](Node *enemy, Node *otherEntity) {
         if (scene->player == otherEntity) {
             enemy->removeFromParent();
-            auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
-            audio->stopBackgroundMusic();
             Director::getInstance()->pushScene(TransitionFade::create(0.5, Battle::createScene(), Color3B(255, 255, 255)));
         }
     }, enemy);

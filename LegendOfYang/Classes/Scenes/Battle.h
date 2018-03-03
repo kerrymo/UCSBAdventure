@@ -88,6 +88,7 @@ public:
     */
     CREATE_FUNC(Battle);
     
+    void onEnterTransitionDidFinish() override;
 private:
     float delay;
     int scheduleKey, actingPlayer;
