@@ -17,17 +17,21 @@
 #include <iostream>
 
 OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
-    // Setup node Layers
+    
     auto scene = OverworldScene::create();
-    scene->gui = Entity::create();
-    scene->world = Entity::create();
-    scene->addChild(scene->world, 0);
-    scene->addChild(scene->gui, 1); // GUI always has higher event priority over anything else
     
     // Setup Tile map
     scene->tileMap = TMXTiledMap::create(filename);
     scene->meta = scene->tileMap->getLayer("Meta");
-    scene->world->addChild(scene->tileMap, 0, 99);
+    scene->meta->setVisible(false);
+    auto backgroundOrder = scene->tileMap->getLayer("Background")->getLocalZOrder();
+    scene->addChild(scene->tileMap, 0);
+    
+    // Setup node Layers
+    scene->gui = Entity::create();
+    scene->world = Entity::create();
+    scene->addChild(scene->gui, 1); // GUI always has higher event priority over anything else
+    scene->tileMap->addChild(scene->world, backgroundOrder); // All entities always rendered just in front of layer named "Background"
     
     // Add physics handler to the world
     scene->physics = YangPhysics::createWithTileMap(scene->tileMap);
@@ -41,7 +45,7 @@ OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
     scene->player = entityCreator->createPlayer();
     
     scene->world->addChild(scene->player);
-    scene->world->runAction(Follow::create(scene->player));
+    scene->tileMap->runAction(Follow::create(scene->player));
     
     // Populate world with entities
     auto objectGroup = scene->tileMap->getObjectGroup("Objects");

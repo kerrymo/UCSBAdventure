@@ -279,7 +279,7 @@ Entity* EntityCreator::createStoreNPC(std::vector<std::pair<Item*, int>> itemsAn
                 LabelAndCallback shopItem;
                 shopItem.first = itemAndPrice.first->getName() + "   $" + std::to_string(itemAndPrice.second);
                 shopItem.second = [this, itemAndPrice](Node *sender) {
-                    if (Player::getGold() > itemAndPrice.second) {
+                    if (Player::getGold() >= itemAndPrice.second) {
                         Player::addItem(itemAndPrice.first);
                         Player::setGold(Player::getGold() - itemAndPrice.second);
                         scene->gui->addChild(PagedTextBox::create("Holla Holla get Dollas."));

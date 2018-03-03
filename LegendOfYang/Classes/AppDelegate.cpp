@@ -95,8 +95,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = OverworldScene::createWithTileMap("TileMap.tmx");
-    //auto scene = HelloWorld::createScene();
+    auto scene = OverworldScene::createWithTileMap("arbor.tmx");
     
     // run
     director->runWithScene(scene);
