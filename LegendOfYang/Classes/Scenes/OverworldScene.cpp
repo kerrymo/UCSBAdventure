@@ -48,7 +48,7 @@ OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
     scene->player = entityCreator->createPlayer();
     
     scene->world->addChild(scene->player);
-    scene->tileMap->runAction(Follow::create(scene->player));
+    scene->tileMap->runAction(Follow::createWithOffset(scene->player, 0, 0, Rect(Vec2::ZERO, scene->tileMap->getMapSize() * scene->tileMap->getTileSize().height)));
     
     // Populate world with entities
     auto objectGroup = scene->tileMap->getObjectGroup("Objects");
@@ -124,6 +124,8 @@ void OverworldScene::update(float delta) {
     velocityDirection.normalize(); // Components shouldn't compound speed should be the same in any direction
     
     player->velocity = velocityDirection * 200.0f;
+    
+    
 }
 
 void OverworldScene::onExitTransitionDidStart()  {
