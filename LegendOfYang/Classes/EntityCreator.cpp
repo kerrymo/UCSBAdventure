@@ -281,9 +281,15 @@ Entity* EntityCreator::createStoreNPC(std::vector<std::pair<Item*, int>> itemsAn
                 LabelAndCallback shopItem;
                 shopItem.first = itemAndPrice.first->getName() + "   $" + std::to_string(itemAndPrice.second);
                 shopItem.second = [this, itemAndPrice](Node *sender) {
+<<<<<<< HEAD
                     if (Party::getGold() > itemAndPrice.second) {
                         Party::addItem(itemAndPrice.first);
                         Party::setGold(Party::getGold() - itemAndPrice.second);
+=======
+                    if (Player::getGold() >= itemAndPrice.second) {
+                        Player::addItem(itemAndPrice.first);
+                        Player::setGold(Player::getGold() - itemAndPrice.second);
+>>>>>>> tilemapLoading
                         scene->gui->addChild(PagedTextBox::create("Holla Holla get Dollas."));
                     } else {
                         scene->gui->addChild(PagedTextBox::create("Come back here when you're not poor."));
@@ -310,7 +316,20 @@ Entity* EntityCreator::createStoreNPC(std::vector<std::pair<Item*, int>> itemsAn
     return npc;
 }
 
-Entity* createChest(Item *item) {
-    // TODO : The graphics needed are already in the resource folder
+Entity* EntityCreator::createChest(Item *item) {
+    // TODO : Implement this object
+    auto chest = Entity::create("chestClosed.png");
+    chest->isSolid = true;
+    chest->isDynamic = false;
     
+    chest->interact = [item, chest, this]() {
+        // Add item to players inventory
+        
+        // Change the graphic to the opened chest graphic
+        
+        // Display a message saying what item the player recieved
+        
+    };
+    
+    return chest;
 }

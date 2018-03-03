@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextobjectid="11">
+<map version="1.0" tiledversion="1.1.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextobjectid="19">
  <tileset firstgid="1" name="tmw_desert_spacing" tilewidth="32" tileheight="32" spacing="1" margin="1" tilecount="48" columns="8">
   <image source="tmw_desert_spacing.png" width="265" height="199"/>
  </tileset>
@@ -22,7 +22,7 @@
   </data>
  </layer>
  <objectgroup name="Objects">
-  <object id="1" name="SpawnPoint" x="224.035" y="95.9671" width="31.8273" height="31.8708"/>
+  <object id="1" name="SpawnPoint" x="256" y="96" width="32" height="32"/>
   <object id="2" name="npc" type="TalkingNPC" x="768.888" y="224.352" width="29.7155" height="30.4584">
    <properties>
     <property name="message" value="Man I sure do love being an NPC."/>
@@ -30,12 +30,18 @@
   </object>
   <object id="6" name="Loading Zone" type="LoadingZone" x="576.281" y="1.85598" width="480.698" height="61.2472">
    <properties>
-    <property name="entrance" value="Entrance1"/>
-    <property name="world" value="TileMap"/>
+    <property name="entrance" value="BikePathEntrance"/>
+    <property name="world" value="arbor"/>
    </properties>
   </object>
   <object id="8" name="Entrance1" type="Entrance" x="800.854" y="96.5108" width="30.6236" height="31.5516"/>
   <object id="10" name="Maze Enemy" type="FollowingEnemy" x="352" y="864" width="32" height="32"/>
+  <object id="11" name="Pill Chest" type="Chest" x="256" y="64" width="32" height="32">
+   <properties>
+    <property name="item" value="Caffine Pills"/>
+   </properties>
+  </object>
+  <object id="14" name="shop" type="StoreNPC" x="633.27" y="228.193" width="32" height="32"/>
  </objectgroup>
  <layer name="Foreground" width="50" height="50">
   <data encoding="base64" compression="zlib">
