@@ -110,17 +110,22 @@ Entity* EntityCreator::createFollowingEnemy() {
         towardPlayer.normalize();
         enemy->velocity = 150.0f * towardPlayer;
     };
-    auto wander = [enemy]() {
-        enemy->velocity = Vec2::ZERO;
-        Vec2 randomDirection = Vec2(rand() - (RAND_MAX / 2), rand() - (RAND_MAX / 2));
-        randomDirection.normalize();
-        if ((rand() % 200) == 0) {
-            enemy->setOrientation(randomDirection);
-            enemy->runAction(MoveBy::create(0.5f, 50.0f * randomDirection));
+    
+    auto wander = [enemy](float dt) {
+        if (enemy->velocity.isZero()) {
+            if (RandomHelper::random_int(0, 3) == 3) {
+                auto random = randomDirection();
+                enemy->velocity = 150.0f * randomDirection();
+            }
+        } else {
+            enemy->velocity = Vec2::ZERO;
         }
     };
     
-    enemy->behavior = wander;
+    auto scheduler = Director::getInstance()->getScheduler();
+    scheduler->schedule(wander, enemy, 0.5f + RandomHelper::random_real(0.0f, 0.2f), kRepeatForever, RandomHelper::random_real(0.0f, 2.0f), false, "wander");
+    
+    enemy->behavior = [](){};
     
     scene->physics->registerCallbackOnContact([this, enemy, followPlayer](Entity *visibilityBox, Entity *otherEntity) {
         if (scene->player == otherEntity) {
@@ -130,7 +135,7 @@ Entity* EntityCreator::createFollowingEnemy() {
     
     scene->physics->registerCallbackOnSeperate([this, enemy, wander](Entity *visibilityBox, Entity *otherEntity) {
         if (scene->player == otherEntity) {
-            enemy->behavior = wander;
+            enemy->behavior = [](){};
         }
     }, visiblityBox);
     
@@ -254,7 +259,7 @@ Entity* EntityCreator::createTalkingNPC(std::string message) {
         npc->setOrientation(randomDirection());
     };
     auto scheduler = Director::getInstance()->getScheduler();
-    scheduler->schedule(lookAround, npc, 4.0f, kRepeatForever, 0.0f, false, "myCallbackKey");
+    scheduler->schedule(lookAround, npc, 4.0f, kRepeatForever, 0.0f, false, "lookAround");
     
     npc->interact = [this, message, npc]() {
         npc->setOrientation(scene->player->getCollisionBox().origin - npc->getCollisionBox().origin);
