@@ -314,19 +314,14 @@ Entity* EntityCreator::createStoreNPC(std::vector<std::pair<Item*, int>> itemsAn
 }
 
 Entity* EntityCreator::createChest(Item *item) {
-    // TODO : Implement this object
     auto chest = Entity::create("chestClosed.png");
     chest->isSolid = true;
     chest->isDynamic = false;
     
-    chest->interact = [item, chest, this]() {
-        // Add item to players inventory
-        
-        // Change the graphic to the opened chest graphic
-        
-        // Display a message saying what item the player recieved
-        
+    chest->interact = [item, chest, this](){
+        Party::addItem(item);
+        scene->gui->addChild(PagedTextBox::create("You got a" + item->getName()));
+        chest->setTexture("chestOpened.png");
     };
-    
     return chest;
 }
