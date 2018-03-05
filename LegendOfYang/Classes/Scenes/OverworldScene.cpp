@@ -65,6 +65,7 @@ OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
             if (type == "TalkingNPC") {
                 entity = entityCreator->createTalkingNPC(objectMap["message"].asString());
             } else if (type == "LoadingZone") {
+                assert((objectMap.find("entance") == objectMap.end()) && (objectMap.find("world") == objectMap.end()));
                 entity = entityCreator->createLoadingZone(objectMap["world"].asString() + ".tmx", objectMap["entrance"].asString());
                 entity->setContentSize(Size(objectMap["width"].asFloat(), objectMap["height"].asFloat()));
             } else if (type == "Entrance") {
