@@ -118,6 +118,12 @@
 		521A8EA919F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
+		5CF04B5E204DFF9B00311F7D /* dungeonex.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF04B5C204DFF9B00311F7D /* dungeonex.png */; };
+		5CF04B5F204DFF9B00311F7D /* dungeonex.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF04B5C204DFF9B00311F7D /* dungeonex.png */; };
+		5CF04B60204DFF9B00311F7D /* dungeonex.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF04B5C204DFF9B00311F7D /* dungeonex.png */; };
+		5CF04B62204DFFB400311F7D /* map.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5CF04B61204DFFB400311F7D /* map.tmx */; };
+		5CF04B63204DFFB400311F7D /* map.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5CF04B61204DFFB400311F7D /* map.tmx */; };
+		5CF04B64204DFFB400311F7D /* map.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5CF04B61204DFFB400311F7D /* map.tmx */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		B31721AD203CE377002F42FF /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31721AB203CE377002F42FF /* Enemy.cpp */; };
 		B31721AE203CE377002F42FF /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31721AB203CE377002F42FF /* Enemy.cpp */; };
@@ -301,6 +307,8 @@
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		5CF04B5C204DFF9B00311F7D /* dungeonex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dungeonex.png; sourceTree = "<group>"; };
+		5CF04B61204DFFB400311F7D /* map.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map.tmx; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B31721A8203CE376002F42FF /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		B31721AA203CE377002F42FF /* Enemy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
@@ -497,6 +505,8 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5CF04B61204DFFB400311F7D /* map.tmx */,
+				5CF04B5C204DFF9B00311F7D /* dungeonex.png */,
 				B3F617552047B32300D2ECB9 /* magecity.png */,
 				B3F6174C2047AD4B00D2ECB9 /* arbor.tmx */,
 				B3F617382046229D00D2ECB9 /* chestClosed.png */,
@@ -799,6 +809,7 @@
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
 				B3F617562047B32600D2ECB9 /* magecity.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
+				5CF04B62204DFFB400311F7D /* map.tmx in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
@@ -821,6 +832,7 @@
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				B3C0A617202CF8940088189A /* TileMap.tmx in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
+				5CF04B5E204DFF9B00311F7D /* dungeonex.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -842,7 +854,9 @@
 				22600664203FD7D100640E3C /* battle.mp3 in Resources */,
 				22600666203FD7D100640E3C /* victory.mp3 in Resources */,
 				22600667203FD7D100640E3C /* fonts in Resources */,
+				5CF04B60204DFF9B00311F7D /* dungeonex.png in Resources */,
 				22600668203FD7D100640E3C /* fallen.mp3 in Resources */,
+				5CF04B64204DFFB400311F7D /* map.tmx in Resources */,
 				22600669203FD7D100640E3C /* CloseNormal.png in Resources */,
 				2260066A203FD7D100640E3C /* CloseSelected.png in Resources */,
 				2260066B203FD7D100640E3C /* TileMap.tmx in Resources */,
@@ -864,6 +878,7 @@
 				B3C0A61A202CF8950088189A /* tmw_desert_spacing.png in Resources */,
 				B3F6173A2046377A00D2ECB9 /* chestClosed.png in Resources */,
 				3EACC99019EE6D4300EB3C5E /* res in Resources */,
+				5CF04B5F204DFF9B00311F7D /* dungeonex.png in Resources */,
 				B3C0AF882040C91900072D79 /* player_down.png in Resources */,
 				22FE38492022C2F10024386E /* song.mp3 in Resources */,
 				228865AD20279AC700C6F6A9 /* battle.mp3 in Resources */,
@@ -878,6 +893,7 @@
 				B3C0A613202CF88C0088189A /* TileMap.tmx in Resources */,
 				B3C0A619202CF8950088189A /* meta_tiles.png in Resources */,
 				B3F6174F2047AD4E00D2ECB9 /* arbor.tmx in Resources */,
+				5CF04B63204DFFB400311F7D /* map.tmx in Resources */,
 				B3C0A609202BEB4E0088189A /* test.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
