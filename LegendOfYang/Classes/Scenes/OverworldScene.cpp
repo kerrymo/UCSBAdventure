@@ -77,6 +77,7 @@ OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
             } else if (type == "CalpirgEnemy") {
                 entity = entityCreator->createCalpirgEnemy();
             } else if (type == "Chest") {
+                assert((objectMap.find("item") == objectMap.end()));
                 auto itemName = objectMap["item"].asString();
                 
                 entity = entityCreator->createChest(Item::itemFromName(itemName));
