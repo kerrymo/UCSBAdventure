@@ -63,7 +63,7 @@ OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
             Node *entity;
             auto type = objectMap["type"].asString();
             if (type == "TalkingNPC") {
-                entity = entityCreator->createTalkingNPC(objectMap["message"].asString());
+                entity = entityCreator->createTalkingNPC(objectMap.at("message").asString());
             } else if (type == "LoadingZone") {
                 entity = entityCreator->createLoadingZone(objectMap.at("world").asString() + ".tmx", objectMap.at("entrance").asString());
                 entity->setContentSize(Size(objectMap["width"].asFloat(), objectMap["height"].asFloat()));
@@ -76,10 +76,8 @@ OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
             } else if (type == "CalpirgEnemy") {
                 entity = entityCreator->createCalpirgEnemy();
             } else if (type == "Chest") {
-//                assert(objectMap.find("entrance") == objectMap.end());
                 auto itemName = objectMap.at("item").asString();
-                
-                entity = entityCreator->createChest(Item::itemFromName(itemName));
+                entity = entityCreator->createChest(Item::itemFromName(itemName), objectMap["name"].asString());
             } else {
                 continue;
             }
