@@ -245,6 +245,7 @@ Entity* EntityCreator::createLoadingZone(std::string worldFilename, std::string 
             auto nextScene = OverworldScene::createWithTileMap(worldFilename);
             auto entrance = nextScene->world->getChildByName(entranceName);
             
+            assert(entrance);
             nextScene->player->setPosition(entrance->getPosition());
             Director::getInstance()->replaceScene(TransitionFade::create(0.5, nextScene, Color3B(0, 0, 0)));
         }
