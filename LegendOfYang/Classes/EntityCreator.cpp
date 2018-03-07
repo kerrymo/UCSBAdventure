@@ -12,6 +12,7 @@
 #include "Battle.h"
 #include "OverworldScene.hpp"
 #include "Utility.hpp"
+#include "GameState.hpp"
 #include <iostream>
 
 void EntityCreator::setupAnimation(Entity *entity) {
@@ -314,15 +315,20 @@ Entity* EntityCreator::createStoreNPC(std::vector<std::pair<Item*, int>> itemsAn
     return npc;
 }
 
-Entity* EntityCreator::createChest(Item *item) {
-    auto chest = Entity::create("chestClosed.png");
+Entity* EntityCreator::createChest(Item *item, std::string name) {
+    auto opened = GameState::defaultInstance->state[name]["opened"].asBool();
+    auto chest = opened ? Entity::create("chestOpened.png") : Entity::create("chestClosed.png");
     chest->isSolid = true;
     chest->isDynamic = false;
     
     chest->interact = [item, chest, this](){
-        Party::addItem(item);
-        scene->gui->addChild(PagedTextBox::create("You got a" + item->getName()));
-        chest->setTexture("chestOpened.png");
+        auto opened = GameState::defaultInstance->state[chest->getName()]["opened"].asBool();
+        if (!opened) {
+            Party::addItem(item);
+            scene->gui->addChild(PagedTextBox::create("You got " + item->getName()));
+            chest->setTexture("chestOpened.png");
+            GameState::defaultInstance->state[chest->getName()]["opened"] = Value(true);
+        }
     };
     return chest;
 }
