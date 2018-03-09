@@ -7,6 +7,7 @@
 
 #include "Item.hpp"
 #include "PagedTextBox.hpp"
+#include "OverworldScene.hpp"
 
 std::unordered_map<std::string, Item*> *Item::items = nullptr;
 
@@ -18,7 +19,10 @@ LabelAndCallback Item::infoItem() {
     LabelAndCallback item;
     item.first = "Info";
     item.second = [this](Node *sender) {
-        sender->addChild(PagedTextBox::create(info));
+        auto overworld = dynamic_cast<OverworldScene*>(Director::getInstance()->getRunningScene());
+        if (dynamic_cast<OverworldScene*>(Director::getInstance()->getRunningScene())) {
+            overworld->gui->addChild(PagedTextBox::create(info));
+        }
     };
     
     return item;

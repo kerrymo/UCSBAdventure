@@ -44,10 +44,16 @@ public:
     
     // Description : A pointer to the tilemap
     TMXTiledMap *tileMap;
+    
+    // Description : Contains the name of the world. i.e. The filename of the tilemap without the extension
+    std::string worldName;
+    
+    // Description : A hook to the gui
+    Node *gui;
 protected:
     EntityCreator *entityCreator;
     Entity *player;
-    Node *gui, *world;
+    Node *world;
     TMXLayer *meta; // Contains collision information
     bool heldKey[200];
     

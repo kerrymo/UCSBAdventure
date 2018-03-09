@@ -23,6 +23,10 @@ OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
     // Setup node Layers
     auto scene = OverworldScene::create();
     
+    // Set world name
+    size_t beforeExtension = filename.find_last_of(".");
+    scene->worldName = filename.substr(0, beforeExtension);
+    
     // Setup Tile map
     scene->tileMap = TMXTiledMap::create(filename);
     scene->meta = scene->tileMap->getLayer("Meta");
@@ -63,9 +67,9 @@ OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
             Node *entity;
             auto type = objectMap["type"].asString();
             if (type == "TalkingNPC") {
-                entity = entityCreator->createTalkingNPC(objectMap["message"].asString());
+                entity = entityCreator->createTalkingNPC(objectMap.at("message").asString());
             } else if (type == "LoadingZone") {
-                entity = entityCreator->createLoadingZone(objectMap["world"].asString() + ".tmx", objectMap["entrance"].asString());
+                entity = entityCreator->createLoadingZone(objectMap.at("world").asString() + ".tmx", objectMap.at("entrance").asString());
                 entity->setContentSize(Size(objectMap["width"].asFloat(), objectMap["height"].asFloat()));
             } else if (type == "Entrance") {
                 entity = Node::create();
@@ -76,15 +80,17 @@ OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
             } else if (type == "CalpirgEnemy") {
                 entity = entityCreator->createCalpirgEnemy();
             } else if (type == "Chest") {
-                auto itemName = objectMap["item"].asString();
-                
-                entity = entityCreator->createChest(Item::itemFromName(itemName));
+                auto itemName = objectMap.at("item").asString();
+                entity = entityCreator->createChest(Item::itemFromName(itemName), objectMap["id"].asInt());
+            } else if (type == "Boss") {
+                entity = entityCreator->createBoss();
             } else {
                 continue;
             }
             std::cout << metaObject.getDescription();
             entity->setPosition(objectMap["x"].asFloat(), objectMap["y"].asFloat());
             entity->setName(objectMap["name"].asString());
+            entity->setTag(objectMap["id"].asInt());
             scene->world->addChild(entity);
         }
     }
@@ -156,7 +162,9 @@ void OverworldScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event) 
         LabelAndCallback item1, item2;
         item1.first = "Inventory";
         item1.second = [this](Node *sender) {
-            this->gui->addChild(Inventory::create());
+            auto inventory = Inventory::create();
+            inventory->setPosition(sender->getContentSize().width,0);
+            this->gui->addChild(inventory);
         };
         item2.first = "Stats";
         item2.second = [this](Node *sender) {

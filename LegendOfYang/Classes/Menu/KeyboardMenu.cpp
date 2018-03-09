@@ -6,6 +6,7 @@
 //
 
 #include "KeyboardMenu.hpp"
+#include "Utility.hpp"
 
 static const int fontSize = 24;
 
@@ -34,7 +35,7 @@ KeyboardMenu* KeyboardMenu::create(const std::vector<LabelAndCallback> &items) {
 void KeyboardMenu::updateDisplay() { // Not very efficient but should work for our purposes
     // Add background
     removeAllChildren();
-    auto background = LayerColor::create(Color4B(0, 0, 255, 200), this->getContentSize().width, this->getContentSize().height);
+    auto background = LayerColor::create(menuColor, this->getContentSize().width, this->getContentSize().height);
     this->addChild(background);
     
     int offset = 0;

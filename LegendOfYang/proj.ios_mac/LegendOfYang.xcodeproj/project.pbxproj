@@ -135,6 +135,9 @@
 		B31D5061202FDFC300B861A4 /* PlayerStatsDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31D505E202FDFC300B861A4 /* PlayerStatsDisplay.cpp */; };
 		B31D50672030196500B861A4 /* YangPhysics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31D50652030196500B861A4 /* YangPhysics.cpp */; };
 		B31D50682030196500B861A4 /* YangPhysics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31D50652030196500B861A4 /* YangPhysics.cpp */; };
+		B343B94620507B8A001B52DE /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B343B94420507B8A001B52DE /* GameState.cpp */; };
+		B343B94720507B8A001B52DE /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B343B94420507B8A001B52DE /* GameState.cpp */; };
+		B343B94820507B8A001B52DE /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B343B94420507B8A001B52DE /* GameState.cpp */; };
 		B360A03C20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */; };
 		B360A03D20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */; };
 		B3C0A5EA2028D3D30088189A /* TextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0A5E82028D3D30088189A /* TextBox.cpp */; };
@@ -320,6 +323,8 @@
 		B31D505F202FDFC300B861A4 /* PlayerStatsDisplay.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PlayerStatsDisplay.hpp; sourceTree = "<group>"; };
 		B31D50652030196500B861A4 /* YangPhysics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = YangPhysics.cpp; sourceTree = "<group>"; };
 		B31D50662030196500B861A4 /* YangPhysics.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = YangPhysics.hpp; sourceTree = "<group>"; };
+		B343B94420507B8A001B52DE /* GameState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
+		B343B94520507B8A001B52DE /* GameState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameState.hpp; sourceTree = "<group>"; };
 		B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardMenu.cpp; sourceTree = "<group>"; };
 		B360A03B20282E6400FCB0AE /* KeyboardMenu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = KeyboardMenu.hpp; sourceTree = "<group>"; };
 		B3C0A5E82028D3D30088189A /* TextBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextBox.cpp; sourceTree = "<group>"; };
@@ -616,6 +621,8 @@
 				B3C0AF9420420C0400072D79 /* Consumable.hpp */,
 				22AEA3272048EAD600098565 /* Party.cpp */,
 				22AEA3252048EAAF00098565 /* Party.h */,
+				B343B94420507B8A001B52DE /* GameState.cpp */,
+				B343B94520507B8A001B52DE /* GameState.hpp */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -918,6 +925,7 @@
 				B360A03C20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				B3ED82EB202E836D004D7CC1 /* Utility.cpp in Sources */,
+				B343B94620507B8A001B52DE /* GameState.cpp in Sources */,
 				B3C0AF8F204160CD00072D79 /* Item.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				228865A020278CCE00C6F6A9 /* Battle.cpp in Sources */,
@@ -934,6 +942,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2260066F203FD7D100640E3C /* Utility.cpp in Sources */,
+				B343B94820507B8A001B52DE /* GameState.cpp in Sources */,
 				22600670203FD7D100640E3C /* PagedTextBox.cpp in Sources */,
 				22AEA32A2048EAD600098565 /* Party.cpp in Sources */,
 				22600671203FD7D100640E3C /* KeyboardMenu.cpp in Sources */,
@@ -960,6 +969,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3ED82EC202E836D004D7CC1 /* Utility.cpp in Sources */,
+				B343B94720507B8A001B52DE /* GameState.cpp in Sources */,
 				B3C0A5F9202B6F360088189A /* PagedTextBox.cpp in Sources */,
 				22AEA3292048EAD600098565 /* Party.cpp in Sources */,
 				B360A03D20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */,

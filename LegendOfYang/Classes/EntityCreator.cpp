@@ -12,6 +12,7 @@
 #include "Battle.h"
 #include "OverworldScene.hpp"
 #include "Utility.hpp"
+#include "GameState.hpp"
 #include <iostream>
 
 void EntityCreator::setupAnimation(Entity *entity) {
@@ -39,6 +40,10 @@ void EntityCreator::setupAnimation(Entity *entity) {
     });
     
     scene->physics->getEventDispatcher()->addEventListenerWithSceneGraphPriority(orientationListener, entity);
+}
+
+std::string EntityCreator::uniqueKey(int tag, std::string valueName) {
+    return scene->worldName+std::to_string(tag)+valueName;
 }
 
 Entity* EntityCreator::createPlayer() {
@@ -245,6 +250,7 @@ Entity* EntityCreator::createLoadingZone(std::string worldFilename, std::string 
             auto nextScene = OverworldScene::createWithTileMap(worldFilename);
             auto entrance = nextScene->world->getChildByName(entranceName);
             
+            assert(entrance);
             nextScene->player->setPosition(entrance->getPosition());
             Director::getInstance()->replaceScene(TransitionFade::create(0.5, nextScene, Color3B(0, 0, 0)));
         }
@@ -313,15 +319,41 @@ Entity* EntityCreator::createStoreNPC(std::vector<std::pair<Item*, int>> itemsAn
     return npc;
 }
 
-Entity* EntityCreator::createChest(Item *item) {
-    auto chest = Entity::create("chestClosed.png");
+Entity* EntityCreator::createChest(Item *item, int tag) {
+    auto key = uniqueKey(tag, "opened");
+    auto opened = GameState::defaultInstance->state[key].asBool();
+    auto chest = opened ? Entity::create("chestOpened.png") : Entity::create("chestClosed.png");
     chest->isSolid = true;
     chest->isDynamic = false;
     
-    chest->interact = [item, chest, this](){
-        Party::addItem(item);
-        scene->gui->addChild(PagedTextBox::create("You got a" + item->getName()));
-        chest->setTexture("chestOpened.png");
+    chest->interact = [item, chest, this, key](){
+        auto opened = GameState::defaultInstance->state[key].asBool();
+        if (!opened) {
+            Party::addItem(item);
+            scene->gui->addChild(PagedTextBox::create("You got " + item->getName()));
+            chest->setTexture("chestOpened.png");
+            GameState::defaultInstance->state[key] = Value(true);
+        }
     };
     return chest;
+}
+
+Entity* EntityCreator::createBoss() {
+    auto boss = Entity::create("CloseNormal.png");
+    boss->setContentSize(Size(defaultSize, defaultSize));
+    boss->isDynamic = false;
+    
+    boss->setColor(Color3B(150, 150, 255));
+    setupAnimation(boss);
+    
+    boss->interact = [this, boss]() {
+        boss->setOrientation(scene->player->getCollisionBox().origin - boss->getCollisionBox().origin);
+        auto textBox = PagedTextBox::create("We're not so different you and I.");
+        scene->gui->addChild(textBox);
+        textBox->setOnExitCallback([]() {
+            Director::getInstance()->pushScene(TransitionFade::create(2.0, Battle::createScene(), Color3B(255, 255, 255)));
+        });
+    };
+    
+    return boss;
 }
