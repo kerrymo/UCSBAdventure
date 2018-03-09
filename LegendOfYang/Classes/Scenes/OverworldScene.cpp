@@ -82,6 +82,8 @@ OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
             } else if (type == "Chest") {
                 auto itemName = objectMap.at("item").asString();
                 entity = entityCreator->createChest(Item::itemFromName(itemName), objectMap["id"].asInt());
+            } else if (type == "Boss") {
+                entity = entityCreator->createBoss();
             } else {
                 continue;
             }

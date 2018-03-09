@@ -337,3 +337,23 @@ Entity* EntityCreator::createChest(Item *item, int tag) {
     };
     return chest;
 }
+
+Entity* EntityCreator::createBoss() {
+    auto boss = Entity::create("CloseNormal.png");
+    boss->setContentSize(Size(defaultSize, defaultSize));
+    boss->isDynamic = false;
+    
+    boss->setColor(Color3B(150, 150, 255));
+    setupAnimation(boss);
+    
+    boss->interact = [this, boss]() {
+        boss->setOrientation(scene->player->getCollisionBox().origin - boss->getCollisionBox().origin);
+        auto textBox = PagedTextBox::create("We're not so different you and I.");
+        scene->gui->addChild(textBox);
+        textBox->setOnExitCallback([]() {
+            Director::getInstance()->pushScene(TransitionFade::create(1.0, Battle::createScene(), Color3B(255, 0, 0)));
+        });
+    };
+    
+    return boss;
+}
