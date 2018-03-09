@@ -27,9 +27,10 @@ public:
     Entity* createCalpirgEnemy();
     Entity* createLoadingZone(std::string worldFilename, std::string entranceName);
     Entity* createStoreNPC(std::vector<std::pair<Item*, int>> itemsAndPrices);
-    Entity* createChest(Item *item, std::string name);
+    Entity* createChest(Item *item, int tag);
     
 protected:
+    std::string uniqueKey(int tag, std::string valueName);
     void setupAnimation(Entity *entity);
     OverworldScene *scene;
 };

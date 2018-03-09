@@ -44,6 +44,9 @@ public:
     
     // Description : A pointer to the tilemap
     TMXTiledMap *tileMap;
+    
+    // Description : Contains the name of the world. i.e. The filename of the tilemap without the extension
+    std::string worldName;
 protected:
     EntityCreator *entityCreator;
     Entity *player;

@@ -42,6 +42,10 @@ void EntityCreator::setupAnimation(Entity *entity) {
     scene->physics->getEventDispatcher()->addEventListenerWithSceneGraphPriority(orientationListener, entity);
 }
 
+std::string EntityCreator::uniqueKey(int tag, std::string valueName) {
+    return scene->worldName+std::to_string(tag)+valueName;
+}
+
 Entity* EntityCreator::createPlayer() {
     // Add player
     auto player = Entity::create("player_down.png");
@@ -315,19 +319,20 @@ Entity* EntityCreator::createStoreNPC(std::vector<std::pair<Item*, int>> itemsAn
     return npc;
 }
 
-Entity* EntityCreator::createChest(Item *item, std::string name) {
-    auto opened = GameState::defaultInstance->state[name]["opened"].asBool();
+Entity* EntityCreator::createChest(Item *item, int tag) {
+    auto key = uniqueKey(tag, "opened");
+    auto opened = GameState::defaultInstance->state[key].asBool();
     auto chest = opened ? Entity::create("chestOpened.png") : Entity::create("chestClosed.png");
     chest->isSolid = true;
     chest->isDynamic = false;
     
-    chest->interact = [item, chest, this](){
-        auto opened = GameState::defaultInstance->state[chest->getName()]["opened"].asBool();
+    chest->interact = [item, chest, this, key](){
+        auto opened = GameState::defaultInstance->state[key].asBool();
         if (!opened) {
             Party::addItem(item);
             scene->gui->addChild(PagedTextBox::create("You got " + item->getName()));
             chest->setTexture("chestOpened.png");
-            GameState::defaultInstance->state[chest->getName()]["opened"] = Value(true);
+            GameState::defaultInstance->state[key] = Value(true);
         }
     };
     return chest;

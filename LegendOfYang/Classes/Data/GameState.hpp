@@ -12,5 +12,5 @@ USING_NS_CC;
 class GameState {
 public:
     static GameState *defaultInstance;
-    std::unordered_map<std::string, std::unordered_map<std::string, cocos2d::Value>> state;
+    ValueMap state;
 };

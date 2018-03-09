@@ -23,6 +23,10 @@ OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
     // Setup node Layers
     auto scene = OverworldScene::create();
     
+    // Set world name
+    size_t beforeExtension = filename.find_last_of(".");
+    scene->worldName = filename.substr(0, beforeExtension);
+    
     // Setup Tile map
     scene->tileMap = TMXTiledMap::create(filename);
     scene->meta = scene->tileMap->getLayer("Meta");
@@ -77,13 +81,14 @@ OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
                 entity = entityCreator->createCalpirgEnemy();
             } else if (type == "Chest") {
                 auto itemName = objectMap.at("item").asString();
-                entity = entityCreator->createChest(Item::itemFromName(itemName), objectMap["name"].asString());
+                entity = entityCreator->createChest(Item::itemFromName(itemName), objectMap["id"].asInt());
             } else {
                 continue;
             }
             std::cout << metaObject.getDescription();
             entity->setPosition(objectMap["x"].asFloat(), objectMap["y"].asFloat());
             entity->setName(objectMap["name"].asString());
+            entity->setTag(objectMap["id"].asInt());
             scene->world->addChild(entity);
         }
     }
