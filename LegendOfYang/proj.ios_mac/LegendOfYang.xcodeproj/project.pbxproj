@@ -149,6 +149,9 @@
 		B343B95A20533120001B52DE /* request_finalized_by_nicnubill-d6xcly3.png in Resources */ = {isa = PBXBuildFile; fileRef = B343B9552053311B001B52DE /* request_finalized_by_nicnubill-d6xcly3.png */; };
 		B343B95B20533120001B52DE /* Castle2_5.png in Resources */ = {isa = PBXBuildFile; fileRef = B343B9562053311C001B52DE /* Castle2_5.png */; };
 		B343B95C20533120001B52DE /* request_finalized_by_nicnubill-d6xcly3.png in Resources */ = {isa = PBXBuildFile; fileRef = B343B9552053311B001B52DE /* request_finalized_by_nicnubill-d6xcly3.png */; };
+		B343B95E20535467001B52DE /* store.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B343B95D20535463001B52DE /* store.tmx */; };
+		B343B95F20535467001B52DE /* store.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B343B95D20535463001B52DE /* store.tmx */; };
+		B343B96020535468001B52DE /* store.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B343B95D20535463001B52DE /* store.tmx */; };
 		B360A03C20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */; };
 		B360A03D20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */; };
 		B3C0A5EA2028D3D30088189A /* TextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0A5E82028D3D30088189A /* TextBox.cpp */; };
@@ -338,6 +341,7 @@
 		B343B95120532D99001B52DE /* library.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = library.tmx; sourceTree = "<group>"; };
 		B343B9552053311B001B52DE /* request_finalized_by_nicnubill-d6xcly3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "request_finalized_by_nicnubill-d6xcly3.png"; sourceTree = "<group>"; };
 		B343B9562053311C001B52DE /* Castle2_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Castle2_5.png; sourceTree = "<group>"; };
+		B343B95D20535463001B52DE /* store.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = store.tmx; sourceTree = "<group>"; };
 		B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardMenu.cpp; sourceTree = "<group>"; };
 		B360A03B20282E6400FCB0AE /* KeyboardMenu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = KeyboardMenu.hpp; sourceTree = "<group>"; };
 		B3C0A5E82028D3D30088189A /* TextBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextBox.cpp; sourceTree = "<group>"; };
@@ -522,6 +526,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B343B95D20535463001B52DE /* store.tmx */,
 				B343B9562053311C001B52DE /* Castle2_5.png */,
 				B343B9552053311B001B52DE /* request_finalized_by_nicnubill-d6xcly3.png */,
 				5CF04B61204DFFB400311F7D /* map.tmx */,
@@ -854,6 +859,7 @@
 				B3C0AF872040C91800072D79 /* player_up.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
 				521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */,
+				B343B95E20535467001B52DE /* store.tmx in Resources */,
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				B3C0A617202CF8940088189A /* TileMap.tmx in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
@@ -866,6 +872,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B343B95420532D9D001B52DE /* library.tmx in Resources */,
+				B343B96020535468001B52DE /* store.tmx in Resources */,
 				B343B95C20533120001B52DE /* request_finalized_by_nicnubill-d6xcly3.png in Resources */,
 				B3F617582047B32700D2ECB9 /* magecity.png in Resources */,
 				B343B95B20533120001B52DE /* Castle2_5.png in Resources */,
@@ -922,6 +929,7 @@
 				B3F617572047B32600D2ECB9 /* magecity.png in Resources */,
 				B343B95920533120001B52DE /* Castle2_5.png in Resources */,
 				46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */,
+				B343B95F20535467001B52DE /* store.tmx in Resources */,
 				B3C0A613202CF88C0088189A /* TileMap.tmx in Resources */,
 				B3F6174F2047AD4E00D2ECB9 /* arbor.tmx in Resources */,
 				5CF04B63204DFFB400311F7D /* map.tmx in Resources */,
