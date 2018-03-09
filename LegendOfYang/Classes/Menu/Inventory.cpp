@@ -23,7 +23,12 @@ void Inventory::update() {
     for (auto itemAndQuantity : Party::getItems()) {
         LabelAndCallback menuItem;
         menuItem.first = itemAndQuantity.first->getName() + " : " + std::to_string(itemAndQuantity.second);
-        menuItem.second = [this, itemAndQuantity](Node *sender) { this->addChild(itemAndQuantity.first->getMenu()); };
+        menuItem.second = [this, itemAndQuantity](Node *sender) {
+            auto itemMenu = itemAndQuantity.first->getMenu();
+            itemMenu->setPosition(sender->getContentSize().width, 0);
+            this->addChild(itemMenu);
+            
+        };
         items.push_back(menuItem);
     }
     
@@ -32,4 +37,5 @@ void Inventory::update() {
     closeItem.second = [this](Node *sender) { this->removeFromParent(); };
     items.push_back(closeItem);
     menu->setItems(items);
+    menu->setContentSize(Size::ZERO);
 }

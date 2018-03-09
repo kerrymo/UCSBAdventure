@@ -162,7 +162,9 @@ void OverworldScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event) 
         LabelAndCallback item1, item2;
         item1.first = "Inventory";
         item1.second = [this](Node *sender) {
-            this->gui->addChild(Inventory::create());
+            auto inventory = Inventory::create();
+            inventory->setPosition(sender->getContentSize().width,0);
+            this->gui->addChild(inventory);
         };
         item2.first = "Stats";
         item2.second = [this](Node *sender) {

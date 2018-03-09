@@ -351,7 +351,7 @@ Entity* EntityCreator::createBoss() {
         auto textBox = PagedTextBox::create("We're not so different you and I.");
         scene->gui->addChild(textBox);
         textBox->setOnExitCallback([]() {
-            Director::getInstance()->pushScene(TransitionFade::create(1.0, Battle::createScene(), Color3B(255, 0, 0)));
+            Director::getInstance()->pushScene(TransitionFade::create(2.0, Battle::createScene(), Color3B(255, 255, 255)));
         });
     };
     
