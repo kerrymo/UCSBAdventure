@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.2" orientation="orthogonal" renderorder="right-down" width="24" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="46">
+ <tileset firstgid="1" name="meta_tiles" tilewidth="32" tileheight="32" spacing="1" margin="1" tilecount="2" columns="2">
+  <image source="meta_tiles.png" width="67" height="34"/>
+  <tile id="0">
+   <properties>
+    <property name="Collidable" value="True"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="Collectable" value="True"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="3" name="dungeonex" tilewidth="32" tileheight="32" tilecount="100" columns="10">
+  <image source="dungeonex.png" width="320" height="320"/>
+ </tileset>
+ <tileset firstgid="103" name="terrain" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
+  <image source="terrain.png" width="1024" height="1024"/>
+ </tileset>
+ <tileset firstgid="1127" name="magecity" tilewidth="32" tileheight="32" tilecount="360" columns="8">
+  <image source="magecity.png" width="256" height="1450"/>
+ </tileset>
+ <tileset firstgid="1487" name="request_finalized_by_nicnubill-d6xcly3" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+  <image source="request_finalized_by_nicnubill-d6xcly3.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1743" name="Castle2_5" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+  <image source="Castle2_5.png" width="512" height="512"/>
+ </tileset>
+ <layer name="Background" width="24" height="56">
+  <data encoding="base64" compression="zlib">
+   eJy9lE1u20AMhR3tha5yDKsrX0MBZPsa45M3SBbdV0ZnAPbTx5kUKLogJHH48/j4Rtt0Ol12e6123+3ny+l0re+X8L1Nv58t7rWePf236rvWnBZ/D3kt5hbOmv8azvjderSc5/cd+VuwW7At1LlOf85xDzmNg9jngnqb5N6CL8601XrXUD9y1Phbdpt3O1dbxOL5HJ5mS3jGmjNqxjPWXaTf3+SxH7Gdp+NcVmuGz56stUjMCDt5J9/EYxzbXs6oGeNtTjuPfuMwzmacjXZCjFanxz+1yl7GEzH0eCAumztyZfslNnsn3nk6zkY+TEez9GAMLeNqxKvZWfK51x4+4960GfPI/eg9m7One9Or7e4r76atGJPdN+Mp+w8aRtMn63A+25VhMY1a/kjvxGp6N42Zxlm39x8mbj55B2xn2b+NXHHWTCO2A94LGvfwfbcfL0d7rxa/+eT5u/g/dvs2HfMYm9WPtSy/1TdMPV+vR4yL+I2P3uw9LO0Z8Wf89Li2PlY/29tov/+Cf5s90wNzPjtzZ3itXjZ3mY627vaotlbfA2fRV0LcGvJinUfyXeCzuBLimMO+xLp2emVY6TeMnJV8GJcPqVXQs4i/oMc6qJfFj/Zn3yNuiIV4OX82m3FhPU0jNjM1Q67Ic8ynvsidGXViWlun/qy2y6jB+F5Q1zRPn/XO8qn9bB7mGOcZ3ozvrCZ1aRzZfaROTH+Gy3KoM7t7hoM6LtLbNMzzbC7bp+XabMT+1ZyetovUyO4Zzzkbect47O0+48Vm6PFcBrkWa//R59mb7Nn0xVrWl7jXWj/jonf/M90V5L/9B/sFKvXxbA==
+  </data>
+ </layer>
+ <layer name="Dungeon" width="24" height="56">
+  <data encoding="base64" compression="zlib">
+   eJztzj0OgCAMhmEWQV38vZmzbt7/CnZwIERACGpi3if5EmhDi1Lv2K3z4qn7arG7a737qQS1pJG0D70fJZNkPu9b4nz3PQDgfzpJLxk8Pe3p5aoKznJd/bfEPnuGiezLoQM9E+gBAAAA+M4BCIgEdQ==
+  </data>
+ </layer>
+ <layer name="Castle" width="24" height="56">
+  <data encoding="base64" compression="zlib">
+   eJzt0jsKwCAQBUC7vW/0AvkcXFsR0kQLyQw8XrcLy6bEV0f0me2KPueCHfxLbj9UYuxZ7jbribF34T7v3AcAAICdVJtlFus=
+  </data>
+ </layer>
+ <layer name="Foreground" width="24" height="56">
+  <data encoding="base64" compression="zlib">
+   eJzt1rENgEAIQFFiAgt6DqBxAR1VN9BFxO6aqxT14n8N3S9ISBCpU9vE9rusn+z+fsr6Y0AfAADgCYuKrBrzL502b+/KvwR8Ue93OVh5XjV5Y7by/Dv2/y72D9TlAFkvGvE=
+  </data>
+ </layer>
+ <layer name="Terrain" width="24" height="56">
+  <data encoding="base64" compression="zlib">
+   eJzt2LERABAQBECESlGL/pugCBIlfIC9mZvPNrroR06plpjObfd9o9IKn8/n8/l8/n9+ZPjv+7fvn8/n8/l8/nt+1G/ydAEn8Rvq
+  </data>
+ </layer>
+ <layer name="Meta" width="24" height="56">
+  <data encoding="base64" compression="zlib">
+   eJztl9EKwCAIRd3///ReR3StkS5p54IEhaeLSZEZ8nRtCHuMyoPns53LEnz4o1yvbyv7z+ZTn7lc6qPzRu9AlH/FiOCrd2uV3+O1+0Xx1doX/ZOpavy3Z1bNf0V+xfsNPvwef+bftMKP1ml86r+XT/3h/5GfGTcxQwDd
+  </data>
+ </layer>
+ <objectgroup name="Objects">
+  <object id="22" name="libGuideNPC" type="TalkingNPC" x="318.564" y="894.753" width="30.015" height="28.3475">
+   <properties>
+    <property name="message" value=""/>
+   </properties>
+  </object>
+  <object id="23" name="followingEnemy" type="FollowingEnemy" x="507.17" y="960.204" width="30.015" height="29.1813"/>
+  <object id="24" name="basicEnemy" type="BasicEnemy" x="576.833" y="1153.02" width="29.1813" height="30.015"/>
+  <object id="27" name="followingEnemy" type="FollowingEnemy" x="225.925" y="352.363" width="30.015" height="29.1813"/>
+  <object id="28" name="basicEnemy" type="BasicEnemy" x="385.017" y="251.873" width="29.1813" height="30.015"/>
+  <object id="37" name="calpirg" type="CalpirgEnemy" x="390.164" y="1561.21" width="35.482" height="35.482"/>
+  <object id="38" name="calpirg" type="CalpirgEnemy" x="44.215" y="1626.26" width="35.482" height="35.482"/>
+  <object id="40" name="SpawnPoint" x="164.322" y="1296.7" width="30.0699" height="30.9543"/>
+  <object id="42" name="Arbor Loading Zone" type="LoadingZone" x="-48.38" y="833.489" width="64" height="189.767">
+   <properties>
+    <property name="entrance" value="Library Exit"/>
+    <property name="world" value="arbor"/>
+   </properties>
+  </object>
+  <object id="44" name="Library Entrance" type="Entrance" x="32.4951" y="912.858" width="30.7239" height="29.4949"/>
+ </objectgroup>
+</map>

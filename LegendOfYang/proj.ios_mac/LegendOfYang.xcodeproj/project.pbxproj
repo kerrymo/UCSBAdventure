@@ -140,6 +140,15 @@
 		B343B94D20532935001B52DE /* meta_tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = B343B94C20532930001B52DE /* meta_tiles.png */; };
 		B343B94E20532936001B52DE /* meta_tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = B343B94C20532930001B52DE /* meta_tiles.png */; };
 		B343B95020532938001B52DE /* meta_tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = B343B94C20532930001B52DE /* meta_tiles.png */; };
+		B343B95220532D9C001B52DE /* library.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B343B95120532D99001B52DE /* library.tmx */; };
+		B343B95320532D9C001B52DE /* library.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B343B95120532D99001B52DE /* library.tmx */; };
+		B343B95420532D9D001B52DE /* library.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B343B95120532D99001B52DE /* library.tmx */; };
+		B343B9572053311F001B52DE /* Castle2_5.png in Resources */ = {isa = PBXBuildFile; fileRef = B343B9562053311C001B52DE /* Castle2_5.png */; };
+		B343B9582053311F001B52DE /* request_finalized_by_nicnubill-d6xcly3.png in Resources */ = {isa = PBXBuildFile; fileRef = B343B9552053311B001B52DE /* request_finalized_by_nicnubill-d6xcly3.png */; };
+		B343B95920533120001B52DE /* Castle2_5.png in Resources */ = {isa = PBXBuildFile; fileRef = B343B9562053311C001B52DE /* Castle2_5.png */; };
+		B343B95A20533120001B52DE /* request_finalized_by_nicnubill-d6xcly3.png in Resources */ = {isa = PBXBuildFile; fileRef = B343B9552053311B001B52DE /* request_finalized_by_nicnubill-d6xcly3.png */; };
+		B343B95B20533120001B52DE /* Castle2_5.png in Resources */ = {isa = PBXBuildFile; fileRef = B343B9562053311C001B52DE /* Castle2_5.png */; };
+		B343B95C20533120001B52DE /* request_finalized_by_nicnubill-d6xcly3.png in Resources */ = {isa = PBXBuildFile; fileRef = B343B9552053311B001B52DE /* request_finalized_by_nicnubill-d6xcly3.png */; };
 		B360A03C20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */; };
 		B360A03D20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */; };
 		B3C0A5EA2028D3D30088189A /* TextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0A5E82028D3D30088189A /* TextBox.cpp */; };
@@ -326,6 +335,9 @@
 		B343B94420507B8A001B52DE /* GameState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
 		B343B94520507B8A001B52DE /* GameState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameState.hpp; sourceTree = "<group>"; };
 		B343B94C20532930001B52DE /* meta_tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meta_tiles.png; sourceTree = "<group>"; };
+		B343B95120532D99001B52DE /* library.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = library.tmx; sourceTree = "<group>"; };
+		B343B9552053311B001B52DE /* request_finalized_by_nicnubill-d6xcly3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "request_finalized_by_nicnubill-d6xcly3.png"; sourceTree = "<group>"; };
+		B343B9562053311C001B52DE /* Castle2_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Castle2_5.png; sourceTree = "<group>"; };
 		B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardMenu.cpp; sourceTree = "<group>"; };
 		B360A03B20282E6400FCB0AE /* KeyboardMenu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = KeyboardMenu.hpp; sourceTree = "<group>"; };
 		B3C0A5E82028D3D30088189A /* TextBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextBox.cpp; sourceTree = "<group>"; };
@@ -510,9 +522,12 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B343B9562053311C001B52DE /* Castle2_5.png */,
+				B343B9552053311B001B52DE /* request_finalized_by_nicnubill-d6xcly3.png */,
 				5CF04B61204DFFB400311F7D /* map.tmx */,
 				5CF04B5C204DFF9B00311F7D /* dungeonex.png */,
 				B3F617552047B32300D2ECB9 /* magecity.png */,
+				B343B95120532D99001B52DE /* library.tmx */,
 				B3F6174C2047AD4B00D2ECB9 /* arbor.tmx */,
 				B3F617382046229D00D2ECB9 /* chestClosed.png */,
 				B3F617372046229200D2ECB9 /* chestOpened.png */,
@@ -814,13 +829,16 @@
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
 				B3F617562047B32600D2ECB9 /* magecity.png in Resources */,
+				B343B9582053311F001B52DE /* request_finalized_by_nicnubill-d6xcly3.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
 				5CF04B62204DFFB400311F7D /* map.tmx in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
+				B343B9572053311F001B52DE /* Castle2_5.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
+				B343B95220532D9C001B52DE /* library.tmx in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
 				B3C0A60C202BEB530088189A /* terrain.png in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
@@ -847,7 +865,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B343B95420532D9D001B52DE /* library.tmx in Resources */,
+				B343B95C20533120001B52DE /* request_finalized_by_nicnubill-d6xcly3.png in Resources */,
 				B3F617582047B32700D2ECB9 /* magecity.png in Resources */,
+				B343B95B20533120001B52DE /* Castle2_5.png in Resources */,
 				2260065D203FD7D100640E3C /* HelloWorld.png in Resources */,
 				2260065E203FD7D100640E3C /* terrain.png in Resources */,
 				B3F6173E2046377E00D2ECB9 /* chestOpened.png in Resources */,
@@ -880,6 +901,7 @@
 				B3C0AF8A2040C91900072D79 /* player_right.png in Resources */,
 				46880B8219C43A67006E1F66 /* HelloWorld.png in Resources */,
 				B3C0A60D202BEB530088189A /* terrain.png in Resources */,
+				B343B95320532D9C001B52DE /* library.tmx in Resources */,
 				22600657203CF95500640E3C /* world.mp3 in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				B343B94E20532936001B52DE /* meta_tiles.png in Resources */,
@@ -893,10 +915,12 @@
 				228865B020279F8200C6F6A9 /* victory.mp3 in Resources */,
 				B3C0AF8B2040C91900072D79 /* player_up.png in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
+				B343B95A20533120001B52DE /* request_finalized_by_nicnubill-d6xcly3.png in Resources */,
 				22600655203CF95500640E3C /* fallen.mp3 in Resources */,
 				46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				B3F6173D2046377E00D2ECB9 /* chestOpened.png in Resources */,
 				B3F617572047B32600D2ECB9 /* magecity.png in Resources */,
+				B343B95920533120001B52DE /* Castle2_5.png in Resources */,
 				46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */,
 				B3C0A613202CF88C0088189A /* TileMap.tmx in Resources */,
 				B3F6174F2047AD4E00D2ECB9 /* arbor.tmx in Resources */,

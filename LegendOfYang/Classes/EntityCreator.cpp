@@ -16,13 +16,11 @@
 #include <iostream>
 
 void EntityCreator::setupAnimation(Entity *entity) {
-    auto size = entity->getContentSize();
-    entity->setTexture("player_down.png");
-    entity->setContentSize(size);
     auto orientationListener = EventListenerCustom::create("orientation-changed", [entity](EventCustom* event) {
         
         auto sender = (Entity*)event->getUserData();
         if (sender == entity) { // Adjust Player animation
+            
             float theta = atan2f(entity->getOrientation().y, entity->getOrientation().x);
             auto size = entity->getContentSize();
             if (theta <= M_PI_4+ 0.01f && theta >= -M_PI_4 - 0.01f) {
@@ -39,7 +37,10 @@ void EntityCreator::setupAnimation(Entity *entity) {
         }
     });
     
-    scene->physics->getEventDispatcher()->addEventListenerWithSceneGraphPriority(orientationListener, entity);
+    entity->getEventDispatcher()->addEventListenerWithSceneGraphPriority(orientationListener, entity);
+    
+    entity->getEventDispatcher()->resumeEventListenersForTarget(entity); // TODO : This could potentially be bad
+    entity->setOrientation(entity->getOrientation()); // Called for the side effect of triggering the orientation listener. So it sets the initial direction
 }
 
 std::string EntityCreator::uniqueKey(int tag, std::string valueName) {
@@ -240,8 +241,7 @@ Entity* EntityCreator::createBasicNPC() {
 }
 
 Entity* EntityCreator::createLoadingZone(std::string worldFilename, std::string entranceName) {
-    auto loadingZone = Entity::create("CloseNormal.png");
-    loadingZone->setContentSize(Size(defaultSize, defaultSize));
+    auto loadingZone = Entity::create();
     loadingZone->isDynamic = false;
     loadingZone->isSolid = false;
     
@@ -249,9 +249,11 @@ Entity* EntityCreator::createLoadingZone(std::string worldFilename, std::string 
         if (scene->player == otherEntity) {
             auto nextScene = OverworldScene::createWithTileMap(worldFilename);
             auto entrance = nextScene->world->getChildByName(entranceName);
+            auto lastOrientation = scene->player->getOrientation();
             
             assert(entrance);
             nextScene->player->setPosition(entrance->getPosition());
+            nextScene->player->setOrientation(lastOrientation);
             Director::getInstance()->replaceScene(TransitionFade::create(0.5, nextScene, Color3B(0, 0, 0)));
         }
     }, loadingZone);
