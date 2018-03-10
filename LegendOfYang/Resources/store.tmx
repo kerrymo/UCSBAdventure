@@ -55,6 +55,11 @@
   <object id="58" name="Arbor Entrance" type="Entrance" x="496.491" y="1056.57" width="27.9849" height="30.304"/>
   <object id="59" name="SpawnPoint" x="492.482" y="805.628" width="33.108" height="33.108"/>
   <object id="60" name="calpirg" type="CalpirgEnemy" x="310.817" y="408.713" width="41.6055" height="44.0529"/>
-  <object id="62" name="Arbor loading zone" type="LoadingZone" x="383.652" y="1110.24" width="264.641" height="68.9007"/>
+  <object id="62" name="Arbor loading zone" type="LoadingZone" x="383.652" y="1110.24" width="264.641" height="68.9007">
+   <properties>
+    <property name="entrance" value="Arbor Exit"/>
+    <property name="world" value="arbor"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
