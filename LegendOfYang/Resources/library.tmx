@@ -61,7 +61,7 @@
  <objectgroup name="Objects">
   <object id="22" name="libGuideNPC" type="TalkingNPC" x="318.564" y="894.753" width="30.015" height="28.3475">
    <properties>
-    <property name="message" value=""/>
+    <property name="message" value="Welcome to UCSB Library! "/>
    </properties>
   </object>
   <object id="23" name="followingEnemy" type="FollowingEnemy" x="507.17" y="960.204" width="30.015" height="29.1813"/>
