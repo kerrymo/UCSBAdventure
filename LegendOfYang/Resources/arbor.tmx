@@ -67,7 +67,12 @@
   </object>
   <object id="46" name="Final Boss" type="Boss" x="955.424" y="2431.16" width="36.513" height="33.4703"/>
   <object id="47" name="Library Exit" type="Entrance" x="2016" y="864" width="32" height="32"/>
-  <object id="49" name="ArborStore" type="LoadingZone" x="947.14" y="513.59" width="250.125" height="66.7"/>
+  <object id="49" name="ArborStore" type="LoadingZone" x="947.14" y="513.59" width="250.125" height="66.7">
+   <properties>
+    <property name="entrance" value="Arbor Entrance"/>
+    <property name="world" value="store"/>
+   </properties>
+  </object>
   <object id="50" name="Arbor Exit" type="Entrance" x="1057.2" y="707.02" width="31.6825" height="30.015"/>
  </objectgroup>
 </map>

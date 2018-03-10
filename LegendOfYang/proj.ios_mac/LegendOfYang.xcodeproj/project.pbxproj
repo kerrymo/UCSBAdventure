@@ -152,6 +152,9 @@
 		B343B95E20535467001B52DE /* store.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B343B95D20535463001B52DE /* store.tmx */; };
 		B343B95F20535467001B52DE /* store.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B343B95D20535463001B52DE /* store.tmx */; };
 		B343B96020535468001B52DE /* store.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B343B95D20535463001B52DE /* store.tmx */; };
+		B343B9782053988C001B52DE /* Terrain.tsx in Resources */ = {isa = PBXBuildFile; fileRef = B343B97620539889001B52DE /* Terrain.tsx */; };
+		B343B9792053988C001B52DE /* Terrain.tsx in Resources */ = {isa = PBXBuildFile; fileRef = B343B97620539889001B52DE /* Terrain.tsx */; };
+		B343B97A2053988D001B52DE /* Terrain.tsx in Resources */ = {isa = PBXBuildFile; fileRef = B343B97620539889001B52DE /* Terrain.tsx */; };
 		B360A03C20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */; };
 		B360A03D20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */; };
 		B3C0A5EA2028D3D30088189A /* TextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0A5E82028D3D30088189A /* TextBox.cpp */; };
@@ -342,6 +345,7 @@
 		B343B9552053311B001B52DE /* request_finalized_by_nicnubill-d6xcly3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "request_finalized_by_nicnubill-d6xcly3.png"; sourceTree = "<group>"; };
 		B343B9562053311C001B52DE /* Castle2_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Castle2_5.png; sourceTree = "<group>"; };
 		B343B95D20535463001B52DE /* store.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = store.tmx; sourceTree = "<group>"; };
+		B343B97620539889001B52DE /* Terrain.tsx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Terrain.tsx; sourceTree = "<group>"; };
 		B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardMenu.cpp; sourceTree = "<group>"; };
 		B360A03B20282E6400FCB0AE /* KeyboardMenu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = KeyboardMenu.hpp; sourceTree = "<group>"; };
 		B3C0A5E82028D3D30088189A /* TextBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextBox.cpp; sourceTree = "<group>"; };
@@ -526,6 +530,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B343B97620539889001B52DE /* Terrain.tsx */,
 				B343B95D20535463001B52DE /* store.tmx */,
 				B343B9562053311C001B52DE /* Castle2_5.png */,
 				B343B9552053311B001B52DE /* request_finalized_by_nicnubill-d6xcly3.png */,
@@ -844,6 +849,7 @@
 				B343B9572053311F001B52DE /* Castle2_5.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				B343B95220532D9C001B52DE /* library.tmx in Resources */,
+				B343B9782053988C001B52DE /* Terrain.tsx in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
 				B3C0A60C202BEB530088189A /* terrain.png in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
@@ -888,6 +894,7 @@
 				22600662203FD7D100640E3C /* res in Resources */,
 				22600663203FD7D100640E3C /* song.mp3 in Resources */,
 				22600664203FD7D100640E3C /* battle.mp3 in Resources */,
+				B343B97A2053988D001B52DE /* Terrain.tsx in Resources */,
 				22600666203FD7D100640E3C /* victory.mp3 in Resources */,
 				22600667203FD7D100640E3C /* fonts in Resources */,
 				5CF04B60204DFF9B00311F7D /* dungeonex.png in Resources */,
@@ -923,6 +930,7 @@
 				B3C0AF8B2040C91900072D79 /* player_up.png in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
 				B343B95A20533120001B52DE /* request_finalized_by_nicnubill-d6xcly3.png in Resources */,
+				B343B9792053988C001B52DE /* Terrain.tsx in Resources */,
 				22600655203CF95500640E3C /* fallen.mp3 in Resources */,
 				46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				B3F6173D2046377E00D2ECB9 /* chestOpened.png in Resources */,
