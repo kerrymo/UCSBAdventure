@@ -83,7 +83,7 @@ public:
     */
     void undefend();
     
-    void createSprite(int, int);
+    virtual void createSprite(int, int);
     
     Sprite* getSprite();
     
@@ -97,8 +97,8 @@ public:
     
     void updateHpLabel();
     
-private:
-    int lv, exp, maxHp, currentHp, atk, def;
+protected:
+    int lv, exp, maxHp, currentHp, atk, def, hpGrowth, atkGrowth, defGrowth;
     bool defending, dead;
     Sprite *sprite;
     Label *hpLabel;

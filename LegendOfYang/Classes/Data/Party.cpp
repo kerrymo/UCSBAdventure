@@ -6,8 +6,9 @@ std::unordered_map<Item*, int> Party::items;
 
 Party::Party()
 {
-    for(int n = 0; n < 3; n++)
-        player[n] = new Player();
+    player[0] = new Yang();
+    player[1] = new Locke();
+    player[2] = new Terra();
 }
 
 Player* Party::getPlayer(int num)

@@ -8,6 +8,9 @@ Player::Player()
     currentHp = 60;
     atk = 10;
     def = 0;
+    hpGrowth = 10;
+    atkGrowth = 10;
+    defGrowth = 10;
     defending = false;
     dead = false;
 }
@@ -58,7 +61,7 @@ int Player::getDef()
 
 int Player::takeDamage(int rawDamage)
 {
-    int damage = rawDamage - def;
+    int damage = rawDamage * 100 / (def + 100);
     if(damage < 0) return 0;
     if(defending) damage /= 2;
     currentHp -= damage;
@@ -69,14 +72,14 @@ int Player::takeDamage(int rawDamage)
 void Player::gainExp(int gainedExp)
 {
     exp += gainedExp;
-    while(exp >= 10 * lv)
+    while(exp >= 25 * lv)
     {
-        exp -= 10 * lv;
+        exp -= 25 * lv;
         lv++;
-        maxHp += 10;
+        maxHp += hpGrowth;
         currentHp = maxHp;
-        atk += 10;
-        def += 10;
+        atk += atkGrowth;
+        def += defGrowth;
     }
 }
 

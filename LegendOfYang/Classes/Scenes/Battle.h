@@ -5,6 +5,9 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Party.h"
+#include "Guard.h"
+#include "Wolf.h"
+#include "Mammoth.h"
 
 USING_NS_CC;
 

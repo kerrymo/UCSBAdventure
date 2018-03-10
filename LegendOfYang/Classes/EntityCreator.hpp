@@ -10,6 +10,7 @@
 #include "YangPhysics.hpp"
 #include "Item.hpp"
 #include "Party.h"
+#include "SimpleAudioEngine.h"
 
 const int defaultSize = 32;
 

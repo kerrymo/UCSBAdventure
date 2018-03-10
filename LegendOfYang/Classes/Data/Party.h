@@ -2,6 +2,9 @@
 
 #include "cocos2d.h"
 #include "Player.h"
+#include "Locke.h"
+#include "Terra.h"
+#include "Yang.h"
 
 USING_NS_CC;
 

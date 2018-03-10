@@ -14,10 +14,18 @@ bool Battle::init()
     // call parent init
     if (!Scene::init()) return false;
     
+    auto background = Sprite::create("background.png");
+    background->setScale(1024 / background->getContentSize().width, 768 / background->getContentSize().height);
+    background->setPosition(Vec2(512, 384));
+    this->addChild(background);
+    
     // create enemies
     for(int i = 0; i < 3; i++)
     {
-        enemy[i] = new Enemy(200 * i + 400, 500);
+        int temp = rand() % 3;
+        if(temp == 0) enemy[i] = new Guard(200 * i + 400, 500);
+        else if(temp == 1) enemy[i] = new Wolf(200 * i + 400, 500);
+        else enemy[i] = new Mammoth(200 * i + 400, 500);
         this->addChild(enemy[i]->getSprite());
         if(Party::getPlayer(i)->isDead()) continue;
         Party::getPlayer(i)->createSprite(200 * i + 400, 150);
@@ -29,31 +37,31 @@ bool Battle::init()
     // create buttons
     attackButton = Sprite::create("CloseSelected.png");
     attackButton->setAnchorPoint(Vec2(0.5, 0.5));
-    attackButton->setPosition(100, 500);
+    attackButton->setPosition(100, 400);
     this->addChild(attackButton);
     
     defendButton = Sprite::create("CloseNormal.png");
     defendButton->setAnchorPoint(Vec2(0.5, 0.5));
-    defendButton->setPosition(100, 400);
+    defendButton->setPosition(100, 300);
     this->addChild(defendButton);
     
     fleeButton = Sprite::create("CloseNormal.png");
     fleeButton->setAnchorPoint(Vec2(0.5, 0.5));
-    fleeButton->setPosition(100, 300);
+    fleeButton->setPosition(100, 200);
     this->addChild(fleeButton);
     
     // add labels
     attackLabel = Label::createWithSystemFont("Attack", "Arial", 30);
     attackLabel->enableBold();
-    attackLabel->setPosition(200, 500);
+    attackLabel->setPosition(200, 400);
     this->addChild(attackLabel);
     
     defendLabel = Label::createWithSystemFont("Defend", "Arial", 30);
-    defendLabel->setPosition(200, 400);
+    defendLabel->setPosition(200, 300);
     this->addChild(defendLabel);
     
     fleeLabel = Label::createWithSystemFont("Flee", "Arial", 30);
-    fleeLabel->setPosition(200, 300);
+    fleeLabel->setPosition(200, 200);
     this->addChild(fleeLabel);
     
     // set flags
@@ -83,6 +91,7 @@ void Battle::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event
         // use up and down arrow keys to choose command
         case EventKeyboard::KeyCode::KEY_UP_ARROW:
             if(status != ChoosingCommand) return;
+            audio->playEffect("select.wav");
             switch (command)
             {
                 case Defend:
@@ -108,6 +117,7 @@ void Battle::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event
         
         case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
             if(status != ChoosingCommand) return;
+            audio->playEffect("select.wav");
             switch (command)
             {
                 case Attack:
@@ -134,6 +144,7 @@ void Battle::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event
         // use left and right arrow keys to choose target
         case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
             if(status != ChoosingTarget) return;
+            audio->playEffect("select.wav");
             switch(target)
             {
                 case Middle:
@@ -166,6 +177,7 @@ void Battle::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event
         
         case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
             if(status != ChoosingTarget) return;
+            audio->playEffect("select.wav");
             switch(target)
             {
                 case Left:
@@ -199,18 +211,21 @@ void Battle::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event
         // if choosing target, use escape key to return to choosing command
         case EventKeyboard::KeyCode::KEY_ESCAPE:
             if(status != ChoosingTarget) return;
+            audio->playEffect("select.wav");
             for(int i = 0; i < 3; i++) enemy[i]->getSprite()->setColor(Color3B::WHITE);
             status = ChoosingCommand;
             break;
 
         // proceed to choose target or respond to command
         case EventKeyboard::KeyCode::KEY_SPACE:
+            
             switch (status) {
                 case ChoosingCommand:
                     
                     switch (command) {
                         // if attack is chosen, ask the user to choose a target
                         case Attack:
+                            audio->playEffect("confirm.wav");
                             status = ChoosingTarget;
                             if(!enemy[0]->isDead())
                             {
@@ -231,6 +246,7 @@ void Battle::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event
                         
                         // if defend is chosen, temporarily reduce damage taken
                         case Defend:
+                            audio->playEffect("confirm.wav");
                             status = InAction;
                             Party::getPlayer(actingPlayer)->defend();
                             endTurn();
@@ -238,6 +254,7 @@ void Battle::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event
                         
                         // if flee is chosen, return to the overworld
                         case Flee:
+                            audio->playEffect("flee.wav");
                             audio->stopBackgroundMusic();
                             Director::getInstance()->popScene();
                             break;
@@ -312,6 +329,7 @@ void Battle::displayDamage(int damage, int x, int y)
 // called when the player attacks an enemy
 void Battle::playerAttack(Enemy* enemy)
 {
+    audio->playEffect("hit.wav");
     int damage = enemy->takeDamage(Party::getPlayer(actingPlayer)->getAtk());
     displayDamage(damage, enemy->getPosition().x, enemy->getPosition().y + 150);
     Party::getPlayer(actingPlayer)->getSprite()->setPositionY(200);
@@ -326,6 +344,7 @@ void Battle::enemyAttack(Enemy* enemy)
 {
     if(enemy->isDead() || Party::fallen()) return;
     this->scheduleOnce([=](float delta){
+        audio->playEffect("hit.wav");
         int playerAttacked;
         do playerAttacked = rand() % 3;
         while(Party::getPlayer(playerAttacked)->isDead());
@@ -335,6 +354,7 @@ void Battle::enemyAttack(Enemy* enemy)
         Party::getPlayer(playerAttacked)->updateHpLabel();
         if(Party::getPlayer(playerAttacked)->getCurrentHp() == 0)
         {
+            audio->playEffect("die.wav");
             Party::getPlayer(playerAttacked)->die();
             if(Party::fallen()) gameOver();
         }
@@ -356,6 +376,13 @@ void Battle::endTurn()
     Party::getPlayer(actingPlayer)->getSprite()->setColor(Color3B::WHITE);
     do actingPlayer++;
     while(actingPlayer != 3 && Party::getPlayer(actingPlayer)->isDead());
+    command = Attack;
+    attackButton->setTexture("CloseSelected.png");
+    attackLabel->enableBold();
+    defendButton->setTexture("CloseNormal.png");
+    defendLabel->disableEffect();
+    fleeButton->setTexture("CloseNormal.png");
+    fleeLabel->disableEffect();
     if(actingPlayer == 3)
     {
         for(int i = 0; i < 3; i++)
