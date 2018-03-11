@@ -168,7 +168,6 @@
 		521A8EA919F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
-		57B73D622055F02500698E76 /* right-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B73D612055F02400698E76 /* right-arrow.png */; };
 		5CF04B5E204DFF9B00311F7D /* dungeonex.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF04B5C204DFF9B00311F7D /* dungeonex.png */; };
 		5CF04B5F204DFF9B00311F7D /* dungeonex.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF04B5C204DFF9B00311F7D /* dungeonex.png */; };
 		5CF04B60204DFF9B00311F7D /* dungeonex.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF04B5C204DFF9B00311F7D /* dungeonex.png */; };
@@ -225,6 +224,9 @@
 		B343B9922054A4A1001B52DE /* buy1.wav in Resources */ = {isa = PBXBuildFile; fileRef = B343B98A2054A49B001B52DE /* buy1.wav */; };
 		B343B9932054A4A1001B52DE /* equip.wav in Resources */ = {isa = PBXBuildFile; fileRef = B343B98B2054A49B001B52DE /* equip.wav */; };
 		B343B9942054A4A1001B52DE /* present.wav in Resources */ = {isa = PBXBuildFile; fileRef = B343B9892054A484001B52DE /* present.wav */; };
+		B343B99B2055F67B001B52DE /* right-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B343B99A2055F678001B52DE /* right-arrow.png */; };
+		B343B99C2055F67C001B52DE /* right-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B343B99A2055F678001B52DE /* right-arrow.png */; };
+		B343B99D2055F67D001B52DE /* right-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B343B99A2055F678001B52DE /* right-arrow.png */; };
 		B360A03C20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */; };
 		B360A03D20282E6400FCB0AE /* KeyboardMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */; };
 		B3C0A5EA2028D3D30088189A /* TextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C0A5E82028D3D30088189A /* TextBox.cpp */; };
@@ -417,7 +419,6 @@
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		57B73D612055F02400698E76 /* right-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "right-arrow.png"; path = "../../../../../right-arrow.png"; sourceTree = "<group>"; };
 		5CF04B5C204DFF9B00311F7D /* dungeonex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dungeonex.png; sourceTree = "<group>"; };
 		5CF04B61204DFFB400311F7D /* map.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map.tmx; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -445,6 +446,7 @@
 		B343B9892054A484001B52DE /* present.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = present.wav; sourceTree = "<group>"; };
 		B343B98A2054A49B001B52DE /* buy1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = buy1.wav; sourceTree = "<group>"; };
 		B343B98B2054A49B001B52DE /* equip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = equip.wav; sourceTree = "<group>"; };
+		B343B99A2055F678001B52DE /* right-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right-arrow.png"; sourceTree = "<group>"; };
 		B360A03A20282E6400FCB0AE /* KeyboardMenu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardMenu.cpp; sourceTree = "<group>"; };
 		B360A03B20282E6400FCB0AE /* KeyboardMenu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = KeyboardMenu.hpp; sourceTree = "<group>"; };
 		B3C0A5E82028D3D30088189A /* TextBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextBox.cpp; sourceTree = "<group>"; };
@@ -645,8 +647,8 @@
 				22AEA332204DFF9C00098565 /* guard.png */,
 				22AEA335204DFF9C00098565 /* Locke.png */,
 				22AEA330204DFF9B00098565 /* mammoth.png */,
+				B343B99A2055F678001B52DE /* right-arrow.png */,
 				22AEA333204DFF9C00098565 /* Terra.png */,
-				57B73D612055F02400698E76 /* right-arrow.png */,
 				22AEA334204DFF9C00098565 /* wolf.png */,
 				B3F617552047B32300D2ECB9 /* magecity.png */,
 				B343B95120532D99001B52DE /* library.tmx */,
@@ -953,6 +955,7 @@
 			files = (
 				22AEA372205473DE00098565 /* flee.wav in Resources */,
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
+				B343B99B2055F67B001B52DE /* right-arrow.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				22AEA36C205473DE00098565 /* die.wav in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
@@ -1047,6 +1050,7 @@
 				22600662203FD7D100640E3C /* res in Resources */,
 				22AEA36E205473DE00098565 /* die.wav in Resources */,
 				22AEA341204DFF9D00098565 /* wolf.png in Resources */,
+				B343B99D2055F67D001B52DE /* right-arrow.png in Resources */,
 				22600663203FD7D100640E3C /* song.mp3 in Resources */,
 				B343B9922054A4A1001B52DE /* buy1.wav in Resources */,
 				22600664203FD7D100640E3C /* battle.mp3 in Resources */,
@@ -1100,7 +1104,6 @@
 				22AEA36D205473DE00098565 /* die.wav in Resources */,
 				228865AD20279AC700C6F6A9 /* battle.mp3 in Resources */,
 				228865B020279F8200C6F6A9 /* victory.mp3 in Resources */,
-				57B73D622055F02500698E76 /* right-arrow.png in Resources */,
 				B3C0AF8B2040C91900072D79 /* player_up.png in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
 				B343B98F2054A4A0001B52DE /* buy1.wav in Resources */,
@@ -1116,6 +1119,7 @@
 				B3F617572047B32600D2ECB9 /* magecity.png in Resources */,
 				B343B95920533120001B52DE /* Castle2_5.png in Resources */,
 				46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */,
+				B343B99C2055F67C001B52DE /* right-arrow.png in Resources */,
 				B343B95F20535467001B52DE /* store.tmx in Resources */,
 				B3C0A613202CF88C0088189A /* TileMap.tmx in Resources */,
 				B343B9902054A4A0001B52DE /* equip.wav in Resources */,
