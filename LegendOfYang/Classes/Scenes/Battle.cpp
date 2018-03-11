@@ -97,7 +97,7 @@ void Battle::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event
                     defendButton->setTexture("CloseNormal.png");
                     defendLabel->disableEffect();
                     command = Attack;
-                    attackButton->setTexture("CloseSelected.png");
+                    attackButton->setTexture("right-arrow.png");
                     attackLabel->enableBold();
                     break;
                     
@@ -105,7 +105,7 @@ void Battle::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event
                     fleeButton->setTexture("CloseNormal.png");
                     fleeLabel->disableEffect();
                     command = Defend;
-                    defendButton->setTexture("CloseSelected.png");
+                    defendButton->setTexture("right-arrow.png");
                     defendLabel->enableBold();
                     break;
                     
@@ -123,7 +123,7 @@ void Battle::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event
                     attackButton->setTexture("CloseNormal.png");
                     attackLabel->disableEffect();
                     command = Defend;
-                    defendButton->setTexture("CloseSelected.png");
+                    defendButton->setTexture("right-arrow.png");
                     defendLabel->enableBold();
                     break;
                     
@@ -131,7 +131,7 @@ void Battle::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event
                     defendButton->setTexture("CloseNormal.png");
                     defendLabel->disableEffect();
                     command = Flee;
-                    fleeButton->setTexture("CloseSelected.png");
+                    fleeButton->setTexture("right-arrow.png");
                     fleeLabel->enableBold();
                     break;
                     

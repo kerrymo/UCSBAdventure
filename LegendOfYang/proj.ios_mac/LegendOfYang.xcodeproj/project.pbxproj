@@ -168,6 +168,7 @@
 		521A8EA919F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
+		57B73D622055F02500698E76 /* right-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B73D612055F02400698E76 /* right-arrow.png */; };
 		5CF04B5E204DFF9B00311F7D /* dungeonex.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF04B5C204DFF9B00311F7D /* dungeonex.png */; };
 		5CF04B5F204DFF9B00311F7D /* dungeonex.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF04B5C204DFF9B00311F7D /* dungeonex.png */; };
 		5CF04B60204DFF9B00311F7D /* dungeonex.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF04B5C204DFF9B00311F7D /* dungeonex.png */; };
@@ -416,6 +417,7 @@
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		57B73D612055F02400698E76 /* right-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "right-arrow.png"; path = "../../../../../right-arrow.png"; sourceTree = "<group>"; };
 		5CF04B5C204DFF9B00311F7D /* dungeonex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dungeonex.png; sourceTree = "<group>"; };
 		5CF04B61204DFFB400311F7D /* map.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map.tmx; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -644,6 +646,7 @@
 				22AEA335204DFF9C00098565 /* Locke.png */,
 				22AEA330204DFF9B00098565 /* mammoth.png */,
 				22AEA333204DFF9C00098565 /* Terra.png */,
+				57B73D612055F02400698E76 /* right-arrow.png */,
 				22AEA334204DFF9C00098565 /* wolf.png */,
 				B3F617552047B32300D2ECB9 /* magecity.png */,
 				B343B95120532D99001B52DE /* library.tmx */,
@@ -1097,6 +1100,7 @@
 				22AEA36D205473DE00098565 /* die.wav in Resources */,
 				228865AD20279AC700C6F6A9 /* battle.mp3 in Resources */,
 				228865B020279F8200C6F6A9 /* victory.mp3 in Resources */,
+				57B73D622055F02500698E76 /* right-arrow.png in Resources */,
 				B3C0AF8B2040C91900072D79 /* player_up.png in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
 				B343B98F2054A4A0001B52DE /* buy1.wav in Resources */,
