@@ -83,6 +83,8 @@ public:
     */
     void undefend();
     
+    virtual std::string getName() = 0;
+    
     virtual void createSprite(int, int);
     
     Sprite* getSprite();

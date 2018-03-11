@@ -60,9 +60,11 @@ public:
     
     // Description : Returns an item that closes the menu
     static LabelAndCallback closeItem();
+    
 protected:
     virtual bool init() override;
-    
+    virtual void onEnter() override;
+    virtual void onExit() override;
     void onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event);
     void updateDisplay();
     int selectedItem;

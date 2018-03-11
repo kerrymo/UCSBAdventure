@@ -11,6 +11,7 @@ class Terra : public Player
 public:
     Terra();
     void createSprite(int x, int y);
+    virtual std::string getName() { return "Terra"; };
 };
 
 

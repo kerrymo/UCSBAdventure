@@ -16,6 +16,10 @@ Player* Party::getPlayer(int num)
     return player[num];
 }
 
+std::vector<Player*> Party::getPlayers() {
+    return std::vector<Player*>(player, player + sizeof(player) / sizeof(player[0]));
+}
+
 bool Party::fallen()
 {
     bool temp = true;
@@ -43,6 +47,13 @@ int Party::getGold()
 {
     return gold;
 }
+
+void Party::setGold(int g) {
+    gold = std::max(0, g);
+    EventCustom event("inventory-changed");
+    Director::getInstance()->getEventDispatcher()->dispatchEvent(&event);
+};
+
 
 void Party::gainGold(int gainedGold)
 {

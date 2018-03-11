@@ -47,6 +47,17 @@ std::string EntityCreator::uniqueKey(int tag, std::string valueName) {
     return scene->worldName+std::to_string(tag)+valueName;
 }
 
+TextBox* EntityCreator::createGoldDisplay() {
+    auto goldDisplay = TextBox::create("Gold : " + std::to_string(Party::getGold()), Size(156, 28));
+    auto goldListener = EventListenerCustom::create("inventory-changed", [goldDisplay](EventCustom* event) {
+        goldDisplay->updateText("Gold : " + std::to_string(Party::getGold()));
+    });
+    
+    goldDisplay->getEventDispatcher()->addEventListenerWithSceneGraphPriority(goldListener, goldDisplay);
+    
+    return goldDisplay;
+}
+
 Entity* EntityCreator::createPlayer() {
     // Add player
     auto player = Entity::create("player_down.png");
@@ -163,12 +174,15 @@ Entity* EntityCreator::createFollowingEnemy() {
 Entity* EntityCreator::createCalpirgEnemy() {
     auto enemy = createFollowingEnemy();
     auto textBox = TextBox::create("Would you like to make a $10 donation to Calpirg?");
+    auto goldDisplay = createGoldDisplay();
     
     LabelAndCallback item1, item2;
     item1.first = "Yes";
-    item1.second = [this, textBox, enemy](Node *sender) {
+    item1.second = [this, textBox, enemy, goldDisplay](Node *sender) {
         sender->removeFromParent();
         sender->release();
+        goldDisplay->removeFromParent();
+        goldDisplay->release();
         if (Party::getGold() >= 10) {
             textBox->updateText("Thank you! Your donation will go to a good cause.");
             auto closeListener = EventListenerKeyboard::create();
@@ -198,9 +212,11 @@ Entity* EntityCreator::createCalpirgEnemy() {
     };
     
     item2.first = "No";
-    item2.second = [textBox, enemy](Node *sender){
+    item2.second = [textBox, goldDisplay, enemy](Node *sender){
         sender->removeFromParent();
         sender->release();
+        goldDisplay->removeFromParent();
+        goldDisplay->release();
         textBox->updateText("Wrong answer bucko.");
         auto closeListener = EventListenerKeyboard::create();
         closeListener->onKeyPressed = [enemy, textBox](EventKeyboard::KeyCode keyCode, Event *event) {
@@ -214,18 +230,21 @@ Entity* EntityCreator::createCalpirgEnemy() {
         textBox->getEventDispatcher()->addEventListenerWithSceneGraphPriority(closeListener, textBox);
     };
     auto menu = KeyboardMenu::create({item1, item2});
+    goldDisplay->setPosition(textBox->getPosition() + textBox->getContentSize() - Vec2(goldDisplay->getContentSize().width, 0));
     
-    
-    scene->physics->registerCallbackOnContact([textBox, menu, this](Node *enemy, Node *otherEntity) {
+    scene->physics->registerCallbackOnContact([textBox, menu, goldDisplay, this](Node *enemy, Node *otherEntity) {
         if (scene->player == otherEntity) {
+            
             scene->gui->addChild(textBox);
             scene->gui->addChild(menu);
+            scene->gui->addChild(goldDisplay);
             menu->setPosition(textBox->getPosition() + Vec2(0.0f, textBox->getContentSize().height));
         }
     }, enemy);
     
     textBox->retain();
     menu->retain();
+    goldDisplay->retain();
     
     return enemy;
 }
@@ -281,19 +300,25 @@ Entity* EntityCreator::createTalkingNPC(std::string message) {
 
 Entity* EntityCreator::createStoreNPC(std::vector<std::pair<Item*, int>> itemsAndPrices) {
     auto npc = createBasicNPC();
+    
     npc->interact = [this, npc, itemsAndPrices]() {
         auto textBox = TextBox::create("Hey kid I got that stuff you're looking for. You buying?");
         
         npc->setOrientation(scene->player->getCollisionBox().origin - npc->getCollisionBox().origin);
         LabelAndCallback yesItem, noItem;
         yesItem.first = "Yes";
-        yesItem.second = [this, itemsAndPrices](Node *sender) {
+        yesItem.second = [this, itemsAndPrices, textBox](Node *sender) {
+            textBox->setVisible(false);
+            sender->setVisible(false);
             std::vector<LabelAndCallback> shopItems;
             for (auto itemAndPrice : itemsAndPrices) {
                 LabelAndCallback shopItem;
                 shopItem.first = itemAndPrice.first->getName() + "   $" + std::to_string(itemAndPrice.second);
                 shopItem.second = [this, itemAndPrice](Node *sender) {
                     if (Party::getGold() >= itemAndPrice.second) {
+                        auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+                        audio->playEffect("buy1.wav");
+                        
                         Party::addItem(itemAndPrice.first);
                         Party::setGold(Party::getGold() - itemAndPrice.second);
                         scene->gui->addChild(PagedTextBox::create("Holla Holla get Dollas."));
@@ -303,8 +328,23 @@ Entity* EntityCreator::createStoreNPC(std::vector<std::pair<Item*, int>> itemsAn
                 };
                 shopItems.push_back(shopItem);
             }
-            shopItems.push_back(KeyboardMenu::closeItem());
-            scene->gui->addChild(KeyboardMenu::create(shopItems));
+            
+            auto goldDisplay = createGoldDisplay();
+            
+            auto closeItem = KeyboardMenu::closeItem();
+            auto yesAndNoBox = sender;
+            closeItem.second = [yesAndNoBox, textBox, goldDisplay](Node *sender) {
+                textBox->setVisible(true);
+                yesAndNoBox->setVisible(true);
+                sender->removeFromParent();
+                goldDisplay->removeFromParent();
+                
+            };
+            shopItems.push_back(closeItem);
+            auto shopMenu = KeyboardMenu::create(shopItems);
+            scene->gui->addChild(shopMenu);
+            goldDisplay->setPosition(shopMenu->getPosition() + Vec2(0, shopMenu->getContentSize().height + 4));
+            scene->gui->addChild(goldDisplay);
         };
         noItem.first = "No";
         noItem.second = [this, textBox](Node *sender) {
@@ -330,8 +370,12 @@ Entity* EntityCreator::createChest(Item *item, int tag) {
     chest->isDynamic = false;
     
     chest->interact = [item, chest, this, key](){
+        
         auto opened = GameState::defaultInstance->state[key].asBool();
         if (!opened) {
+            auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+            audio->playEffect("present.wav");
+            
             Party::addItem(item);
             scene->gui->addChild(PagedTextBox::create("You got " + item->getName()));
             chest->setTexture("chestOpened.png");

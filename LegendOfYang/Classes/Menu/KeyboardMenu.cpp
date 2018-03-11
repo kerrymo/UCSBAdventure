@@ -7,6 +7,7 @@
 
 #include "KeyboardMenu.hpp"
 #include "Utility.hpp"
+#include "SimpleAudioEngine.h"
 
 static const int fontSize = 24;
 
@@ -75,19 +76,35 @@ void KeyboardMenu::setContentSize(const cocos2d::Size &contentSize) {
     
 }
 
+void KeyboardMenu::onEnter() {
+    Node::onEnter();
+    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    
+    audio->playEffect("cursverti.wav");
+}
+
+void KeyboardMenu::onExit() {
+    Node::onExit();
+    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    audio->playEffect("curshoriz.wav");
+}
+
 void KeyboardMenu::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event) {
     event->stopPropagation();
     auto &item = _items.at(selectedItem);
+    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
     
     switch (keyCode) {
         case cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW:
         case cocos2d::EventKeyboard::KeyCode::KEY_W:
             selectedItem = (selectedItem - 1) % _items.size();
+            audio->playEffect("click.wav");
             updateDisplay();
             break;
         case cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW:
         case cocos2d::EventKeyboard::KeyCode::KEY_S:
             selectedItem = (selectedItem + 1) % _items.size();
+            audio->playEffect("click.wav");
             updateDisplay();
             break;
         case cocos2d::EventKeyboard::KeyCode::KEY_ENTER:
@@ -103,6 +120,7 @@ LabelAndCallback KeyboardMenu::closeItem() {
     close.first = "Close";
     close.second = [](Node *sender) {
         sender->removeFromParent();
+        
     };
     return close;
 }

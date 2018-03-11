@@ -26,6 +26,7 @@ public:
     
 protected:
     virtual bool init() override;
+    virtual void onEnter() override;
     CREATE_FUNC(PagedTextBox);
     std::vector<std::string> _text;
     u_int currentPage;

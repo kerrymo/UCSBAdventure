@@ -1,5 +1,4 @@
 #include "Battle.h"
-#include "HelloWorldScene.h"
 
 // create scene, called in AppDelegate.cpp
 Scene* Battle::createScene()

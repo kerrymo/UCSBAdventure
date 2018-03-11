@@ -15,6 +15,8 @@ public:
     
     static Player* getPlayer(int);
     
+    static std::vector<Player*> getPlayers();
+    
     static bool fallen();
     
     static int getFirstLivingPlayer();
@@ -27,7 +29,7 @@ public:
      */
     static int getGold();
     
-    static void setGold(int g) { gold = std::max(0, g); };
+    static void setGold(int g);
     
     /**
      Called when the player gains gold.

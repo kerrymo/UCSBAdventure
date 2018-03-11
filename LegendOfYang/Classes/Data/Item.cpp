@@ -20,7 +20,7 @@ LabelAndCallback Item::infoItem() {
     item.first = "Info";
     item.second = [this](Node *sender) {
         auto overworld = dynamic_cast<OverworldScene*>(Director::getInstance()->getRunningScene());
-        if (dynamic_cast<OverworldScene*>(Director::getInstance()->getRunningScene())) {
+        if (overworld) {
             overworld->gui->addChild(PagedTextBox::create(info));
         }
     };

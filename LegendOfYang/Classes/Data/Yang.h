@@ -11,6 +11,7 @@ class Yang : public Player
 public:
     Yang();
     void createSprite(int x, int y);
+    virtual std::string getName() { return "Yang"; };
 };
 
 

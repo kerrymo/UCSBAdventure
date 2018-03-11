@@ -6,6 +6,7 @@
 //
 
 #include "PagedTextBox.hpp"
+#include "SimpleAudioEngine.h"
 
 bool PagedTextBox::init() {
     if (!TextBox::init()) { return false; }
@@ -50,19 +51,29 @@ PagedTextBox* PagedTextBox::create(const std::vector<std::string> &text) {
     return box;
 }
 
+void PagedTextBox::onEnter() {
+    TextBox::onEnter();
+    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    
+    audio->playEffect("cursverti.wav");
+}
 
 void PagedTextBox::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event) {
     event->stopPropagation();
+    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
     switch (keyCode) {
         case EventKeyboard::KeyCode::KEY_ENTER:
         case EventKeyboard::KeyCode::KEY_SHIFT:
             if (currentPage + 1 < _text.size()) {
                 currentPage += 1;
+                audio->playEffect("cursverti.wav");
                 updateText(_text.at(currentPage));
             } else {
                 // Close Text Box
+                audio->playEffect("curshoriz.wav");
                 removeFromParent();
             }
+            
             
             break;
             

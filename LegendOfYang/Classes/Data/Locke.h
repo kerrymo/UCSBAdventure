@@ -11,5 +11,6 @@ class Locke : public Player
 public:
     Locke();
     void createSprite(int x, int y);
+    virtual std::string getName() { return "Locke"; };
 };
 

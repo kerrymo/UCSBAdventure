@@ -20,6 +20,9 @@ OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
     auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
     audio->playBackgroundMusic("world.mp3", true);
     
+    Party::addItem(Consumable::caffinePills);
+    Party::addItem(Consumable::communityCollegeCredits);
+    
     // Setup node Layers
     auto scene = OverworldScene::create();
     
@@ -149,6 +152,7 @@ void OverworldScene::onEnter() {
     physics->resumeAll();
     auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
     audio->playBackgroundMusic("world.mp3");
+    audio->setBackgroundMusicVolume(0.7);
 }
 
 #pragma mark input

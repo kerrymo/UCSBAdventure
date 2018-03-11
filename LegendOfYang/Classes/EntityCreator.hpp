@@ -15,6 +15,7 @@
 const int defaultSize = 32;
 
 class OverworldScene;
+class TextBox;
 class EntityCreator {
 public:
     EntityCreator(OverworldScene *s) : scene(s) {};
@@ -34,6 +35,7 @@ public:
 protected:
     std::string uniqueKey(int tag, std::string valueName);
     void setupAnimation(Entity *entity);
+    TextBox* createGoldDisplay();
     OverworldScene *scene;
 };
 
