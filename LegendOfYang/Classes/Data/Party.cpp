@@ -57,7 +57,7 @@ void Party::setGold(int g) {
 
 void Party::gainGold(int gainedGold)
 {
-    gold += gainedGold;
+    setGold(gold + gainedGold);
 }
 
 void Party::addItem(Item *item)
