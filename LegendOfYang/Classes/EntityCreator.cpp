@@ -234,7 +234,11 @@ Entity* EntityCreator::createCalpirgEnemy() {
             scene->gui->addChild(textBox);
             scene->gui->addChild(menu);
             scene->gui->addChild(goldDisplay);
-            menu->setOnExitCallback([goldDisplay](){ goldDisplay->removeFromParent(); });
+            goldDisplay->retain();
+            menu->setOnExitCallback([goldDisplay](){
+                goldDisplay->removeFromParent();
+                goldDisplay->release();
+            });
             menu->setPosition(textBox->getPosition() + Vec2(0.0f, textBox->getContentSize().height));
         }
     }, enemy);
