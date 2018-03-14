@@ -23,3 +23,4 @@ For Battle:
 1. Choose attack, defend or flee
 2. If you choose to attack, use arrow keys to choose which enemy you want to attack
 3. Use space bar to confirm attack, defend or flee
+4. If you finish the battle, press space bar to exit
