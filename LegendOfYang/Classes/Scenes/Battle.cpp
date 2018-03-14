@@ -443,6 +443,18 @@ void Battle::win()
         }
     }
     Party::gainGold(goldGained);
+    
+    // Can't immediately skip fanfare
+    Node *inputConsumer = Node::create();
+    auto keyboardListener = EventListenerKeyboard::create();
+    keyboardListener->onKeyReleased = [](EventKeyboard::KeyCode keyCode, Event *event) {
+        event->stopPropagation();
+    };
+    getEventDispatcher()->addEventListenerWithSceneGraphPriority(keyboardListener, inputConsumer);
+    
+    getScheduler()->schedule([inputConsumer](float dt){inputConsumer->removeFromParent();}, inputConsumer, 1.0f, 0, 2.0f, false, "consumeInput");
+    
+    addChild(inputConsumer);
 }
 
 void Battle::onEnterTransitionDidFinish() {

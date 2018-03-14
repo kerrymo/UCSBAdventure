@@ -174,15 +174,12 @@ Entity* EntityCreator::createFollowingEnemy() {
 Entity* EntityCreator::createCalpirgEnemy() {
     auto enemy = createFollowingEnemy();
     auto textBox = TextBox::create("Would you like to make a $10 donation to Calpirg?");
-    auto goldDisplay = createGoldDisplay();
     
     LabelAndCallback item1, item2;
     item1.first = "Yes";
-    item1.second = [this, textBox, enemy, goldDisplay](Node *sender) {
+    item1.second = [this, textBox, enemy](Node *sender) {
         sender->removeFromParent();
         sender->release();
-        goldDisplay->removeFromParent();
-        goldDisplay->release();
         if (Party::getGold() >= 10) {
             textBox->updateText("Thank you! Your donation will go to a good cause.");
             auto closeListener = EventListenerKeyboard::create();
@@ -212,11 +209,9 @@ Entity* EntityCreator::createCalpirgEnemy() {
     };
     
     item2.first = "No";
-    item2.second = [textBox, goldDisplay, enemy](Node *sender){
+    item2.second = [textBox, enemy](Node *sender){
         sender->removeFromParent();
         sender->release();
-        goldDisplay->removeFromParent();
-        goldDisplay->release();
         textBox->updateText("Wrong answer bucko.");
         auto closeListener = EventListenerKeyboard::create();
         closeListener->onKeyPressed = [enemy, textBox](EventKeyboard::KeyCode keyCode, Event *event) {
@@ -230,21 +225,26 @@ Entity* EntityCreator::createCalpirgEnemy() {
         textBox->getEventDispatcher()->addEventListenerWithSceneGraphPriority(closeListener, textBox);
     };
     auto menu = KeyboardMenu::create({item1, item2});
-    goldDisplay->setPosition(textBox->getPosition() + textBox->getContentSize() - Vec2(goldDisplay->getContentSize().width, 0));
     
-    scene->physics->registerCallbackOnContact([textBox, menu, goldDisplay, this](Node *enemy, Node *otherEntity) {
+    
+    scene->physics->registerCallbackOnContact([textBox, menu, this](Node *enemy, Node *otherEntity) {
         if (scene->player == otherEntity) {
-            
+            auto goldDisplay = createGoldDisplay();
+            goldDisplay->setPosition(textBox->getPosition() + textBox->getContentSize() - Vec2(goldDisplay->getContentSize().width, 0));
             scene->gui->addChild(textBox);
             scene->gui->addChild(menu);
             scene->gui->addChild(goldDisplay);
+            goldDisplay->retain();
+            menu->setOnExitCallback([goldDisplay](){
+                goldDisplay->removeFromParent();
+                goldDisplay->release();
+            });
             menu->setPosition(textBox->getPosition() + Vec2(0.0f, textBox->getContentSize().height));
         }
     }, enemy);
     
     textBox->retain();
     menu->retain();
-    goldDisplay->retain();
     
     return enemy;
 }
@@ -290,7 +290,7 @@ Entity* EntityCreator::createTalkingNPC(std::string message) {
     scheduler->schedule(lookAround, npc, 4.0f, kRepeatForever, 0.0f, false, "lookAround");
     
     npc->interact = [this, message, npc]() {
-        npc->setOrientation(scene->player->getCollisionBox().origin - npc->getCollisionBox().origin);
+        npc->face(scene->player);
         scene->gui->addChild(PagedTextBox::create(message));
     };
     
@@ -394,7 +394,7 @@ Entity* EntityCreator::createBoss() {
     setupAnimation(boss);
     
     boss->interact = [this, boss]() {
-        boss->setOrientation(scene->player->getCollisionBox().origin - boss->getCollisionBox().origin);
+        boss->face(scene->player);
         auto textBox = PagedTextBox::create("We're not so different you and I.");
         scene->gui->addChild(textBox);
         textBox->setOnExitCallback([]() {
