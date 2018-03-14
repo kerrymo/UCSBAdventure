@@ -1,8 +1,8 @@
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
 #include "OverworldScene.hpp"
 #include "Player.h"
 #include "Enemy.h"
+#include "GameState.hpp"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -133,6 +133,65 @@ void AppDelegate::applicationWillEnterForeground() {
     SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
     SimpleAudioEngine::getInstance()->resumeAllEffects();
 #endif
+}
+
+
+
+TEST_CASE("gamestate-singleton") {
+    GameState::defaultInstance->state["key"] = Value(true);
+    REQUIRE(GameState::defaultInstance->state["key"].asBool());
+}
+
+TEST_CASE("keyboardMenu-setItems") {
+    auto menu = KeyboardMenu::create({{"item1", nullptr}, {"item2", nullptr}});
+    menu->setItems({{"item3", nullptr}});
+    REQUIRE(menu->selectedLabelText() == "item3");
+}
+
+TEST_CASE("keyboardMenu-setContentSize") {
+    auto menu = KeyboardMenu::create({{"item1", nullptr}, {"item2", nullptr}});
+    menu->setContentSize(Size::ZERO);
+    REQUIRE(!menu->getContentSize().equals(Size::ZERO)); // Note: should not be zero despite the call above.
+}
+
+TEST_CASE("keyboardMenu-selectedLabelText") {
+    auto menu = KeyboardMenu::create({{"item1", nullptr}, {"item2", nullptr}});
+    REQUIRE(menu->selectedLabelText() == "item1");
+}
+
+TEST_CASE("keyboardMenu-autoResize") {
+    auto menu = KeyboardMenu::create({{"item1", nullptr}, {"item2", nullptr}});
+    REQUIRE(!menu->getContentSize().equals(Size::ZERO));
+}
+
+TEST_CASE("entity-face") {
+    auto e1 = Entity::create();
+    auto e2 = Entity::create();
+    e1->setPosition(Vec2(0, 1));
+    e2->face(e1);
+    REQUIRE(e2->getOrientation().equals(Vec2(0,1)));
+}
+
+TEST_CASE("entity-setOrientation") {
+    auto e1 = Entity::create();
+    e1->setOrientation(Vec2(100, 0));
+    REQUIRE(e1->getOrientation().equals(Vec2(1,0)));
+}
+
+TEST_CASE("entity-getCollisionBox") {
+    auto e1 = Entity::create();
+    e1->setPosition(1, 2);
+    e1->setContentSize(Size(3, 4));
+    REQUIRE(e1->getCollisionBox().equals(Rect(1, 2, 3, 4)));
+}
+
+TEST_CASE("entity-getAllEntities") {
+    auto e1 = Entity::create();
+    auto e2 = Entity::create();
+    auto e3 = Entity::create();
+    
+    e1->addChild(e2); e2->addChild(e3);
+    REQUIRE(e1->getAllEntities().equals({e2, e3}));
 }
 
 TEST_CASE("Player Tests")

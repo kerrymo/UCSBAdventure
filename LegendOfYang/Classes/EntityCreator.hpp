@@ -20,7 +20,7 @@ class EntityCreator {
 public:
     EntityCreator(OverworldScene *s) : scene(s) {};
     
-    // Description : All these functions just initialize specific entities.
+    // Description : All these functions just initialize specific entities. What they initialize is clear from their name
     Entity* createPlayer();
     Entity* createBasicNPC();
     Entity* createTalkingNPC(std::string message);

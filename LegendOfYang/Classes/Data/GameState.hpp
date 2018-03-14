@@ -11,6 +11,14 @@ USING_NS_CC;
 
 class GameState {
 public:
+    /**
+     Singleton reference
+     */
     static GameState *defaultInstance;
+    
+    /**
+     Key value map that stores the state of the gameworld.
+     i.e. chests set flags about whether or not they’ve been opened.
+     */
     ValueMap state;
 };
