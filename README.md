@@ -19,3 +19,7 @@ Group Members: John Rehbein, Sitao Chen, Kerry Mo, Iris Xu, Qilin Liu
 
 # How to play the game
 Use arrow keys to move around or select options, E to open the menu, and space bar or return key to make decisions.
+For Battle:
+1. Choose attack, defend or flee
+2. If you choose to attack, use arrow keys to choose which enemy you want to attack
+3. Use space bar to confirm attack, defend or flee
