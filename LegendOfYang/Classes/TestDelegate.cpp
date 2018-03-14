@@ -154,6 +154,12 @@ TEST_CASE("keyboardMenu-setContentSize") {
     REQUIRE(!menu->getContentSize().equals(Size::ZERO)); // Note: should not be zero despite the call above.
 }
 
+TEST_CASE("keyboardMenu-setContentSize2") {
+    auto menu = KeyboardMenu::create({{"item1", nullptr}, {"item2", nullptr}});
+    menu->setContentSize(Size(1000, 1000));
+    REQUIRE(!menu->getContentSize().equals(Size(1000, 1000))); // Note: should not be zero despite the call above.
+}
+
 TEST_CASE("keyboardMenu-selectedLabelText") {
     auto menu = KeyboardMenu::create({{"item1", nullptr}, {"item2", nullptr}});
     REQUIRE(menu->selectedLabelText() == "item1");
@@ -172,10 +178,24 @@ TEST_CASE("entity-face") {
     REQUIRE(e2->getOrientation().equals(Vec2(0,1)));
 }
 
+TEST_CASE("entity-face2") {
+    auto e1 = Entity::create();
+    auto e2 = Entity::create();
+    e1->setPosition(Vec2(1, 0));
+    e2->face(e1);
+    REQUIRE(e2->getOrientation().equals(Vec2(1,0)));
+}
+
 TEST_CASE("entity-setOrientation") {
     auto e1 = Entity::create();
     e1->setOrientation(Vec2(100, 0));
     REQUIRE(e1->getOrientation().equals(Vec2(1,0)));
+}
+
+TEST_CASE("entity-setOrientation2") {
+    auto e1 = Entity::create();
+    e1->setOrientation(Vec2(-100, 0));
+    REQUIRE(e1->getOrientation().equals(Vec2(-1,0)));
 }
 
 TEST_CASE("entity-getCollisionBox") {
@@ -183,6 +203,13 @@ TEST_CASE("entity-getCollisionBox") {
     e1->setPosition(1, 2);
     e1->setContentSize(Size(3, 4));
     REQUIRE(e1->getCollisionBox().equals(Rect(1, 2, 3, 4)));
+}
+
+TEST_CASE("entity-getCollisionBox2") {
+    auto e1 = Entity::create();
+    e1->setPosition(4, 3);
+    e1->setContentSize(Size(2, 1));
+    REQUIRE(e1->getCollisionBox().equals(Rect(4, 3, 2, 1)));
 }
 
 TEST_CASE("entity-getAllEntities") {
