@@ -100,7 +100,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto scene = OverworldScene::createWithTileMap("arbor.tmx");
     std::vector<std::string> tutorialText = {"Welcome to Legend of Yang. You can use the enter key to scroll through text.",
         "To move your character use the arrow keys.",
-        "To interact with npcs or other things walk up to them and press the enter key."
+        "To interact with npcs or other things walk up to them and press the enter key.",
+        "To open your inventory press e."
     };
     
     scene->gui->addChild(PagedTextBox::create(tutorialText));
