@@ -9,6 +9,10 @@ USING_NS_CC;
 class Player
 {
 public:
+    /**
+     The default constructor.
+     Postcondition: a new object is created.
+    */
     Player();
     
     /**
@@ -41,7 +45,13 @@ public:
     */
     int getCurrentHp();
     
+    /**
+     The setter of currentHp.
+     Parameters: the new value of currentHp.
+     Postcondition: the currentHp has been set to the new value.
+    */
     void setCurrentHp(int hp);
+    
     /**
      The getter of atk.
      Return: the atk variable.
@@ -85,18 +95,51 @@ public:
     
     virtual std::string getName() = 0;
     
+    /**
+     Create the sprite for the player.
+     Parameters: the position of the sprite.
+     Precondition: the sprite is not created.
+     Postcondition: the sprite is created.
+    */
     virtual void createSprite(int, int);
     
+    /**
+     The getter of sprite.
+     Return: the sprite pointer.
+    */
     Sprite* getSprite();
     
+    /**
+     The getter of hpLabel.
+     Return: the hpLabel pointer.
+    */
     Label* getHpLabel();
     
+    /**
+     Create the hp label for the player.
+     Parameters: the position of the label.
+     Precondition: the label is not created.
+     Postcondition: the label is created.
+    */
     void createHpLabel(int, int);
     
+    /**
+     The getter of dead flag.
+     Return: the dead boolean.
+    */
     bool isDead();
     
+    /**
+     Called when the player dies.
+     Precondition: the player is not dead.
+     Postcondition: the player is dead.
+    */
     void die();
     
+    /**
+     Called when the hp of the player changes.
+     Postcondition: the hp label of the player is updated.
+    */
     void updateHpLabel();
     
 protected:
