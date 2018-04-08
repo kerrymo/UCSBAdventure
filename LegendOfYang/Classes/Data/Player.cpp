@@ -1,14 +1,19 @@
 #include "Player.h"
 
-int Player::lv = 1;
-int Player::exp = 0;
-int Player::gold = 0;
-int Player::maxHp = 60;
-int Player::currentHp = 60;
-int Player::atk = 10;
-int Player::def = 0;
-bool Player::defending = false;
-std::unordered_map<Item*, int> Player::items;
+Player::Player()
+{
+    lv = 1;
+    exp = 0;
+    maxHp = 60;
+    currentHp = 60;
+    atk = 10;
+    def = 0;
+    hpGrowth = 10;
+    atkGrowth = 10;
+    defGrowth = 10;
+    defending = false;
+    dead = false;
+}
 
 int Player::getLv()
 {
@@ -28,11 +33,6 @@ std::string Player::lvToString(int lvl)
 int Player::getExp()
 {
     return exp;
-}
-
-int Player::getGold()
-{
-    return gold;
 }
 
 int Player::getMaxHp()
@@ -61,7 +61,7 @@ int Player::getDef()
 
 int Player::takeDamage(int rawDamage)
 {
-    int damage = rawDamage - def;
+    int damage = rawDamage * 100 / (def + 100);
     if(damage < 0) return 0;
     if(defending) damage /= 2;
     currentHp -= damage;
@@ -72,22 +72,16 @@ int Player::takeDamage(int rawDamage)
 void Player::gainExp(int gainedExp)
 {
     exp += gainedExp;
-    while(exp >= 10 * lv)
+    while(exp >= 25 * lv)
     {
-        exp -= 10 * lv;
+        exp -= 25 * lv;
         lv++;
-        maxHp += 10;
+        maxHp += hpGrowth;
         currentHp = maxHp;
-        atk += 10;
-        def += 10;
+        atk += atkGrowth;
+        def += defGrowth;
     }
 }
-
-void Player::gainGold(int gainedGold)
-{
-    gold += gainedGold;
-}
-
 
 void Player::defend()
 {
@@ -99,19 +93,42 @@ void Player::undefend()
     defending = false;
 }
 
-void Player::addItem(Item *item)
+void Player::createSprite(int x, int y)
 {
-    items[item]++;
-    EventCustom event("inventory-changed");
-    Director::getInstance()->getEventDispatcher()->dispatchEvent(&event);
+    sprite = Sprite::create("player_up.png");
+    sprite->setScale(5);
+    sprite->setAnchorPoint(Vec2(0.5, 0.5));
+    sprite->setPosition(x, y);
 }
 
-void Player::removeItem(Item *item)
+Sprite* Player::getSprite()
 {
-    items[item]--;
-    if (items[item] <= 0) {
-        items.erase(item);
-    }
-    EventCustom event("inventory-changed");
-    Director::getInstance()->getEventDispatcher()->dispatchEvent(&event);
+    return sprite;
+}
+
+Label* Player::getHpLabel()
+{
+    return hpLabel;
+}
+
+void Player::createHpLabel(int x, int y)
+{
+    hpLabel = Label::createWithSystemFont("HP " + std::to_string(currentHp) + "/" + std::to_string(maxHp), "Arial", 25);
+    hpLabel->setPosition(x, y);
+}
+
+bool Player::isDead()
+{
+    return dead;
+}
+
+void Player::die()
+{
+    sprite->runAction(FadeTo::create(0.25, 0));
+    dead = true;
+}
+
+void Player::updateHpLabel()
+{
+    hpLabel->setString("HP " + std::to_string(currentHp) + "/" + std::to_string(maxHp));
 }

@@ -27,6 +27,11 @@ public:
     // Postcondition : orientation is a unit vector pointing in the same direction as direction
     void setOrientation(Vec2 direction);
     
+    /**
+     Makes this entity oriented toward target
+     */
+    void face(Entity *target) { setOrientation(target->getCollisionBox().origin - this->getCollisionBox().origin); };
+    
     // Interaction Properties
     
     // Description : This is called when the player interacts with this entity.

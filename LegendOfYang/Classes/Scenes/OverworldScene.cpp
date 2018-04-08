@@ -17,17 +17,31 @@
 #include <iostream>
 
 OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
+    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    audio->playBackgroundMusic("world.mp3", true);
+    
+    Party::addItem(Consumable::caffinePills);
+    Party::addItem(Consumable::communityCollegeCredits);
+    
     // Setup node Layers
     auto scene = OverworldScene::create();
-    scene->gui = Entity::create();
-    scene->world = Entity::create();
-    scene->addChild(scene->world, 0);
-    scene->addChild(scene->gui, 1); // GUI always has higher event priority over anything else
+    
+    // Set world name
+    size_t beforeExtension = filename.find_last_of(".");
+    scene->worldName = filename.substr(0, beforeExtension);
     
     // Setup Tile map
     scene->tileMap = TMXTiledMap::create(filename);
     scene->meta = scene->tileMap->getLayer("Meta");
-    scene->world->addChild(scene->tileMap, 0, 99);
+    scene->meta->setVisible(false);
+    auto backgroundOrder = scene->tileMap->getLayer("Background")->getLocalZOrder();
+    scene->addChild(scene->tileMap, 0);
+    
+    // Setup node Layers
+    scene->gui = Entity::create();
+    scene->world = Entity::create();
+    scene->addChild(scene->gui, 1); // GUI always has higher event priority over anything else
+    scene->tileMap->addChild(scene->world, backgroundOrder); // All entities always rendered just in front of layer named "Background"
     
     // Add physics handler to the world
     scene->physics = YangPhysics::createWithTileMap(scene->tileMap);
@@ -41,7 +55,7 @@ OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
     scene->player = entityCreator->createPlayer();
     
     scene->world->addChild(scene->player);
-    scene->world->runAction(Follow::create(scene->player));
+    scene->tileMap->runAction(Follow::createWithOffset(scene->player, 0, 0, Rect(Vec2::ZERO, scene->tileMap->getMapSize() * scene->tileMap->getTileSize().height)));
     
     // Populate world with entities
     auto objectGroup = scene->tileMap->getObjectGroup("Objects");
@@ -56,9 +70,9 @@ OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
             Node *entity;
             auto type = objectMap["type"].asString();
             if (type == "TalkingNPC") {
-                entity = entityCreator->createTalkingNPC(objectMap["message"].asString());
+                entity = entityCreator->createTalkingNPC(objectMap.at("message").asString());
             } else if (type == "LoadingZone") {
-                entity = entityCreator->createLoadingZone(objectMap["world"].asString() + ".tmx", objectMap["entrance"].asString());
+                entity = entityCreator->createLoadingZone(objectMap.at("world").asString() + ".tmx", objectMap.at("entrance").asString());
                 entity->setContentSize(Size(objectMap["width"].asFloat(), objectMap["height"].asFloat()));
             } else if (type == "Entrance") {
                 entity = Node::create();
@@ -68,12 +82,18 @@ OverworldScene* OverworldScene::createWithTileMap(std::string filename) {
                 entity = entityCreator->createStoreNPC({{Consumable::caffinePills, 10}, {Consumable::degreePetition, 10}});
             } else if (type == "CalpirgEnemy") {
                 entity = entityCreator->createCalpirgEnemy();
+            } else if (type == "Chest") {
+                auto itemName = objectMap.at("item").asString();
+                entity = entityCreator->createChest(Item::itemFromName(itemName), objectMap["id"].asInt());
+            } else if (type == "Boss") {
+                entity = entityCreator->createBoss();
             } else {
                 continue;
             }
             std::cout << metaObject.getDescription();
             entity->setPosition(objectMap["x"].asFloat(), objectMap["y"].asFloat());
             entity->setName(objectMap["name"].asString());
+            entity->setTag(objectMap["id"].asInt());
             scene->world->addChild(entity);
         }
     }
@@ -114,10 +134,13 @@ void OverworldScene::update(float delta) {
     
     player->velocity = velocityDirection * 200.0f;
     
+    
 }
 
 void OverworldScene::onExitTransitionDidStart()  {
     Scene::onExitTransitionDidStart();
+    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    audio->stopBackgroundMusic();
     for (int i = 0; i < 200; i++) {
         heldKey[i] = false;
     }
@@ -127,6 +150,9 @@ void OverworldScene::onExitTransitionDidStart()  {
 void OverworldScene::onEnter() {
     Scene::onEnter();
     physics->resumeAll();
+    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    audio->playBackgroundMusic("world.mp3");
+    audio->setBackgroundMusicVolume(0.7);
 }
 
 #pragma mark input
@@ -140,7 +166,9 @@ void OverworldScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event) 
         LabelAndCallback item1, item2;
         item1.first = "Inventory";
         item1.second = [this](Node *sender) {
-            this->gui->addChild(Inventory::create());
+            auto inventory = Inventory::create();
+            inventory->setPosition(sender->getContentSize().width,0);
+            this->gui->addChild(inventory);
         };
         item2.first = "Stats";
         item2.second = [this](Node *sender) {

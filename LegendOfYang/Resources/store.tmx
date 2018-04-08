@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.2" orientation="orthogonal" renderorder="right-down" width="30" height="35" tilewidth="32" tileheight="32" infinite="0" nextobjectid="63">
+ <tileset firstgid="1" name="tmw_desert_spacing" tilewidth="32" tileheight="32" spacing="1" margin="1" tilecount="48" columns="8">
+  <image source="tmw_desert_spacing.png" width="265" height="199"/>
+ </tileset>
+ <tileset firstgid="49" name="meta_tiles" tilewidth="32" tileheight="32" spacing="1" margin="1" tilecount="2" columns="2">
+  <image source="meta_tiles.png" width="67" height="34"/>
+  <tile id="0">
+   <properties>
+    <property name="Collidable" value="True"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="Collectable" value="True"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="51" source="Terrain.tsx"/>
+ <tileset firstgid="1075" name="magecity" tilewidth="32" tileheight="32" tilecount="360" columns="8">
+  <image source="magecity.png" width="256" height="1450"/>
+ </tileset>
+ <tileset firstgid="1435" name="shop" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+  <image source="request_finalized_by_nicnubill-d6xcly3.png" width="512" height="512"/>
+ </tileset>
+ <layer name="Background" width="30" height="35">
+  <data encoding="base64" compression="zlib">
+   eJztwzEJAAAMA7Ay/yIqtSZ2JpBeUlVVVdWHAxBrmJM=
+  </data>
+ </layer>
+ <layer name="Foreground" width="30" height="35">
+  <data encoding="base64" compression="zlib">
+   eJztzbENACAMA8Gw/z7AJMAkiBJvAGnS5C1962vFbATX1VHR27i4uLi4uLi4uLi4uLi4SdypqqPXfj6WuhPpaOM=
+  </data>
+ </layer>
+ <layer name="shop" width="30" height="35">
+  <data encoding="base64" compression="zlib">
+   eJztlDcOwkAQRbfZ6QgNPQ09NUcgHIB0AFJLpiXTEhq4ARyJG8AJCJ8CrbG9SCMhI1nzpK+//tbMSLv2KvVJkpQvGUbul9n6vklb3mcZuV9m6ysIYaaN774DdaEclIcKxM+5jFEzgaZQGapAVeLnXNao2UBbqAE1oRbxcyFcFHGmJTIeFDXMqpNxLgPUDKER2dduzlqpHvI+GeeyQM0SWpF97eaKuTPkczIeFDvMumjjwncerz0i405uyO7a64kfnGcMPeJk3EkEz1HyekruY0Gwsse/efjDnXfEzJPctQKDJ47WPag=
+  </data>
+ </layer>
+ <layer name="Meta" width="30" height="35">
+  <data encoding="base64" compression="zlib">
+   eJwzZGBgMBwgjAzQ+eSIExLDZi89wKi9o/aOFHtpUTYMZntpCUbtHbr20iM9DxZ7BzIfjebfoWEvobYfKWmcFHtpCUbtHbV3JNpLbfcNdv8ON3spbQ+TYyYAUpUnoA==
+  </data>
+ </layer>
+ <objectgroup name="Objects">
+  <object id="50" name="Store guide npc" type="TalkingNPC" x="350.349" y="959.327" width="31.2957" height="30.8927">
+   <properties>
+    <property name="message" value="Welcome to Arbor Store! "/>
+   </properties>
+  </object>
+  <object id="52" name="basic enemy" type="BasicEnemy" x="65.9379" y="286.309" width="36.4394" height="36.4394"/>
+  <object id="53" name="basic enemy" type="BasicEnemy" x="504.945" y="157.904" width="36.4394" height="36.4394"/>
+  <object id="55" name="following enemy" type="FollowingEnemy" x="697.553" y="381.746" width="36.4394" height="36.4394"/>
+  <object id="58" name="Arbor Entrance" type="Entrance" x="496.491" y="1056.57" width="27.9849" height="30.304"/>
+  <object id="59" name="SpawnPoint" x="492.482" y="805.628" width="33.108" height="33.108"/>
+  <object id="60" name="calpirg" type="CalpirgEnemy" x="310.817" y="408.713" width="41.6055" height="44.0529"/>
+  <object id="62" name="Arbor loading zone" type="LoadingZone" x="383.652" y="1110.24" width="264.641" height="68.9007">
+   <properties>
+    <property name="entrance" value="Arbor Exit"/>
+    <property name="world" value="arbor"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

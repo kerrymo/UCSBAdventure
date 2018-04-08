@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cocos2d.h"
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 
@@ -11,7 +12,7 @@ public:
      The default constructor.
      Postcondition: a new object is created.
     */
-    Enemy(int);
+    Enemy();
     
     /**
      The getter of exp.
@@ -84,7 +85,7 @@ public:
     */
     void die();
     
-private:
+protected:
     int exp, gold, hp, atk, def;
     bool dead;
     Sprite *sprite;

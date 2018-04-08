@@ -8,6 +8,8 @@
 #pragma once
 USING_NS_CC;
 
+static auto menuColor = Color4B(0, 0, 0, 200);
+
 enum LoopUpdateOrder { // The order which entries are layed out here is the order which they will be updated in game
     LOOP_UPDATE_ORDER_INPUT, // Has integer value 0
     LOOP_UPDATE_ORDER_ENTITY, // Has integer value 1 etc.

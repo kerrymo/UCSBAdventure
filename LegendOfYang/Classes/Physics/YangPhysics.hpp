@@ -50,4 +50,5 @@ protected:
     std::unordered_set<__int128> currentContacts;
     TMXTiledMap *tileMap;
     TMXLayer *meta;
+    int GID;
 };

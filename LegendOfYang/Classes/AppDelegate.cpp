@@ -1,6 +1,6 @@
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
 #include "OverworldScene.hpp"
+#include "PagedTextBox.hpp"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -93,11 +93,18 @@ bool AppDelegate::applicationDidFinishLaunching() {
     }
 
     register_all_packages();
+    
+    Party party;
 
     // create a scene. it's an autorelease object
-    auto scene = OverworldScene::createWithTileMap("TileMap.tmx");
-    //auto scene = HelloWorld::createScene();
+    auto scene = OverworldScene::createWithTileMap("arbor.tmx");
+    std::vector<std::string> tutorialText = {"Welcome to Legend of Yang. You can use the enter key to scroll through text.",
+        "To move your character use the arrow keys.",
+        "To interact with npcs or other things walk up to them and press the enter key.",
+        "To open your inventory press e."
+    };
     
+    scene->gui->addChild(PagedTextBox::create(tutorialText));
     // run
     director->runWithScene(scene);
 

@@ -12,16 +12,15 @@
 #include "Battle.h"
 #include "OverworldScene.hpp"
 #include "Utility.hpp"
+#include "GameState.hpp"
 #include <iostream>
 
 void EntityCreator::setupAnimation(Entity *entity) {
-    auto size = entity->getContentSize();
-    entity->setTexture("player_down.png");
-    entity->setContentSize(size);
     auto orientationListener = EventListenerCustom::create("orientation-changed", [entity](EventCustom* event) {
         
         auto sender = (Entity*)event->getUserData();
         if (sender == entity) { // Adjust Player animation
+            
             float theta = atan2f(entity->getOrientation().y, entity->getOrientation().x);
             auto size = entity->getContentSize();
             if (theta <= M_PI_4+ 0.01f && theta >= -M_PI_4 - 0.01f) {
@@ -38,7 +37,25 @@ void EntityCreator::setupAnimation(Entity *entity) {
         }
     });
     
-    scene->physics->getEventDispatcher()->addEventListenerWithSceneGraphPriority(orientationListener, entity);
+    entity->getEventDispatcher()->addEventListenerWithSceneGraphPriority(orientationListener, entity);
+    
+    entity->getEventDispatcher()->resumeEventListenersForTarget(entity); // TODO : This could potentially be bad
+    entity->setOrientation(entity->getOrientation()); // Called for the side effect of triggering the orientation listener. So it sets the initial direction
+}
+
+std::string EntityCreator::uniqueKey(int tag, std::string valueName) {
+    return scene->worldName+std::to_string(tag)+valueName;
+}
+
+TextBox* EntityCreator::createGoldDisplay() {
+    auto goldDisplay = TextBox::create("Gold : " + std::to_string(Party::getGold()), Size(156, 28));
+    auto goldListener = EventListenerCustom::create("inventory-changed", [goldDisplay](EventCustom* event) {
+        goldDisplay->updateText("Gold : " + std::to_string(Party::getGold()));
+    });
+    
+    goldDisplay->getEventDispatcher()->addEventListenerWithSceneGraphPriority(goldListener, goldDisplay);
+    
+    return goldDisplay;
 }
 
 Entity* EntityCreator::createPlayer() {
@@ -86,6 +103,7 @@ Entity* EntityCreator::createBasicEnemy() {
     scene->physics->registerCallbackOnContact([this](Node *enemy, Node *otherEntity) {
         if (scene->player == otherEntity) {
             enemy->removeFromParent();
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("transition.wav");
             Director::getInstance()->pushScene(TransitionFade::create(0.5, Battle::createScene(), Color3B(255, 255, 255)));
         }
     }, enemy);
@@ -110,17 +128,22 @@ Entity* EntityCreator::createFollowingEnemy() {
         towardPlayer.normalize();
         enemy->velocity = 150.0f * towardPlayer;
     };
-    auto wander = [enemy]() {
-        enemy->velocity = Vec2::ZERO;
-        Vec2 randomDirection = Vec2(rand() - (RAND_MAX / 2), rand() - (RAND_MAX / 2));
-        randomDirection.normalize();
-        if ((rand() % 200) == 0) {
-            enemy->setOrientation(randomDirection);
-            enemy->runAction(MoveBy::create(0.5f, 50.0f * randomDirection));
+    
+    auto wander = [enemy](float dt) {
+        if (enemy->velocity.isZero()) {
+            if (RandomHelper::random_int(0, 3) == 3) {
+                auto random = randomDirection();
+                enemy->velocity = 150.0f * randomDirection();
+            }
+        } else {
+            enemy->velocity = Vec2::ZERO;
         }
     };
     
-    enemy->behavior = wander;
+    auto scheduler = Director::getInstance()->getScheduler();
+    scheduler->schedule(wander, enemy, 0.5f + RandomHelper::random_real(0.0f, 0.2f), kRepeatForever, RandomHelper::random_real(0.0f, 2.0f), false, "wander");
+    
+    enemy->behavior = [](){};
     
     scene->physics->registerCallbackOnContact([this, enemy, followPlayer](Entity *visibilityBox, Entity *otherEntity) {
         if (scene->player == otherEntity) {
@@ -130,7 +153,7 @@ Entity* EntityCreator::createFollowingEnemy() {
     
     scene->physics->registerCallbackOnSeperate([this, enemy, wander](Entity *visibilityBox, Entity *otherEntity) {
         if (scene->player == otherEntity) {
-            enemy->behavior = wander;
+            enemy->behavior = [](){};
         }
     }, visiblityBox);
     
@@ -157,12 +180,12 @@ Entity* EntityCreator::createCalpirgEnemy() {
     item1.second = [this, textBox, enemy](Node *sender) {
         sender->removeFromParent();
         sender->release();
-        if (Player::getGold() >= 10) {
+        if (Party::getGold() >= 10) {
             textBox->updateText("Thank you! Your donation will go to a good cause.");
             auto closeListener = EventListenerKeyboard::create();
             closeListener->onKeyPressed = [enemy, textBox](EventKeyboard::KeyCode keyCode, Event *event) {
                 if (keyCode == EventKeyboard::KeyCode::KEY_ENTER) {
-                    Player::setGold(Player::getGold()-10);
+                    Party::setGold(Party::getGold()-10);
                     enemy->removeFromParent();
                     textBox->removeFromParent();
                     textBox->release();
@@ -206,8 +229,16 @@ Entity* EntityCreator::createCalpirgEnemy() {
     
     scene->physics->registerCallbackOnContact([textBox, menu, this](Node *enemy, Node *otherEntity) {
         if (scene->player == otherEntity) {
+            auto goldDisplay = createGoldDisplay();
+            goldDisplay->setPosition(textBox->getPosition() + textBox->getContentSize() - Vec2(goldDisplay->getContentSize().width, 0));
             scene->gui->addChild(textBox);
             scene->gui->addChild(menu);
+            scene->gui->addChild(goldDisplay);
+            goldDisplay->retain();
+            menu->setOnExitCallback([goldDisplay](){
+                goldDisplay->removeFromParent();
+                goldDisplay->release();
+            });
             menu->setPosition(textBox->getPosition() + Vec2(0.0f, textBox->getContentSize().height));
         }
     }, enemy);
@@ -230,8 +261,7 @@ Entity* EntityCreator::createBasicNPC() {
 }
 
 Entity* EntityCreator::createLoadingZone(std::string worldFilename, std::string entranceName) {
-    auto loadingZone = Entity::create("CloseNormal.png");
-    loadingZone->setContentSize(Size(defaultSize, defaultSize));
+    auto loadingZone = Entity::create();
     loadingZone->isDynamic = false;
     loadingZone->isSolid = false;
     
@@ -239,8 +269,11 @@ Entity* EntityCreator::createLoadingZone(std::string worldFilename, std::string 
         if (scene->player == otherEntity) {
             auto nextScene = OverworldScene::createWithTileMap(worldFilename);
             auto entrance = nextScene->world->getChildByName(entranceName);
+            auto lastOrientation = scene->player->getOrientation();
             
+            assert(entrance);
             nextScene->player->setPosition(entrance->getPosition());
+            nextScene->player->setOrientation(lastOrientation);
             Director::getInstance()->replaceScene(TransitionFade::create(0.5, nextScene, Color3B(0, 0, 0)));
         }
     }, loadingZone);
@@ -254,10 +287,10 @@ Entity* EntityCreator::createTalkingNPC(std::string message) {
         npc->setOrientation(randomDirection());
     };
     auto scheduler = Director::getInstance()->getScheduler();
-    scheduler->schedule(lookAround, npc, 4.0f, kRepeatForever, 0.0f, false, "myCallbackKey");
+    scheduler->schedule(lookAround, npc, 4.0f, kRepeatForever, 0.0f, false, "lookAround");
     
     npc->interact = [this, message, npc]() {
-        npc->setOrientation(scene->player->getCollisionBox().origin - npc->getCollisionBox().origin);
+        npc->face(scene->player);
         scene->gui->addChild(PagedTextBox::create(message));
     };
     
@@ -267,21 +300,27 @@ Entity* EntityCreator::createTalkingNPC(std::string message) {
 
 Entity* EntityCreator::createStoreNPC(std::vector<std::pair<Item*, int>> itemsAndPrices) {
     auto npc = createBasicNPC();
+    
     npc->interact = [this, npc, itemsAndPrices]() {
         auto textBox = TextBox::create("Hey kid I got that stuff you're looking for. You buying?");
         
         npc->setOrientation(scene->player->getCollisionBox().origin - npc->getCollisionBox().origin);
         LabelAndCallback yesItem, noItem;
         yesItem.first = "Yes";
-        yesItem.second = [this, itemsAndPrices](Node *sender) {
+        yesItem.second = [this, itemsAndPrices, textBox](Node *sender) {
+            textBox->setVisible(false);
+            sender->setVisible(false);
             std::vector<LabelAndCallback> shopItems;
             for (auto itemAndPrice : itemsAndPrices) {
                 LabelAndCallback shopItem;
                 shopItem.first = itemAndPrice.first->getName() + "   $" + std::to_string(itemAndPrice.second);
                 shopItem.second = [this, itemAndPrice](Node *sender) {
-                    if (Player::getGold() > itemAndPrice.second) {
-                        Player::addItem(itemAndPrice.first);
-                        Player::setGold(Player::getGold() - itemAndPrice.second);
+                    if (Party::getGold() >= itemAndPrice.second) {
+                        auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+                        audio->playEffect("buy1.wav");
+                        
+                        Party::addItem(itemAndPrice.first);
+                        Party::setGold(Party::getGold() - itemAndPrice.second);
                         scene->gui->addChild(PagedTextBox::create("Holla Holla get Dollas."));
                     } else {
                         scene->gui->addChild(PagedTextBox::create("Come back here when you're not poor."));
@@ -289,8 +328,23 @@ Entity* EntityCreator::createStoreNPC(std::vector<std::pair<Item*, int>> itemsAn
                 };
                 shopItems.push_back(shopItem);
             }
-            shopItems.push_back(KeyboardMenu::closeItem());
-            scene->gui->addChild(KeyboardMenu::create(shopItems));
+            
+            auto goldDisplay = createGoldDisplay();
+            
+            auto closeItem = KeyboardMenu::closeItem();
+            auto yesAndNoBox = sender;
+            closeItem.second = [yesAndNoBox, textBox, goldDisplay](Node *sender) {
+                textBox->setVisible(true);
+                yesAndNoBox->setVisible(true);
+                sender->removeFromParent();
+                goldDisplay->removeFromParent();
+                
+            };
+            shopItems.push_back(closeItem);
+            auto shopMenu = KeyboardMenu::create(shopItems);
+            scene->gui->addChild(shopMenu);
+            goldDisplay->setPosition(shopMenu->getPosition() + Vec2(0, shopMenu->getContentSize().height + 4));
+            scene->gui->addChild(goldDisplay);
         };
         noItem.first = "No";
         noItem.second = [this, textBox](Node *sender) {
@@ -308,7 +362,45 @@ Entity* EntityCreator::createStoreNPC(std::vector<std::pair<Item*, int>> itemsAn
     return npc;
 }
 
-Entity* createChest(Item *item) {
-    // TODO : The graphics needed are already in the resource folder
+Entity* EntityCreator::createChest(Item *item, int tag) {
+    auto key = uniqueKey(tag, "opened");
+    auto opened = GameState::defaultInstance->state[key].asBool();
+    auto chest = opened ? Entity::create("chestOpened.png") : Entity::create("chestClosed.png");
+    chest->isSolid = true;
+    chest->isDynamic = false;
     
+    chest->interact = [item, chest, this, key](){
+        
+        auto opened = GameState::defaultInstance->state[key].asBool();
+        if (!opened) {
+            auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+            audio->playEffect("present.wav");
+            
+            Party::addItem(item);
+            scene->gui->addChild(PagedTextBox::create("You got " + item->getName()));
+            chest->setTexture("chestOpened.png");
+            GameState::defaultInstance->state[key] = Value(true);
+        }
+    };
+    return chest;
+}
+
+Entity* EntityCreator::createBoss() {
+    auto boss = Entity::create("CloseNormal.png");
+    boss->setContentSize(Size(defaultSize, defaultSize));
+    boss->isDynamic = false;
+    
+    boss->setColor(Color3B(150, 150, 255));
+    setupAnimation(boss);
+    
+    boss->interact = [this, boss]() {
+        boss->face(scene->player);
+        auto textBox = PagedTextBox::create("We're not so different you and I.");
+        scene->gui->addChild(textBox);
+        textBox->setOnExitCallback([]() {
+            Director::getInstance()->pushScene(TransitionFade::create(2.0, Battle::createScene(), Color3B(255, 255, 255)));
+        });
+    };
+    
+    return boss;
 }

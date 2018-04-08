@@ -1,17 +1,8 @@
 #include "Enemy.h"
 
-Enemy::Enemy(int i)
+Enemy::Enemy()
 {
-    exp = 4;
-    gold = 5;
-    hp = 30;
-    atk = 2;
-    def = 0;
     dead = false;
-    sprite = Sprite::create("HelloWorld.png");
-    sprite->setAnchorPoint(Vec2(0.5, 0.5));
-    setPosition(200 * i + 400, 500);
-    sprite->setPosition(getPosition());
 }
 
 int Enemy::getExp()
@@ -41,7 +32,7 @@ int Enemy::getDef()
 
 int Enemy::takeDamage(int rawDamage)
 {
-    int damage = rawDamage - def;
+    int damage = rawDamage * (255 - def) / 256 + 1;
     if(damage < 0) return 0;
     hp -= damage;
     if(hp <= 0) die();
@@ -60,6 +51,7 @@ bool Enemy::isDead()
 
 void Enemy::die()
 {
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("die.wav");
     sprite->runAction(FadeTo::create(0.25, 0));
     dead = true;
 }

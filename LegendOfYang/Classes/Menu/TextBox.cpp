@@ -6,10 +6,11 @@
 //
 
 #include "TextBox.hpp"
+#include "Utility.hpp"
 
 bool TextBox::init() {
     if (!Node::init()) return false;
-    background = LayerColor::create(Color4B(0, 0, 255, 200), this->getContentSize().width, this->getContentSize().height);
+    background = LayerColor::create(menuColor, this->getContentSize().width, this->getContentSize().height);
     this->addChild(background);
     updateText("Don't use the create() method");
     return true;

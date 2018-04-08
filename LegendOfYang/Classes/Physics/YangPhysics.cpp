@@ -19,6 +19,7 @@ YangPhysics* YangPhysics::createWithTileMap(TMXTiledMap *map) {
     auto physics = create();
     physics->tileMap = map;
     physics->meta = map->getLayer("Meta");
+    physics->GID = physics->meta->getTileSet()->_firstGid;
     return physics;
 }
 
@@ -135,7 +136,7 @@ void YangPhysics::update(float delta) {
             Vec2 tilePlayerIsOn = tileCoordForPosition(entity->getPosition() + entity->getContentSize()/2, tileMap);
             for (int i = tilePlayerIsOn.x - 1; i < tilePlayerIsOn.x + 2; i++) {
                 for (int j = tilePlayerIsOn.y - 1; j < tilePlayerIsOn.y + 2; j++) {
-                    if (i >= 0 && j >= 0 && i < tileMap->getMapSize().width && j < tileMap->getMapSize().height && meta->getTileGIDAt(Vec2(i,j)) == 49) {
+                    if (i >= 0 && j >= 0 && i < tileMap->getMapSize().width && j < tileMap->getMapSize().height && meta->getTileGIDAt(Vec2(i,j)) == GID) {
                         boundingBoxs.push_back(meta->getTileAt(Vec2(i,j))->getBoundingBox());
                     }
                 }

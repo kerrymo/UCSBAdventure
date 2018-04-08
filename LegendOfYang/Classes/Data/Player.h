@@ -10,54 +10,59 @@ class Player
 {
 public:
     /**
+     The default constructor.
+     Postcondition: a new object is created.
+    */
+    Player();
+    
+    /**
      The getter of lv.
      Return: the lv variable.
     */
-    static int getLv();
+    int getLv();
     
     /**
      Level to string.
      Return: gives level as string
      */
-    static std::string lvToString(int lvl);
+    std::string lvToString(int lvl);
     
     /**
      The getter of exp.
      Return: the exp variable.
     */
-    static int getExp();
-    
-    /**
-     The getter of gold.
-     Return: the gold variable.
-    */
-    static int getGold();
-    
-    static void setGold(int g) { gold = std::max(0, g); };
+    int getExp();
     
     /**
      The getter of maxHp.
      Return: the maxHp variable.
     */
-    static int getMaxHp();
+    int getMaxHp();
     
     /**
      The getter of currentHp.
      Return: the currentHp variable.
     */
-    static int getCurrentHp();
-    static void setCurrentHp(int hp);
+    int getCurrentHp();
+    
+    /**
+     The setter of currentHp.
+     Parameters: the new value of currentHp.
+     Postcondition: the currentHp has been set to the new value.
+    */
+    void setCurrentHp(int hp);
+    
     /**
      The getter of atk.
      Return: the atk variable.
     */
-    static int getAtk();
+    int getAtk();
     
     /**
      The getter of def.
      Return: the def variable.
     */
-    static int getDef();
+    int getDef();
     
     /**
      Called when the player takes damage.
@@ -66,7 +71,7 @@ public:
      Precondition: the player is attacked.
      Postcondition: the hp is reduced by the damage taken.
     */
-    static int takeDamage(int);
+    int takeDamage(int);
     
     /**
      Called when the player gains exp.
@@ -74,42 +79,72 @@ public:
      Precondition: the player gains exp.
      Postcondition: the exp is added to the player's exp.
     */
-    static void gainExp(int);
-    
-    /**
-     Called when the player gains gold.
-     Parameters: the amount of gold gained.
-     Precondition: the player gains gold.
-     Postcondition: the gold is added to the player's gold.
-    */
-    static void gainGold(int);
+    void gainExp(int);
     
     /**
      Called when the player choose to defend himself.
      Postcondition: the defending flag is set.
     */
-    static void defend();
+    void defend();
     
     /**
      Called when a new round begins.
      Postcondition: the defending flag is set to false.
     */
-    static void undefend();
+    void undefend();
+    
+    virtual std::string getName() = 0;
     
     /**
-     Adds an item to the players inventory
-     */
-    static void addItem(Item *item);
+     Create the sprite for the player.
+     Parameters: the position of the sprite.
+     Precondition: the sprite is not created.
+     Postcondition: the sprite is created.
+    */
+    virtual void createSprite(int, int);
     
     /**
-     Removes an item from the players inventory
-     */
-    static void removeItem(Item *item);
+     The getter of sprite.
+     Return: the sprite pointer.
+    */
+    Sprite* getSprite();
     
-    static std::unordered_map<Item*, int> getItems() { return items; };
+    /**
+     The getter of hpLabel.
+     Return: the hpLabel pointer.
+    */
+    Label* getHpLabel();
     
-private:
-    static int lv, exp, gold, maxHp, currentHp, atk, def;
-    static bool defending;
-    static std::unordered_map<Item*, int> items;
+    /**
+     Create the hp label for the player.
+     Parameters: the position of the label.
+     Precondition: the label is not created.
+     Postcondition: the label is created.
+    */
+    void createHpLabel(int, int);
+    
+    /**
+     The getter of dead flag.
+     Return: the dead boolean.
+    */
+    bool isDead();
+    
+    /**
+     Called when the player dies.
+     Precondition: the player is not dead.
+     Postcondition: the player is dead.
+    */
+    void die();
+    
+    /**
+     Called when the hp of the player changes.
+     Postcondition: the hp label of the player is updated.
+    */
+    void updateHpLabel();
+    
+protected:
+    int lv, exp, maxHp, currentHp, atk, def, hpGrowth, atkGrowth, defGrowth;
+    bool defending, dead;
+    Sprite *sprite;
+    Label *hpLabel;
 };
