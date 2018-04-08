@@ -1,5 +1,5 @@
 # The Legend of Yang
-Group Members: John Rehbein, Sitao Chen, Kerry Mo, Iris Xu, Qilin Liu
+Group Members: John Rehbein, Sitao Chen, Kerry Mo, Qilin Liu
 
 # How to run the game
 1. Buy a mac.
